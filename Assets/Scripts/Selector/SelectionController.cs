@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using UI.SelectorView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace Selector
 {
@@ -12,8 +12,9 @@ namespace Selector
         [SerializeField][Header("Input Actions")]
         private InputActionAsset playerInputActions; //TODO: use service locator
 
-        [SerializeField][Header("UI Reference")]
-        private RectTransform selectionRectangleUI;
+        [SerializeField] [Header("UI view Reference")]
+        /*private RectTransform selectionRectangleUI;*/
+        private SelectorView selectorView;
 
         [SerializeField][Header("Selection Settings")]
         private LayerMask selectableLayer;
@@ -53,7 +54,7 @@ namespace Selector
         {
             leftClickAction.Enable();
             mousePositionAction.Enable();
-            selectionRectangleUI.gameObject.SetActive(false);
+            selectorView.SetSelectorState(false);
         }
         
         private void Update()
@@ -65,7 +66,7 @@ namespace Selector
             
             currentScreenMousePosition = mousePositionAction.ReadValue<Vector2>();
             UpdateWorldAndScreenPositions();
-            UpdateSelectionRectangleUI();
+            selectorView.UpdateSelector(startWorldPoint, currentWorldPoint, minDragDistance);
         }
 
         private void OnLeftClickStarted(InputAction.CallbackContext context)
@@ -85,7 +86,7 @@ namespace Selector
             }
 
             isDragging = false;
-            selectionRectangleUI.gameObject.SetActive(false);
+            selectorView.SetSelectorState(false);
 
             currentScreenMousePosition = mousePositionAction.ReadValue<Vector2>();
             
@@ -105,37 +106,6 @@ namespace Selector
         private void UpdateWorldAndScreenPositions()
         {
             currentWorldPoint = RecalculateWorldPointUnderMouse(currentScreenMousePosition);
-        }
-
-
-        private void UpdateSelectionRectangleUI() //TODO: move to the view
-        {
-            Vector2 projectedStartScreen = mainCamera.WorldToScreenPoint(startWorldPoint);
-            Vector2 projectedCurrentScreen = mainCamera.WorldToScreenPoint(currentWorldPoint);
-            
-            float x1 = Mathf.Min(projectedStartScreen.x, projectedCurrentScreen.x);
-            float y1 = Mathf.Min(projectedStartScreen.y, projectedCurrentScreen.y);
-            float x2 = Mathf.Max(projectedStartScreen.x, projectedCurrentScreen.x);
-            float y2 = Mathf.Max(projectedStartScreen.y, projectedCurrentScreen.y);
-
-            Rect screenRect = new Rect(x1, y1, x2 - x1, y2 - y1);
-            
-            if (screenRect.width < minDragDistance && screenRect.height < minDragDistance)
-            {
-                selectionRectangleUI.gameObject.SetActive(false);
-                return;
-            }
-
-            if (selectionRectangleUI.gameObject.activeSelf == false)
-            {
-                selectionRectangleUI.gameObject.SetActive(true);
-            }
-            
-            Vector2 rectCenter = screenRect.center;
-            Vector2 canvasCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
-
-            selectionRectangleUI.anchoredPosition = rectCenter - canvasCenter;
-            selectionRectangleUI.sizeDelta = screenRect.size;
         }
         
         private Vector3 RecalculateWorldPointUnderMouse(Vector2 screenPosition)
