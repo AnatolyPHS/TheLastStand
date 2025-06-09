@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using InputsManager;
 using Services;
 using UI.SelectorView;
 using UnityEngine;
@@ -9,9 +10,6 @@ namespace Selector
     public class SelectionController : MonoBehaviour, ISelectorController
     {
         private const float YBoundSelectionThreshold = 100f;
-
-        [SerializeField][Header("Input Actions")]
-        private InputActionAsset playerInputActions; //TODO: use service locator
         
         [SerializeField][Header("Selection Settings")]
         private LayerMask selectableLayer;
@@ -19,6 +17,7 @@ namespace Selector
         [SerializeField] private float minDragDistance = 5f;
         [SerializeField] private float groundPlaneHeight = 0f;
         
+        private IInputManager inputManager;
         private ISelectorView selectorView;
         
         private Vector3 startWorldPoint; 
@@ -43,11 +42,12 @@ namespace Selector
 
         private void Start()
         {
-            InputActionMap gameplayActionMap = playerInputActions.FindActionMap("Gameplay"); //TODO: additional manager or at least a class with names
+            inputManager = ServiceLocator.Instance.Get<IInputManager>();
+            selectorView = ServiceLocator.Instance.Get<ISelectorView>();
 
-            leftClickAction = gameplayActionMap.FindAction("LeftClick");
-            mousePositionAction = gameplayActionMap.FindAction("MouseScreenPos");
-
+            leftClickAction = inputManager.GetInputAction(InputManager.LeftMouseClickActionKey);
+            mousePositionAction = inputManager.GetInputAction(InputManager.MouseScreenPosActionKey);
+            
             leftClickAction.started += OnLeftClickStarted;
             leftClickAction.canceled += OnLeftClickCanceled;
             
@@ -56,7 +56,6 @@ namespace Selector
             leftClickAction.Enable();
             mousePositionAction.Enable();
             
-            selectorView = ServiceLocator.Instance.Get<ISelectorView>();
             selectorView.SetSelectorState(false);
         }
         

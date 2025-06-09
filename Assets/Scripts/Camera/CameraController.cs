@@ -1,3 +1,4 @@
+using InputsManager;
 using Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,12 +17,11 @@ namespace Camera
         [SerializeField] private float minZoom = 5f;
         [SerializeField] private float maxZoom = 25f;
         
-        [SerializeField][Header("Input Actions")]
-        private InputActionAsset playerInputActions; //TODO: mb better to use a service locator
-        
         [SerializeField][Header("Focusing Target")]
          private Transform mainHero;
         [SerializeField] private float focusLerpSpeed = 5f;
+        
+        private IInputManager inputManager;
         
         private InputAction panCameraAction;
         private InputAction zoomCameraAction;
@@ -46,11 +46,11 @@ namespace Camera
         
         private void Start()
         {
-            InputActionMap cameraActionMap = playerInputActions.FindActionMap("Gameplay"); //TODO: add a static class with names of a manager for game inputs with it
+            inputManager = ServiceLocator.Instance.Get<IInputManager>();
 
-            panCameraAction = cameraActionMap.FindAction("MouseScreenPos");//TODO: add a static class with names of a manager for game inputs with it
-            zoomCameraAction = cameraActionMap.FindAction("ZoomCamera");//TODO: add a static class with names of a manager for game inputs with it
-            toggleFocusAction = cameraActionMap.FindAction("ToggleFocus");//TODO: add a static class with names of a manager for game inputs with it
+            panCameraAction = inputManager.GetInputAction(InputManager.MouseScreenPosActionKey);
+            zoomCameraAction = inputManager.GetInputAction(InputManager.ZoomCameraActionKey);
+            toggleFocusAction = inputManager.GetInputAction(InputManager.ToggleCameraFocesActionKey);
             
             panCameraAction.performed += OnMouseMove;
             panCameraAction.canceled += OnMouseMove; 
