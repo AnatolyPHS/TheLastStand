@@ -1,4 +1,3 @@
-using System;
 using Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +7,7 @@ namespace Camera
     public class CameraController : MonoBehaviour, ICameraController
     {
         [SerializeField][Header("Camera movement Settings")]
-        private Transform mainCamera;
+        private UnityEngine.Camera mainCamera;
         [SerializeField] private float moveSpeed = 10f;
         [SerializeField] private float scrollSpeed = 50f;//TODO: need a settings manager and/or panel
         [SerializeField] private float borderScrollSpeed = 10f;
@@ -37,10 +36,12 @@ namespace Camera
         private float borderThicknessX;
         private float borderThicknessY;
         
+        private Transform mainCameraTransform;
         
         private void Awake()
         {
             ServiceLocator.Instance.Register<ICameraController>(this);
+            mainCameraTransform = mainCamera.transform;
         }
         
         private void Start()
@@ -126,7 +127,7 @@ namespace Camera
 
         private void FollowTheHero()
         {
-            Vector3 cameraForward = mainCamera.forward;
+            Vector3 cameraForward = mainCameraTransform.forward;
             cameraForward.y = 0;
             cameraForward.Normalize();
                 
@@ -138,12 +139,12 @@ namespace Camera
 
         private void HandleZoom()
         {
-            Vector3 zoomDirection = mainCamera.forward * currentZoomInput;
-            mainCamera.position -= zoomDirection * (scrollSpeed * Time.deltaTime);
+            Vector3 zoomDirection = mainCameraTransform.forward * currentZoomInput;
+            mainCameraTransform.position -= zoomDirection * (scrollSpeed * Time.deltaTime);
             
-            mainCamera.position = new Vector3(mainCamera.position.x,
-                Mathf.Clamp(mainCamera.position.y, minZoom, maxZoom),
-                mainCamera.position.z);
+            mainCameraTransform.position = new Vector3(mainCameraTransform.position.x,
+                Mathf.Clamp(mainCameraTransform.position.y, minZoom, maxZoom),
+                mainCameraTransform.position.z);
             
             heroZdeviation += currentZoomInput * scrollSpeed * Time.deltaTime;
             heroZdeviation = Mathf.Clamp(heroZdeviation, minZoom, maxZoom);
@@ -163,6 +164,11 @@ namespace Camera
             zoomCameraAction.Disable();
             toggleFocusAction.Disable();
             ServiceLocator.Instance.Unregister<ICameraController>();
+        }
+
+        public UnityEngine.Camera GetCamera()
+        {
+            return mainCamera;
         }
     }
 }

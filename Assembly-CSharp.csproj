@@ -45,11 +45,16 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\UI\SelectorView\ISelectorView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\ISelectable.cs" />
+     <Compile Include="Assets\Scripts\UI\SelectorView\SelectorView.cs" />
+     <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
      <Compile Include="Assets\Scripts\Selector\SelectionController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Unit.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\DummyUnity.cs" />
-     <Compile Include="Assets\Scripts\Camera\CameraMover.cs" />
+     <Compile Include="Assets\Scripts\Selector\ISelectorController.cs" />
+     <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
+     <Compile Include="Assets\Scripts\Camera\ICameraController.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Selector" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -60,6 +65,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Units" />
+     <Folder Include="Assets\Scripts\UI\SelectorView" />
      <Folder Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
@@ -67,6 +73,7 @@
      <Folder Include="Assets\Scripts\Camera" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <Folder Include="Assets\TextMesh Pro" />
+     <Folder Include="Assets\Scripts\UI" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -81,6 +88,7 @@
      <Folder Include="Assets\Scenes" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <Folder Include="Assets\Input" />
+     <Folder Include="Assets\Scripts\Services" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

@@ -1,3 +1,4 @@
+using Camera;
 using Services;
 using UnityEngine;
 
@@ -5,12 +6,18 @@ namespace UI.SelectorView
 {
     public class SelectorView : MonoBehaviour, ISelectorView
     {
-        [SerializeField] private UnityEngine.Camera mainCamera; //TODO: use service locator and take it from CameraMover
         [SerializeField] private RectTransform selectionRectangleUI;
+        
+        private UnityEngine.Camera mainCamera;
         
         private void Awake()
         {
             ServiceLocator.Instance.Register<ISelectorView>(this);
+        }
+
+        private void Start()
+        {
+            mainCamera = ServiceLocator.Instance.Get<ICameraController>().GetCamera();
         }
         
         public void SetSelectorState(bool newState)

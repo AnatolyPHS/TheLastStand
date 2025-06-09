@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 146784227}
   - component: {fileID: 146784226}
   m_Layer: 0
-  m_Name: CameraMover
+  m_Name: CameraController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2a3e7d24c16a04b9956096a06bd737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 824969812}
+  mainCamera: {fileID: 824969811}
   moveSpeed: 10
   scrollSpeed: 50
   borderScrollSpeed: 10
@@ -572,7 +572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229b4ef9912ed9a4384ae5dc3d93c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 824969811}
   selectionRectangleUI: {fileID: 1125290029}
 --- !u!1 &1125290028
 GameObject:
