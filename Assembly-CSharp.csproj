@@ -45,8 +45,12 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\GameSceneObjects\ISelectable.cs" />
+     <Compile Include="Assets\Scripts\Selector\SelectionController.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraMover.cs" />
      <Folder Include="Assets" />
+     <Folder Include="Assets\Scripts\Selector" />
+     <Folder Include="Assets\Scripts\GameSceneObjects" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Scripts\Camera" />
      <Folder Include="Assets\Scenes" />
