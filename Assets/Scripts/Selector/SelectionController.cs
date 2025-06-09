@@ -72,7 +72,7 @@ namespace Selector
         {
             startScreenMousePosition = mousePositionAction.ReadValue<Vector2>();
 
-            RecalculateWorldPointUnderMouse(startScreenMousePosition);
+            startWorldPoint = RecalculateWorldPointUnderMouse(startScreenMousePosition);
             isDragging = true; 
             ClearSelection();
         }
@@ -97,14 +97,14 @@ namespace Selector
             }
             else
             {
-                RecalculateWorldPointUnderMouse(currentScreenMousePosition);
+                currentWorldPoint = RecalculateWorldPointUnderMouse(currentScreenMousePosition);
                 SelectUnitsInRectangle(startWorldPoint, currentWorldPoint);
             }
         }
 
         private void UpdateWorldAndScreenPositions()
         {
-            RecalculateWorldPointUnderMouse(currentScreenMousePosition);
+            currentWorldPoint = RecalculateWorldPointUnderMouse(currentScreenMousePosition);
         }
 
 
@@ -138,18 +138,17 @@ namespace Selector
             selectionRectangleUI.sizeDelta = screenRect.size;
         }
         
-        private void RecalculateWorldPointUnderMouse(Vector2 screenPosition)
+        private Vector3 RecalculateWorldPointUnderMouse(Vector2 screenPosition)
         {
             Ray ray = mainCamera.ScreenPointToRay(screenPosition);
             
             float distance;
             if (groundPlane.Raycast(ray, out distance))
             {
-                currentWorldPoint = ray.GetPoint(distance);
-                return;
+                return ray.GetPoint(distance);
             }
             
-            currentWorldPoint = Vector3.zero; 
+            return Vector3.zero; 
         }
 
         private void SelectUnitsInRectangle(Vector3 startWorldPoint, Vector3 endWorldPoint)
