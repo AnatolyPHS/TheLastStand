@@ -1,9 +1,11 @@
+using System;
+using Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Camera
 {
-    public class CameraMover : MonoBehaviour
+    public class CameraController : MonoBehaviour, ICameraController
     {
         [SerializeField][Header("Camera movement Settings")]
         private Transform mainCamera;
@@ -38,6 +40,11 @@ namespace Camera
         
         private void Awake()
         {
+            ServiceLocator.Instance.Register<ICameraController>(this);
+        }
+        
+        private void Start()
+        {
             InputActionMap cameraActionMap = playerInputActions.FindActionMap("Gameplay"); //TODO: add a static class with names of a manager for game inputs with it
 
             panCameraAction = cameraActionMap.FindAction("MouseScreenPos");//TODO: add a static class with names of a manager for game inputs with it
@@ -56,14 +63,10 @@ namespace Camera
             
             borderThicknessX = Screen.width * borderThicknessPercent;
             borderThicknessY = Screen.height * borderThicknessPercent;
-        }
-        
-        private void OnEnable()
-        {
+            
             panCameraAction.Enable();
             zoomCameraAction.Enable();
             toggleFocusAction.Enable();
-            panCameraAction.Enable();
         }
         
         private void Update()
@@ -144,6 +147,22 @@ namespace Camera
             
             heroZdeviation += currentZoomInput * scrollSpeed * Time.deltaTime;
             heroZdeviation = Mathf.Clamp(heroZdeviation, minZoom, maxZoom);
+        }
+
+        private void OnDestroy()
+        {
+            panCameraAction.performed -= OnMouseMove;
+            panCameraAction.canceled -= OnMouseMove;
+
+            zoomCameraAction.performed -= OnZoomCamera;
+            zoomCameraAction.canceled -= OnZoomCamera;
+
+            toggleFocusAction.performed -= OnToggleFocus;
+
+            panCameraAction.Disable();
+            zoomCameraAction.Disable();
+            toggleFocusAction.Disable();
+            ServiceLocator.Instance.Unregister<ICameraController>();
         }
     }
 }

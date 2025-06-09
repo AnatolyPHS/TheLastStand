@@ -1,11 +1,17 @@
+using Services;
 using UnityEngine;
 
 namespace UI.SelectorView
 {
-    public class SelectorView : MonoBehaviour
+    public class SelectorView : MonoBehaviour, ISelectorView
     {
         [SerializeField] private UnityEngine.Camera mainCamera; //TODO: use service locator and take it from CameraMover
         [SerializeField] private RectTransform selectionRectangleUI;
+        
+        private void Awake()
+        {
+            ServiceLocator.Instance.Register<ISelectorView>(this);
+        }
         
         public void SetSelectorState(bool newState)
         {
@@ -40,6 +46,11 @@ namespace UI.SelectorView
 
             selectionRectangleUI.anchoredPosition = rectCenter - canvasCenter;
             selectionRectangleUI.sizeDelta = screenRect.size;
+        }
+
+        private void OnDestroy()
+        {
+            ServiceLocator.Instance.Unregister<ISelectorView>();
         }
     }
 }

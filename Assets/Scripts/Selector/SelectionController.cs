@@ -1,26 +1,25 @@
 using System.Collections.Generic;
+using Services;
 using UI.SelectorView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Selector
 {
-    public class SelectionController : MonoBehaviour
+    public class SelectionController : MonoBehaviour, ISelectorController
     {
         private const float YBoundSelectionThreshold = 100f;
 
         [SerializeField][Header("Input Actions")]
         private InputActionAsset playerInputActions; //TODO: use service locator
-
-        [SerializeField] [Header("UI view Reference")]
-        /*private RectTransform selectionRectangleUI;*/
-        private SelectorView selectorView;
-
+        
         [SerializeField][Header("Selection Settings")]
         private LayerMask selectableLayer;
         [SerializeField] private UnityEngine.Camera mainCamera; //TODO: use servicde locator and take it from CameraMover
         [SerializeField] private float minDragDistance = 5f;
         [SerializeField] private float groundPlaneHeight = 0f;
+        
+        private ISelectorView selectorView;
         
         private Vector3 startWorldPoint; 
         private Vector3 currentWorldPoint;
@@ -35,9 +34,14 @@ namespace Selector
 
         private List<ISelectable> currentlySelectedObjects = new List<ISelectable>();
         
-        Plane groundPlane;
-
+        private Plane groundPlane;
+        
         private void Awake()
+        {
+            ServiceLocator.Instance.Register<ISelectorController>(this);
+        }
+
+        private void Start()
         {
             InputActionMap gameplayActionMap = playerInputActions.FindActionMap("Gameplay"); //TODO: additional manager or at least a class with names
 
@@ -48,14 +52,14 @@ namespace Selector
             leftClickAction.canceled += OnLeftClickCanceled;
             
             groundPlane = new Plane(Vector3.up, Vector3.up * groundPlaneHeight);
-        }
-
-        private void OnEnable()
-        {
+            
             leftClickAction.Enable();
             mousePositionAction.Enable();
+            
+            selectorView = ServiceLocator.Instance.Get<ISelectorView>();
             selectorView.SetSelectorState(false);
         }
+        
         
         private void Update()
         {
@@ -169,6 +173,17 @@ namespace Selector
                 selectable.OnDeselect();
             }
             currentlySelectedObjects.Clear();
+        }
+
+        private void OnDestroy()
+        {
+            leftClickAction.started -= OnLeftClickStarted;
+            leftClickAction.canceled -= OnLeftClickCanceled;
+
+            leftClickAction.Disable();
+            mousePositionAction.Disable();
+            
+            ServiceLocator.Instance.Unregister<ISelectorController>();
         }
     }
 }
