@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI; // Needed for the Image component
+using UnityEngine.UI;
 
 namespace Selector
 {
     public class SelectionController : MonoBehaviour
     {
+        private const float YBoundSelectionThreshold = 100f;
+
         [SerializeField][Header("Input Actions")]
         private InputActionAsset playerInputActions; //TODO: use service locator
 
@@ -17,15 +19,13 @@ namespace Selector
         private LayerMask selectableLayer;
         [SerializeField] private UnityEngine.Camera mainCamera; //TODO: use servicde locator and take it from CameraMover
         [SerializeField] private float minDragDistance = 5f;
-
-        [Header("Selection Visuals (UI Image)")]
-        [SerializeField] private Color selectionFillColor = new Color(0.1f, 0.5f, 0.9f, 0.2f);
+        [SerializeField] private float groundPlaneHeight = 0f;
         
         private Vector3 startWorldPoint; 
         private Vector3 currentWorldPoint;
 
         private Vector2 startScreenMousePosition; 
-        private Vector2 currentScreenMousePosition; // Current screen position of the mouse
+        private Vector2 currentScreenMousePosition;
 
         private InputAction leftClickAction;
         private InputAction mousePositionAction;
@@ -33,16 +33,20 @@ namespace Selector
         private bool isDragging = false;
 
         private List<ISelectable> currentlySelectedObjects = new List<ISelectable>();
+        
+        Plane groundPlane;
 
         private void Awake()
         {
-            InputActionMap gameplayActionMap = playerInputActions.FindActionMap("Gameplay");
+            InputActionMap gameplayActionMap = playerInputActions.FindActionMap("Gameplay"); //TODO: additional manager or at least a class with names
 
             leftClickAction = gameplayActionMap.FindAction("LeftClick");
             mousePositionAction = gameplayActionMap.FindAction("MouseScreenPos");
 
             leftClickAction.started += OnLeftClickStarted;
             leftClickAction.canceled += OnLeftClickCanceled;
+            
+            groundPlane = new Plane(Vector3.up, Vector3.up * groundPlaneHeight);
         }
 
         private void OnEnable()
@@ -54,23 +58,23 @@ namespace Selector
         
         private void Update()
         {
-            if (isDragging)
+            if (isDragging == false)
             {
-                currentScreenMousePosition = mousePositionAction.ReadValue<Vector2>();
-                UpdateWorldAndScreenPositions();
-                UpdateSelectionRectangleUI(); // Still use UI for drawing
+                return;
             }
+            
+            currentScreenMousePosition = mousePositionAction.ReadValue<Vector2>();
+            UpdateWorldAndScreenPositions();
+            UpdateSelectionRectangleUI();
         }
 
         private void OnLeftClickStarted(InputAction.CallbackContext context)
         {
             startScreenMousePosition = mousePositionAction.ReadValue<Vector2>();
-            
-            if (TryGetWorldPointUnderMouse(startScreenMousePosition, out startWorldPoint))
-            {
-                isDragging = true;
-                ClearSelection();
-            }
+
+            RecalculateWorldPointUnderMouse(startScreenMousePosition);
+            isDragging = true; 
+            ClearSelection();
         }
 
         private void OnLeftClickCanceled(InputAction.CallbackContext context)
@@ -81,11 +85,10 @@ namespace Selector
             }
 
             isDragging = false;
-            selectionRectangleUI.gameObject.SetActive(false); // Hide UI rectangle
+            selectionRectangleUI.gameObject.SetActive(false);
 
-            currentScreenMousePosition = mousePositionAction.ReadValue<Vector2>(); // Final screen position
-
-            // Determine if it was a short click or a drag based on screen distance
+            currentScreenMousePosition = mousePositionAction.ReadValue<Vector2>();
+            
             float screenDragDistance = Vector2.Distance(startScreenMousePosition, currentScreenMousePosition);
 
             if (screenDragDistance < minDragDistance)
@@ -94,87 +97,68 @@ namespace Selector
             }
             else
             {
-                // Ensure currentWorldPoint is up-to-date for selection logic
-                TryGetWorldPointUnderMouse(currentScreenMousePosition, out currentWorldPoint);
+                RecalculateWorldPointUnderMouse(currentScreenMousePosition);
                 SelectUnitsInRectangle(startWorldPoint, currentWorldPoint);
             }
         }
 
         private void UpdateWorldAndScreenPositions()
         {
-            // Continuously update the current world point for accurate selection
-            TryGetWorldPointUnderMouse(currentScreenMousePosition, out currentWorldPoint);
+            RecalculateWorldPointUnderMouse(currentScreenMousePosition);
         }
 
 
-        private void UpdateSelectionRectangleUI()
+        private void UpdateSelectionRectangleUI() //TODO: move to the view
         {
-            // Project the startWorldPoint (fixed) and currentWorldPoint (dynamic) back to screen space
-            // This ensures the screen rectangle always matches the world selection box
             Vector2 projectedStartScreen = mainCamera.WorldToScreenPoint(startWorldPoint);
             Vector2 projectedCurrentScreen = mainCamera.WorldToScreenPoint(currentWorldPoint);
-
-            // Calculate the screen-space rectangle from the projected world points
+            
             float x1 = Mathf.Min(projectedStartScreen.x, projectedCurrentScreen.x);
             float y1 = Mathf.Min(projectedStartScreen.y, projectedCurrentScreen.y);
             float x2 = Mathf.Max(projectedStartScreen.x, projectedCurrentScreen.x);
             float y2 = Mathf.Max(projectedStartScreen.y, projectedCurrentScreen.y);
 
             Rect screenRect = new Rect(x1, y1, x2 - x1, y2 - y1);
-
-            // Only show the UI rectangle if the projected drag distance is sufficient
-            // This prevents a tiny rectangle from appearing on a single click.
+            
             if (screenRect.width < minDragDistance && screenRect.height < minDragDistance)
             {
                 selectionRectangleUI.gameObject.SetActive(false);
                 return;
             }
 
-            if (!selectionRectangleUI.gameObject.activeSelf)
+            if (selectionRectangleUI.gameObject.activeSelf == false)
             {
                 selectionRectangleUI.gameObject.SetActive(true);
-                // Set initial color if not set in Inspector
-                if (selectionRectangleUI.TryGetComponent(out Image img))
-                {
-                    img.color = selectionFillColor;
-                }
             }
-
-            // Position and size the RectTransform
+            
             Vector2 rectCenter = screenRect.center;
-            Vector2 canvasCenter = new Vector2(Screen.width / 2f, Screen.height / 2f); // Assuming full-screen overlay Canvas
+            Vector2 canvasCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
 
             selectionRectangleUI.anchoredPosition = rectCenter - canvasCenter;
             selectionRectangleUI.sizeDelta = screenRect.size;
         }
-
-        // Helper to get a world point on the ground plane under the mouse cursor
-        private bool TryGetWorldPointUnderMouse(Vector2 screenPosition, out Vector3 worldPoint)
+        
+        private void RecalculateWorldPointUnderMouse(Vector2 screenPosition)
         {
             Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-            Plane groundPlane = new Plane(Vector3.up, Vector3.zero); // Assuming Y=0 is your ground plane
-
+            
             float distance;
             if (groundPlane.Raycast(ray, out distance))
             {
-                worldPoint = ray.GetPoint(distance);
-                return true;
+                currentWorldPoint = ray.GetPoint(distance);
+                return;
             }
-            worldPoint = Vector3.zero; // Default if no hit
-            return false;
+            
+            currentWorldPoint = Vector3.zero; 
         }
 
         private void SelectUnitsInRectangle(Vector3 startWorldPoint, Vector3 endWorldPoint)
         {
-            ClearSelection(); // Clear previous selection
-
-            // Create a world-space Bounds object from the two world points
             Bounds selectionBounds = new Bounds();
             selectionBounds.SetMinMax(
-                new Vector3(Mathf.Min(startWorldPoint.x, endWorldPoint.x), -100f, Mathf.Min(startWorldPoint.z, endWorldPoint.z)),
-                new Vector3(Mathf.Max(startWorldPoint.x, endWorldPoint.x), 100f, Mathf.Max(startWorldPoint.z, endWorldPoint.z))
+                new Vector3(Mathf.Min(startWorldPoint.x, endWorldPoint.x), -YBoundSelectionThreshold, Mathf.Min(startWorldPoint.z, endWorldPoint.z)),
+                new Vector3(Mathf.Max(startWorldPoint.x, endWorldPoint.x), YBoundSelectionThreshold, Mathf.Max(startWorldPoint.z, endWorldPoint.z))
             );
-            // Adjust the Y values (-100f, 100f) to cover the vertical range of your units/buildings.
 
             Collider[] hits = Physics.OverlapBox(selectionBounds.center, selectionBounds.extents, Quaternion.identity, selectableLayer);
 
@@ -182,12 +166,6 @@ namespace Selector
             {
                 if (col.TryGetComponent(out ISelectable selectable))
                 {
-                    // For extra robustness, you could still check if the object's screen bounds intersect
-                    // with the projected screen rectangle of the world selection.
-                    // However, OverlapBox is often sufficient for practical RTS selection.
-                    // If you want pixel-perfect selection even when the object is slightly off-screen
-                    // but its world bounds technically intersect, you'd re-introduce
-                    // IsObjectCompletelyOrPartiallyInScreenRect using the _projected_ screenRect.
                     SelectObject(selectable);
                 }
             }
@@ -223,8 +201,5 @@ namespace Selector
             }
             currentlySelectedObjects.Clear();
         }
-
-        // You no longer need GetWorldBoundsFromScreenRect directly, as we're working with world points
-        // The logic is moved into SelectUnitsInRectangle
     }
 }
