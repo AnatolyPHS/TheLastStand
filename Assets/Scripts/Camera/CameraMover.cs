@@ -8,7 +8,7 @@ namespace Camera
         [SerializeField][Header("Camera movement Settings")]
         private Transform mainCamera;
         [SerializeField] private float moveSpeed = 10f;
-        [SerializeField] private float scrollSpeed = 50f;
+        [SerializeField] private float scrollSpeed = 50f;//TODO: need a settings manager and/or panel
         [SerializeField] private float borderScrollSpeed = 10f;
         [SerializeField] [Range(0f, 0.2f)] 
         private float borderThicknessPercent = 0.05f; 
@@ -117,7 +117,7 @@ namespace Camera
             
             if (moveDirection.magnitude > 0) //TODO: add some threshold
             {
-                mainCamera.transform.position += moveDirection.normalized * (moveSpeed * Time.deltaTime); //TODO: add time manager
+                mainCamera.transform.position += moveDirection.normalized * (moveSpeed * Time.deltaTime); //TODO: add a time manager
             }
         }
 

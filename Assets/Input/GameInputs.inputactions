@@ -6,15 +6,6 @@
             "id": "5656a149-5483-4aed-a480-3fc861642049",
             "actions": [
                 {
-                    "name": "MoveCamera",
-                    "type": "Value",
-                    "id": "a461dbbd-b302-46ed-a61d-788428084220",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "LeftClick",
                     "type": "Button",
                     "id": "cd2f65c0-ad45-4e6b-8f33-a1b48e23bc06",
@@ -61,17 +52,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "2274571a-9431-4b00-b40f-70a80e4c127e",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "NormalizeVector2",
-                    "groups": "",
-                    "action": "MoveCamera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "c2c033e0-5ef2-4842-b37e-26f94b170316",
