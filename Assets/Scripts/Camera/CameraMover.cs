@@ -87,7 +87,7 @@ namespace Camera
             heroInFocus = !heroInFocus;
         }
         
-        private void HandleCameraMovement()
+        private void HandleCameraMovement() //TODO: add borders
         {
             Vector3 moveDirection = Vector3.zero;
 
