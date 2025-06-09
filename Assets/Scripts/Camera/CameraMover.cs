@@ -29,6 +29,7 @@ namespace Camera
         private Vector2 currentMouseScreenInput;
         private Vector2 currentMousePosition;
         private float currentZoomInput;
+        private float heroZdeviation;
         private bool heroInFocus = true;
 
         private float borderThicknessX;
@@ -51,6 +52,7 @@ namespace Camera
             
             toggleFocusAction.performed += OnToggleFocus;
             heroInFocus = true;
+            heroZdeviation = (maxZoom - minZoom) / 2f;
             
             borderThicknessX = Screen.width * borderThicknessPercent;
             borderThicknessY = Screen.height * borderThicknessPercent;
@@ -91,11 +93,7 @@ namespace Camera
 
             if (heroInFocus)
             {
-                Vector3 desiredPosition = mainHero.position;
-                desiredPosition.y = transform.position.y;
-                mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position,
-                    desiredPosition, Time.deltaTime * focusLerpSpeed); //TODO: smoothing formula  a = b + (a - b) * exp( - decayConst * Time.deltaTime) 
-
+                FollowTheHero();
                 return;
             }
             
@@ -122,7 +120,19 @@ namespace Camera
                 mainCamera.transform.position += moveDirection.normalized * (moveSpeed * Time.deltaTime); //TODO: add time manager
             }
         }
-        
+
+        private void FollowTheHero()
+        {
+            Vector3 cameraForward = mainCamera.forward;
+            cameraForward.y = 0;
+            cameraForward.Normalize();
+                
+            Vector3 desiredPosition = mainHero.position - cameraForward * heroZdeviation;
+            desiredPosition.y = mainCamera.transform.position.y;
+            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position,
+                desiredPosition, Time.deltaTime * focusLerpSpeed); //TODO: smoothing formula  a = b + (a - b) * exp( - decayConst * Time.deltaTime) 
+        }
+
         private void HandleZoom()
         {
             Vector3 zoomDirection = mainCamera.forward * currentZoomInput;
@@ -131,6 +141,9 @@ namespace Camera
             mainCamera.position = new Vector3(mainCamera.position.x,
                 Mathf.Clamp(mainCamera.position.y, minZoom, maxZoom),
                 mainCamera.position.z);
+            
+            heroZdeviation += currentZoomInput * scrollSpeed * Time.deltaTime;
+            heroZdeviation = Mathf.Clamp(heroZdeviation, minZoom, maxZoom);
         }
     }
 }
