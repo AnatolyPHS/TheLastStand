@@ -49,25 +49,24 @@ namespace Selector
             {
                 return;
             }
-            
+         
+            currentMousePosition = mousePositionAction.ReadValue<Vector2>();
             UpdateSelectionRectangleUI();
         }
         
         private void UpdateSelectionRectangleUI() 
         {
-            currentMousePosition = mousePositionAction.ReadValue<Vector2>();
-            
             if (Vector2.Distance(startMousePosition, currentMousePosition) < minDragDistance) //TODO: add the below logic to view
             {
                 selectionRectangleUI.gameObject.SetActive(false);
                 return;
             }
 
-            if (!selectionRectangleUI.gameObject.activeSelf)
+            if (selectionRectangleUI.gameObject.activeSelf == false)
             {
                 selectionRectangleUI.gameObject.SetActive(true);
             }
-            
+
             float x1 = Mathf.Min(startMousePosition.x, currentMousePosition.x);
             float y1 = Mathf.Min(startMousePosition.y, currentMousePosition.y);
             float x2 = Mathf.Max(startMousePosition.x, currentMousePosition.x);
@@ -76,6 +75,7 @@ namespace Selector
             selectionRectangleUI.position = new Vector2(x1, y1);
             selectionRectangleUI.sizeDelta = new Vector2(x2 - x1, y2 - y1);
         }
+        
         
         private void OnLeftClickStarted(InputAction.CallbackContext context)
         {
