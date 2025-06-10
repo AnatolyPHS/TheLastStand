@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using InputsManager;
 using Services;
 using UnityEngine;
@@ -7,6 +9,8 @@ namespace Camera
 {
     public class CameraController : MonoBehaviour, ICameraController
     {
+        private readonly Dictionary<CameraBorderType, float> camBorders = new Dictionary<CameraBorderType, float>();
+        
         [SerializeField][Header("Camera movement Settings")]
         private UnityEngine.Camera mainCamera;
         [SerializeField] private float moveSpeed = 10f;
@@ -16,6 +20,7 @@ namespace Camera
         private float borderThicknessPercent = 0.05f; 
         [SerializeField] private float minZoom = 5f;
         [SerializeField] private float maxZoom = 25f;
+        [SerializeField] private List<CameraBorder> cameraBorders = new List<CameraBorder>(); //TODO: add a serialised dictionary
         
         [SerializeField][Header("Focusing Target")]
          private Transform mainHero;
@@ -53,12 +58,10 @@ namespace Camera
             toggleFocusAction = inputManager.GetInputAction(InputManager.ToggleCameraFocesActionKey);
             
             panCameraAction.performed += OnMouseMove;
-            panCameraAction.canceled += OnMouseMove; 
-            
             zoomCameraAction.performed += OnZoomCamera;
             zoomCameraAction.canceled += OnZoomCamera;
-            
             toggleFocusAction.performed += OnToggleFocus;
+            
             heroInFocus = true;
             heroZdeviation = (maxZoom - minZoom) / 2f;
             
@@ -68,6 +71,11 @@ namespace Camera
             panCameraAction.Enable();
             zoomCameraAction.Enable();
             toggleFocusAction.Enable();
+            
+            foreach (CameraBorder border in cameraBorders)
+            {
+                camBorders[border.BorderType] = border.BorderValue;
+            }
         }
         
         private void Update()
@@ -91,7 +99,7 @@ namespace Camera
             heroInFocus = !heroInFocus;
         }
         
-        private void HandleCameraMovement() //TODO: add borders
+        private void HandleCameraMovement()
         {
             Vector3 moveDirection = Vector3.zero;
 
@@ -101,20 +109,20 @@ namespace Camera
                 return;
             }
             
-            if (currentMouseScreenInput.x < borderThicknessX)
+            if (currentMouseScreenInput.x < borderThicknessX && CloseToBorder(CameraBorderType.Left) == false)
             {
                 moveDirection.x -= 1;
             }
-            else if (currentMouseScreenInput.x > Screen.width - borderThicknessX)
+            else if (currentMouseScreenInput.x > Screen.width - borderThicknessX && CloseToBorder(CameraBorderType.Right) == false)
             {
                 moveDirection.x += 1;
             }
 
-            if (currentMouseScreenInput.y < borderThicknessY)
+            if (currentMouseScreenInput.y < borderThicknessY && CloseToBorder(CameraBorderType.Bottom) == false)
             {
                 moveDirection.z -= 1;
             }
-            else if (currentMouseScreenInput.y > Screen.height - borderThicknessY)
+            else if (currentMouseScreenInput.y > Screen.height - borderThicknessY && CloseToBorder(CameraBorderType.Top) == false)
             {
                 moveDirection.z += 1;
             }
@@ -122,6 +130,23 @@ namespace Camera
             if (moveDirection.magnitude > 0) //TODO: add some threshold
             {
                 mainCamera.transform.position += moveDirection.normalized * (moveSpeed * Time.deltaTime); //TODO: add a time manager
+            }
+        }
+
+        private bool CloseToBorder(CameraBorderType bottom)
+        {
+            switch (bottom)
+            {
+                case CameraBorderType.Left:
+                    return mainCameraTransform.position.x < camBorders[CameraBorderType.Left];
+                case CameraBorderType.Right:
+                    return mainCameraTransform.position.x > camBorders[CameraBorderType.Right];
+                case CameraBorderType.Top:
+                    return mainCameraTransform.position.z > camBorders[CameraBorderType.Top];
+                case CameraBorderType.Bottom:
+                    return mainCameraTransform.position.z < camBorders[CameraBorderType.Bottom];
+                default:
+                    return false;
             }
         }
 
@@ -170,5 +195,20 @@ namespace Camera
         {
             return mainCamera;
         }
+    }
+    
+    public enum CameraBorderType
+    {
+        Left = 10,
+        Right = 20,
+        Top = 30,
+        Bottom = 40
+    }
+
+    [Serializable]
+    public class CameraBorder
+    {
+        public CameraBorderType BorderType;
+        public float BorderValue;
     }
 }

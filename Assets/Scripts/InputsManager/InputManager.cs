@@ -16,7 +16,7 @@ namespace InputsManager
         public const string ZoomCameraActionKey = "ZoomCamera";
 
         [SerializeField][Header("Input Actions")]
-        private InputActionAsset playerInputActions; 
+        private InputActionAsset playerInputActions;
         
         private readonly Dictionary<string, InputAction> inputActions = new Dictionary<string, InputAction>();
         
