@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Camera;
 using InputsManager;
 using Services;
 using UI.SelectorView;
@@ -9,11 +10,10 @@ namespace Selector
 {
     public class SelectionController : MonoBehaviour, ISelectorController
     {
-        private const float YBoundSelectionThreshold = 100f;
+        private const float YBoundSelectionThreshold = 20f;
         
         [SerializeField][Header("Selection Settings")]
         private LayerMask selectableLayer;
-        [SerializeField] private UnityEngine.Camera mainCamera; //TODO: use servicde locator and take it from CameraMover
         [SerializeField] private float minDragDistance = 5f;
         [SerializeField] private float groundPlaneHeight = 0f;
         
@@ -34,6 +34,7 @@ namespace Selector
         private List<ISelectable> currentlySelectedObjects = new List<ISelectable>();
         
         private Plane groundPlane;
+        private UnityEngine.Camera mainCamera;
         
         private void Awake()
         {
@@ -44,6 +45,9 @@ namespace Selector
         {
             inputManager = ServiceLocator.Instance.Get<IInputManager>();
             selectorView = ServiceLocator.Instance.Get<ISelectorView>();
+            ICameraController cameraController = ServiceLocator.Instance.Get<ICameraController>();
+            
+            mainCamera = cameraController.GetCamera();
 
             leftClickAction = inputManager.GetInputAction(InputManager.LeftMouseClickActionKey);
             mousePositionAction = inputManager.GetInputAction(InputManager.MouseScreenPosActionKey);
