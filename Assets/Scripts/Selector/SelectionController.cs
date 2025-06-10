@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Camera;
+using GameSceneObjects.Units;
 using InputsManager;
 using Services;
 using UI.SelectorView;
@@ -28,10 +29,11 @@ namespace Selector
 
         private InputAction leftClickAction;
         private InputAction mousePositionAction;
+        private InputAction rightmouseClickAction;
 
         private bool isDragging = false;
 
-        private List<ISelectable> currentlySelectedObjects = new List<ISelectable>();
+        private List<IClickSelectable> currentlySelectedObjects = new List<IClickSelectable>();
         
         private Plane groundPlane;
         private UnityEngine.Camera mainCamera;
@@ -51,19 +53,62 @@ namespace Selector
 
             leftClickAction = inputManager.GetInputAction(InputManager.LeftMouseClickActionKey);
             mousePositionAction = inputManager.GetInputAction(InputManager.MouseScreenPosActionKey);
+            rightmouseClickAction = inputManager.GetInputAction(InputManager.RightMouseClickActionKey);
             
             leftClickAction.started += OnLeftClickStarted;
             leftClickAction.canceled += OnLeftClickCanceled;
+            
+            rightmouseClickAction.performed += OnRightClickPerformed;
             
             groundPlane = new Plane(Vector3.up, Vector3.up * groundPlaneHeight);
             
             leftClickAction.Enable();
             mousePositionAction.Enable();
+            rightmouseClickAction.Enable();
             
             selectorView.SetSelectorState(false);
         }
+
+        private void OnRightClickPerformed(InputAction.CallbackContext obj)
+        {
+            if (isDragging)
+            {
+                return;
+            }
+
+            currentScreenMousePosition = mousePositionAction.ReadValue<Vector2>();
+            currentWorldPoint = RecalculateWorldPointUnderMouse(currentScreenMousePosition);
+
+            Ray ray = mainCamera.ScreenPointToRay(currentScreenMousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableLayer)//TODO: calculate max cast limit
+                && hit.collider.TryGetComponent(out Unit unit))
+            {
+                CommandSelectedToInteract(unit);
+            }
+            else
+            {
+                CommandSelectedToMove(currentWorldPoint);
+            }
+        }
+
+        private void CommandSelectedToInteract(Unit unt)
+        {
+            for (int i = 0; i < currentlySelectedObjects.Count; i++)
+            {
+                currentlySelectedObjects[i].InteractWithUnit(unt);
+            }
+        }
         
-        
+        private void CommandSelectedToMove(Vector3 targetPosition)
+        {
+            for (int i = 0; i < currentlySelectedObjects.Count; i++)
+            {
+                currentlySelectedObjects[i].MoveTo(targetPosition);
+            }
+        }
+
         private void Update()
         {
             if (isDragging == false)
@@ -140,7 +185,7 @@ namespace Selector
 
             foreach (Collider col in hits)
             {
-                if (col.TryGetComponent(out ISelectable selectable))
+                if (col.TryGetComponent(out IClickSelectable selectable))
                 {
                     SelectObject(selectable);
                 }
@@ -153,25 +198,25 @@ namespace Selector
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableLayer)
-                && hit.collider.TryGetComponent(out ISelectable selectable))
+                && hit.collider.TryGetComponent(out IClickSelectable selectable))
             {
                 ClearSelection();
                 SelectObject(selectable);
             }
         }
 
-        private void SelectObject(ISelectable selectable)
+        private void SelectObject(IClickSelectable clickSelectable)
         {
-            if (!currentlySelectedObjects.Contains(selectable))
+            if (!currentlySelectedObjects.Contains(clickSelectable))
             {
-                selectable.OnSelect();
-                currentlySelectedObjects.Add(selectable);
+                clickSelectable.OnSelect();
+                currentlySelectedObjects.Add(clickSelectable);
             }
         }
 
         private void ClearSelection()
         {
-            foreach (ISelectable selectable in currentlySelectedObjects)
+            foreach (IClickSelectable selectable in currentlySelectedObjects)
             {
                 selectable.OnDeselect();
             }
@@ -182,9 +227,11 @@ namespace Selector
         {
             leftClickAction.started -= OnLeftClickStarted;
             leftClickAction.canceled -= OnLeftClickCanceled;
+            rightmouseClickAction.performed -= OnRightClickPerformed;
 
             leftClickAction.Disable();
             mousePositionAction.Disable();
+            rightmouseClickAction.Disable();
             
             ServiceLocator.Instance.Unregister<ISelectorController>();
         }

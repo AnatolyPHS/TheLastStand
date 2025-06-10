@@ -14,12 +14,12 @@ namespace InputsManager
         public const string LeftMouseClickActionKey = "LeftClick";
         public const string ToggleCameraFocesActionKey = "ToggleFocus";
         public const string ZoomCameraActionKey = "ZoomCamera";
-
+        public static string RightMouseClickActionKey = "RightClick";
+        
         [SerializeField][Header("Input Actions")]
         private InputActionAsset playerInputActions;
         
         private readonly Dictionary<string, InputAction> inputActions = new Dictionary<string, InputAction>();
-        
         
         private void Awake()
         {
@@ -31,6 +31,7 @@ namespace InputsManager
             inputActions.Add(LeftMouseClickActionKey, gameplayActionMap.FindAction(LeftMouseClickActionKey));
             inputActions.Add(ToggleCameraFocesActionKey, gameplayActionMap.FindAction(ToggleCameraFocesActionKey));
             inputActions.Add(ZoomCameraActionKey, gameplayActionMap.FindAction(ZoomCameraActionKey));
+            inputActions.Add(RightMouseClickActionKey, gameplayActionMap.FindAction(RightMouseClickActionKey));
         }
 
         public InputAction GetInputAction(string actionKey)
