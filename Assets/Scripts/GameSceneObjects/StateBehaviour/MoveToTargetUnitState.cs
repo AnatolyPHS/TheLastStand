@@ -64,7 +64,12 @@ public class MoveToTargetUnitState : BaseUnitState
 
         if (Vector3.Distance(unitToControl.transform.position, targetPosition) <= attackRange)
         {
-            stateSwitcher.SwitchState<AttackTargetUnitState>();
+            SwitchToAttackState();
         }
+    }
+
+    protected virtual void SwitchToAttackState()
+    {
+        stateSwitcher.SwitchState<AttackTargetUnitState>();
     }
 }

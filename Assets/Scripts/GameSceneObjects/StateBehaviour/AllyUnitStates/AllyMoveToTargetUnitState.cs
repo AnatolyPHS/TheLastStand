@@ -12,5 +12,10 @@ namespace GameSceneObjects.StateBehaviour
         {
             stateSwitcher.SwitchState<AllyIdleState>();
         }
+        
+        protected override void SwitchToAttackState()
+        {
+            stateSwitcher.SwitchState<AllyAttackTargetUnitState>();
+        }
     }
 }

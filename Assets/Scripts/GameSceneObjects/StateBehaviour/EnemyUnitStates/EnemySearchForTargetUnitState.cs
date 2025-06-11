@@ -31,7 +31,7 @@ namespace GameSceneObjects.StateBehaviour
             //TODO: check the hero's allies
             
             controlledEnemy.SetTarget(heroManager.GetHero());
-            stateSwitcher.SwitchState<MoveToTargetUnitState>();
+            stateSwitcher.SwitchState<EnemyMoveToTargetUnitState>();
         }
         
         private bool HeroIsFar() //TODO: temporary measure

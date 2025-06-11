@@ -12,5 +12,10 @@ namespace GameSceneObjects.StateBehaviour
         {
             stateSwitcher.SwitchState<EnemySearchForTargetUnitState>();
         }
+        
+        protected override void SwitchToAttackState()
+        {
+            stateSwitcher.SwitchState<EnemyAttackTargetUnitState>();
+        }
     }
 }
