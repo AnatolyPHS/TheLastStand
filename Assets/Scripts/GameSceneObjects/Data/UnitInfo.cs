@@ -9,6 +9,7 @@ public class UnitInfo : ScriptableObject
     [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float searchRange = 5f;
     
     public float Health => health;
     public float Armor => armor;
@@ -16,4 +17,5 @@ public class UnitInfo : ScriptableObject
     public float AttackSpeed => attackSpeed;
     public float AttackRange => attackRange;
     public float MovementSpeed => movementSpeed;
+    public float SearchRange => searchRange;
 }

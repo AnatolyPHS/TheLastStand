@@ -1,4 +1,3 @@
-using System;
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.StateBehaviour;
 using Services;
@@ -29,11 +28,10 @@ namespace GameSceneObjects.Units
             return currentTarget != null;
         }
 
-        public void Attack()
+        public void InflictDamage()
         {
             float damage = CalculateDamage();
             currentTarget.GetDamage(damage);
-            Debug.Log("Enemy is attacking");
         }
 
         private void Start()
@@ -50,7 +48,7 @@ namespace GameSceneObjects.Units
 
         private float CalculateDamage()
         {
-            return info.AttackPower * currentLevel; //TODO: add an animation curves to calculate damage
+            return info.AttackPower * currentLevel; //TODO: add an animation curve to calculate damage
         }
     }
 }

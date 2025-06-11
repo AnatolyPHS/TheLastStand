@@ -52,5 +52,25 @@ namespace GameSceneObjects.Units
         {
             return 1f / info.AttackSpeed;
         }
+
+        public float GetCurrentHealth()
+        {
+            return currentHealth;
+        }
+
+        public float GetMaxHealth()
+        {
+            return info.Health;
+        }
+
+        public double GetSearchRadius()
+        {
+            return info.SearchRange;
+        }
+
+        public float GetUnitWidth()
+        {
+            return navMeshAgent.radius;
+        }
     }
 }

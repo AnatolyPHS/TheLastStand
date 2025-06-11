@@ -14,7 +14,7 @@ public class MoveToTargetUnitState : BaseUnitState
     
     private float nextTickTime = float.MinValue;
     
-    public MoveToTargetUnitState(Unit unit, EnemyStationBehaviour enemyStationBehaviour) 
+    public MoveToTargetUnitState(Unit unit, StationBehaviour enemyStationBehaviour) 
         : base(unit, enemyStationBehaviour)
     {
         unitWithTarget = unit as IWithTarget;
@@ -45,11 +45,16 @@ public class MoveToTargetUnitState : BaseUnitState
         ProcessTargetApproach();
     }
 
+    protected virtual void SwitchToNoTargetState()
+    {
+        stateSwitcher.SwitchState<SearchForTargetUnitState>();
+    }
+    
     private void ProcessTargetApproach()
     {
         if (unitWithTarget.HasTarget() == false || unitWithTarget.GetCurrentTarget().IsAlive() == false)
         {
-            stateSwitcher.SwitchState<EnemySearchForTargetUnitState>();
+            SwitchToNoTargetState();
             return;
         }
 

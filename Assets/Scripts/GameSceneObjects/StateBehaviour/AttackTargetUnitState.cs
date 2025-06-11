@@ -10,8 +10,8 @@ namespace GameSceneObjects.StateBehaviour
         private float nextAttackTime = float.MinValue;
         private float attackCooldown = float.MaxValue;
     
-        public AttackTargetUnitState(Unit unit, EnemyStationBehaviour enemyStationBehaviour) 
-            : base(unit, enemyStationBehaviour)
+        public AttackTargetUnitState(Unit unit, StationBehaviour stationBehaviour) 
+            : base(unit, stationBehaviour)
         {
             attackCooldown = unit.GetAttackCooldown();
             attacker = unit as IWithTarget;
@@ -43,19 +43,29 @@ namespace GameSceneObjects.StateBehaviour
         {
             if (attacker.HasTarget() == false || attacker.GetCurrentTarget().IsAlive() == false)
             {
-                stateSwitcher.SwitchState<EnemySearchForTargetUnitState>();
+                SwitchToIdleSate();
                 return;
             }
 
             IHittable target = attacker.GetCurrentTarget();
             if (CloseToAttack(target))
             {
-                attacker.Attack();
+                attacker.InflictDamage();
             }
             else
             {
-                stateSwitcher.SwitchState<MoveToTargetUnitState>();
+                SwitchToMoveToTargetState();
             }
+        }
+
+        protected virtual void SwitchToMoveToTargetState()
+        {
+            stateSwitcher.SwitchState<MoveToTargetUnitState>();
+        }
+
+        protected virtual void SwitchToIdleSate()
+        {
+            stateSwitcher.SwitchState<SearchForTargetUnitState>();
         }
 
         private bool CloseToAttack(IHittable target)

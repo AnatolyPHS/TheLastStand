@@ -5,6 +5,6 @@
         void SetTarget(IHittable target);
         IHittable GetCurrentTarget();
         bool HasTarget();
-        void Attack();
+        void InflictDamage();
     }
 }

@@ -4,15 +4,11 @@ using UnityEngine;
 
 namespace GameSceneObjects.StateBehaviour
 {
-    public class EnemySearchForTargetUnitState : BaseUnitState
+    public class EnemySearchForTargetUnitState : SearchForTargetUnitState
     {
-        private const float TickPeriod = 1f;
-
         private IHeroManager heroManager;
         private EnemyUnit controlledEnemy;
         
-        private float nextTickTime = float.MinValue;
-
         public EnemySearchForTargetUnitState(EnemyUnit unit, EnemyStationBehaviour stateSwitcher, IHeroManager heroManager)
             : base(unit, stateSwitcher)
         {
@@ -20,40 +16,32 @@ namespace GameSceneObjects.StateBehaviour
             controlledEnemy = unit;
         }
         
-        public override void OnStateEnter()
-        {
-            ProcessLookForTarget();
-            nextTickTime = Time.time + TickPeriod;
-        }
-        
-        public override void OnStateExit()
-        {
-            nextTickTime = float.MaxValue;
-        }
-
-        public override void OnStateUpdate(float deltaTime)
-        {
-            if (Time.time < nextTickTime)
-            {
-                return;
-            }
-            
-            nextTickTime = Time.time + TickPeriod;
-            ProcessLookForTarget();
-        }
-        
-        private void ProcessLookForTarget()
+        protected override void ProcessLookForTarget()
         {
             if (heroManager.GetHero().IsAlive() == false)
             {
                 return;
             }
-            
+
+            if (HeroIsFar())
+            {
+                return;
+            }
             //TODO: check the Tower
             //TODO: check the hero's allies
             
             controlledEnemy.SetTarget(heroManager.GetHero());
             stateSwitcher.SwitchState<MoveToTargetUnitState>();
+        }
+        
+        private bool HeroIsFar() //TODO: temporary measure
+        {
+            float distanceToHero = Vector3.Distance(controlledEnemy.transform.position, heroManager.GetHero().transform.position);
+            if (distanceToHero > 5f)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
