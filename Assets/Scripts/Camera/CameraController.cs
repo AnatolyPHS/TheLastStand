@@ -15,7 +15,6 @@ namespace Camera
         private UnityEngine.Camera mainCamera;
         [SerializeField] private float moveSpeed = 10f;
         [SerializeField] private float scrollSpeed = 50f;//TODO: need a settings manager and/or panel
-        [SerializeField] private float borderScrollSpeed = 10f;
         [SerializeField] [Range(0f, 0.2f)] 
         private float borderThicknessPercent = 0.05f; 
         [SerializeField] private float minZoom = 5f;

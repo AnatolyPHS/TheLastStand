@@ -1,13 +1,10 @@
 using Selector;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace GameSceneObjects.Units
 {
     public class Hero : Unit, IClickSelectable
     {
-        [SerializeField] private NavMeshAgent navMeshAgent;
-        
         public void OnSelect()
         {
             Debug.Log("Hero selected! " + gameObject.name);
