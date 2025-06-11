@@ -48,7 +48,7 @@ namespace GameSceneObjects.StateBehaviour
             if (EnemyIsNear()) //TODO: think about adding conditions 
             {
                 allyUnitToControl.SetTarget(closestEnemy);
-                stateSwitcher.SwitchState<MoveToTargetUnitState>();
+                stateSwitcher.SwitchState<AllyMoveToTargetUnitState>();
                 return;
             }
             

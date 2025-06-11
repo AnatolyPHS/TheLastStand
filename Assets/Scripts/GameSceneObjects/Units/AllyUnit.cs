@@ -57,13 +57,14 @@ namespace GameSceneObjects.Units
 
         public void InteractWithUnit(Unit unt)
         {
-            if (unt is not EnemyUnit)
+            if (unt is EnemyUnit)
             {
-                MoveTo(unt.transform.position);
+                SetTarget(unt);
+                stationBehaviour.SwitchState<AllyMoveToTargetUnitState>();
                 return;
             }
             
-            SetTarget(unt);
+            MoveTo(unt.transform.position);
         }
 
         public void MoveTo(Vector3 targetPosition)
@@ -79,7 +80,7 @@ namespace GameSceneObjects.Units
         
         public Vector3 GetLastInterestPoint()
         {
-            return lastPointOfInterest;
+             return lastPointOfInterest;
         }
 
         public void SetNavigationPoint(Vector3 pointToMove)
@@ -91,6 +92,8 @@ namespace GameSceneObjects.Units
         {
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
+
+            Init();
             
             stationBehaviour = new AllyStationBehaviour(this, unitHolder, buildingManager);
             stationBehaviour.SwitchState<AllyIdleState>();

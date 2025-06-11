@@ -6,6 +6,8 @@ namespace GameSceneObjects.StateBehaviour
 {
     public class AllyMoveToPointUnitState : BaseUnitState
     {
+        private const float NavMeshPointSearchRadius = 10f;
+        
         private float TickDuraction = 1f;
         
         private AllyUnit allyUnitToControl;
@@ -17,13 +19,13 @@ namespace GameSceneObjects.StateBehaviour
         public AllyMoveToPointUnitState(Unit unit, IStateSwitcher stateSwitcher) : base(unit, stateSwitcher)
         {
             allyUnitToControl = unit as AllyUnit;
-            approachDistance = unit.GetUnitWidth();
+            approachDistance = unit.GetUnitStopDistance();
         }
 
         public override void OnStateEnter()
         {
             pointToMove = allyUnitToControl.GetLastInterestPoint();
-            if (NavMesh.SamplePosition(pointToMove, out NavMeshHit hit, 10f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(pointToMove, out NavMeshHit hit, NavMeshPointSearchRadius, NavMesh.AllAreas))
             {
                 pointToMove = hit.position;
                 allyUnitToControl.SetNavigationPoint(pointToMove);
@@ -47,7 +49,7 @@ namespace GameSceneObjects.StateBehaviour
             }
 
             nextTickTime = Time.time + TickDuraction;
-
+            
             if (Vector3.Distance(allyUnitToControl.transform.position, allyUnitToControl.GetLastInterestPoint()) 
                 <= approachDistance)
             {

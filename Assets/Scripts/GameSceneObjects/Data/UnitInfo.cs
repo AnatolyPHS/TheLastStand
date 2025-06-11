@@ -1,15 +1,17 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewUnitCharacteristics", menuName = "GameData/Unit Characteristics")]
+[CreateAssetMenu(fileName = "NewUnitInfo", menuName = "GameData/Unit Info")]
 public class UnitInfo : ScriptableObject
 {
     [SerializeField] private float health = 100f;
-    [SerializeField] private float armor = 0f; // 0 means no armor, 1 means full armor
+    [SerializeField][Range(0f,1f)] 
+    private float armor = 0f;
     [SerializeField] private float attackPower = 10f;
     [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float searchRange = 5f;
+    [SerializeField] private float unitStopDistance = 1f;
     
     public float Health => health;
     public float Armor => armor;
@@ -18,4 +20,5 @@ public class UnitInfo : ScriptableObject
     public float AttackRange => attackRange;
     public float MovementSpeed => movementSpeed;
     public float SearchRange => searchRange;
+    public float UnitStopDistance => unitStopDistance;
 }

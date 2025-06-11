@@ -68,9 +68,9 @@ namespace GameSceneObjects.Units
             return info.SearchRange;
         }
 
-        public float GetUnitWidth()
+        public float GetUnitStopDistance()
         {
-            return navMeshAgent.radius;
+            return info.UnitStopDistance;
         }
     }
 }

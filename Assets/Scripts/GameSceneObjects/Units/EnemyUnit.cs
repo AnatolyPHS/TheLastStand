@@ -37,6 +37,9 @@ namespace GameSceneObjects.Units
         private void Start()
         {
             heroManager = ServiceLocator.Instance.Get<IHeroManager>();
+            
+            Init();
+            
             stationBehaviour = new EnemyStationBehaviour(this, heroManager);
             stationBehaviour.SwitchState<EnemySearchForTargetUnitState>();
         }
