@@ -167,6 +167,8 @@ MonoBehaviour:
     BorderValue: 20
   - BorderType: 40
     BorderValue: -20
+  cameraZDeviationMin: 1
+  cameraZDeviationMax: 5
   mainHero: {fileID: 1610685880}
   focusLerpSpeed: 5
 --- !u!4 &146784227

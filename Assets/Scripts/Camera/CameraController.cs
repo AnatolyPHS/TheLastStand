@@ -4,6 +4,7 @@ using InputsManager;
 using Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Camera
 {
@@ -20,6 +21,8 @@ namespace Camera
         [SerializeField] private float minZoom = 5f;
         [SerializeField] private float maxZoom = 25f;
         [SerializeField] private List<CameraBorder> cameraBorders = new List<CameraBorder>(); //TODO: add a serialised dictionary
+        [SerializeField] private float cameraZDeviationMin = -5f;
+        [SerializeField] private float cameraZDeviationMax = 30f;
         
         [SerializeField][Header("Focusing Target")]
          private Transform mainHero;
@@ -62,7 +65,7 @@ namespace Camera
             toggleFocusAction.performed += OnToggleFocus;
             
             heroInFocus = true;
-            heroZdeviation = (maxZoom - minZoom) / 2f;
+            heroZdeviation = (cameraZDeviationMax - cameraZDeviationMin) / 2f;
             
             borderThicknessX = Screen.width * borderThicknessPercent;
             borderThicknessY = Screen.height * borderThicknessPercent;
@@ -171,7 +174,7 @@ namespace Camera
                 mainCameraTransform.position.z);
             
             heroZdeviation += currentZoomInput * scrollSpeed * Time.deltaTime;
-            heroZdeviation = Mathf.Clamp(heroZdeviation, minZoom, maxZoom);
+            heroZdeviation = Mathf.Clamp(heroZdeviation, cameraZDeviationMin, cameraZDeviationMax);
         }
 
         private void OnDestroy()

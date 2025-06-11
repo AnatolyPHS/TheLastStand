@@ -49,6 +49,9 @@ namespace GameSceneObjects.StateBehaviour
                 return;
             }
             
+            //TODO: check the Tower
+            //TODO: check the hero's allies
+            
             controlledEnemy.SetTarget(heroManager.GetHero());
             stateSwitcher.SwitchState<MoveToTargetUnitState>();
         }
