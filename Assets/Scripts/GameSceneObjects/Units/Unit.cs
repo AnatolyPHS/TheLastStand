@@ -1,9 +1,10 @@
+using PoolingSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace GameSceneObjects.Units
 {
-    public abstract class Unit : MonoBehaviour, IHittable
+    public abstract class Unit : MonoBehaviour, IHittable, IPoolable
     {
         [SerializeField] protected NavMeshAgent navMeshAgent;
         [SerializeField] protected UnitInfo info;
@@ -82,6 +83,16 @@ namespace GameSceneObjects.Units
         public UnitFaction GetFaction()
         {
             return info.Faction;
+        }
+
+        public void OnReturnToPool()
+        {
+            navMeshAgent.enabled = false;
+        }
+
+        public void OnGetFromPool()
+        {
+            navMeshAgent.enabled = true;
         }
     }
 }

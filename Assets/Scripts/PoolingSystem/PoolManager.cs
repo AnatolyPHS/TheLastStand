@@ -9,15 +9,15 @@ namespace PoolingSystem
     {
         private Dictionary<Type, Pool> pools = new Dictionary<Type, Pool>();
         
-        //TODO: Add initialisation of polled objects on start
+        //TODO: Add preload of pooled objects on start
         
-        public T GetObject<T>(T poolable) where T : MonoBehaviour
+        public T GetObject<T>(T prefab, Vector3 spawnPos, Quaternion spawnRotation) where T : MonoBehaviour
         {
             Type type = typeof(T);
 
             if (!pools.TryGetValue(type, out Pool pool))
             {
-                pool = new Pool { prefab = poolable };
+                pool = new Pool { prefab = prefab };
                 pools[type] = pool;
             }
 
@@ -31,6 +31,8 @@ namespace PoolingSystem
                 obj = Instantiate(pool.prefab);
             }
 
+            obj.transform.position = spawnPos;
+            obj.transform.rotation = spawnRotation;
             obj.gameObject.SetActive(true);
             obj.transform.SetParent(null);
 

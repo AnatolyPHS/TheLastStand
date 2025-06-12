@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58bc0a141e0b5fe46a3c7d72d58f6b3b, type: 3}
-  m_Name: SpawningBuildingInfo
+  m_Name: EnemySpawningBuildingInfo
   m_EditorClassIdentifier: 
   unitsToSpawn:
   - Level: 1
-    Unit: {fileID: 777606477259258709, guid: 350fa61f5680c8944b49d5e3d2b43031, type: 3}
+    Unit: {fileID: 3558871456768165088, guid: 534940dd0a7cd1241970bfb6e9183350, type: 3}
     SpawnDuration: 15

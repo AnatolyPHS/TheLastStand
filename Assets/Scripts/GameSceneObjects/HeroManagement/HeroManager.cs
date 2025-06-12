@@ -44,6 +44,8 @@ namespace GameSceneObjects.HeroManagement
             selectorController = ServiceLocator.Instance.Get<ISelectorController>();
             cameraController = ServiceLocator.Instance.Get<ICameraController>();
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
+            
+            hero.Init();//TODO: controll it on spawn
         }
     }
 }

@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\InputsManager\InputManager.cs" />
      <Compile Include="Assets\Scripts\Selector\SelectionController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Unit.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\EnemiesSpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\Selector\ISelectorController.cs" />
      <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyIdleState.cs" />

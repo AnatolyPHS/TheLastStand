@@ -8,6 +8,7 @@ namespace GameSceneObjects.Units
     {
         private Dictionary<UnitFaction, List<Unit>> unitsByFaction = new Dictionary<UnitFaction, List<Unit>>()
         {
+            {UnitFaction.None, new List<Unit>()},
             {UnitFaction.Ally, new List<Unit>()},
             {UnitFaction.Enemy, new List<Unit>()}
         };
@@ -56,12 +57,15 @@ namespace GameSceneObjects.Units
                 units.Remove(unit);
             }
         }
-        
+
+        public int GetUnitsCount(UnitFaction faction)
+        {
+            return unitsByFaction[faction].Count;
+        }
+
         private void Awake()
         {
             ServiceLocator.Instance.Register<IUnitHolder>(this);
         }
-        
-        private
     }
 }

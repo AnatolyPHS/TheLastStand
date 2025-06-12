@@ -14,5 +14,6 @@ namespace GameSceneObjects.Units
         bool TryGetGlosestEnemy(Vector3 currentPosition, out EnemyUnit unit);
         void RegisterUnit(Unit unit);
         void UnregisterUnit(Unit unit);
+        int GetUnitsCount(UnitFaction faction);
     }
 }
