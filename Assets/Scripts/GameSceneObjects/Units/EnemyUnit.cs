@@ -8,6 +8,7 @@ namespace GameSceneObjects.Units
     public class EnemyUnit : Unit, IWithTarget
     {
         private IHeroManager heroManager;
+        private IUnitHolder unitHolder;
         
         private EnemyStationBehaviour stationBehaviour;
         
@@ -34,11 +35,16 @@ namespace GameSceneObjects.Units
             currentTarget.GetDamage(damage);
         }
 
+        public override void OnDie()
+        {
+            base.OnDie();
+            unitHolder.UnregisterUnit(this);
+        }
+        
         private void Start()
         {
             heroManager = ServiceLocator.Instance.Get<IHeroManager>();
-            
-            Init();
+            unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
             
             stationBehaviour = new EnemyStationBehaviour(this, heroManager);
             stationBehaviour.SwitchState<EnemySearchForTargetUnitState>();

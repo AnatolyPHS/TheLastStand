@@ -1,3 +1,4 @@
+using GameSceneObjects.Units;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewUnitInfo", menuName = "GameData/Unit Info")]
@@ -12,6 +13,7 @@ public class UnitInfo : ScriptableObject
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float searchRange = 5f;
     [SerializeField] private float unitStopDistance = 1f;
+    [SerializeField] private UnitFaction faction = UnitFaction.None;
     
     public float Health => health;
     public float Armor => armor;
@@ -21,4 +23,5 @@ public class UnitInfo : ScriptableObject
     public float MovementSpeed => movementSpeed;
     public float SearchRange => searchRange;
     public float UnitStopDistance => unitStopDistance;
+    public UnitFaction Faction => faction;
 }

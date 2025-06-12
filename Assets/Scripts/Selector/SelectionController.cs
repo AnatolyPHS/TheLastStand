@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Camera;
+using GameSceneObjects;
 using GameSceneObjects.Units;
 using InputsManager;
 using Services;
@@ -97,7 +98,10 @@ namespace Selector
         {
             for (int i = 0; i < currentlySelectedObjects.Count; i++)
             {
-                currentlySelectedObjects[i].InteractWithUnit(unt);
+                if (currentlySelectedObjects[i] is IClickInteractable interactable)
+                {
+                    interactable.InteractWithUnit(unt);
+                }
             }
         }
         
@@ -105,7 +109,10 @@ namespace Selector
         {
             for (int i = 0; i < currentlySelectedObjects.Count; i++)
             {
-                currentlySelectedObjects[i].MoveTo(targetPosition);
+                if (currentlySelectedObjects[i] is IClickInteractable interactable)
+                {
+                    interactable.MoveTo(targetPosition);
+                }
             }
         }
 
@@ -205,15 +212,25 @@ namespace Selector
             }
         }
 
-        private void SelectObject(IClickSelectable clickSelectable)
+        private void SelectObject(IClickSelectable selectable)
         {
-            if (!currentlySelectedObjects.Contains(clickSelectable))
+            if (!currentlySelectedObjects.Contains(selectable))
             {
-                clickSelectable.OnSelect();
-                currentlySelectedObjects.Add(clickSelectable);
+                selectable.OnSelect();
+                currentlySelectedObjects.Add(selectable);
             }
         }
 
+        public void DeselectObject(IClickSelectable selectable)
+        {
+            IClickInteractable interactable = selectable as IClickInteractable;
+            if (currentlySelectedObjects.Contains(interactable))
+            {
+                interactable.OnDeselect();
+                currentlySelectedObjects.Remove(interactable);
+            }
+        }
+        
         private void ClearSelection()
         {
             foreach (IClickSelectable selectable in currentlySelectedObjects)

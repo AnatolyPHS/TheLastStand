@@ -10,11 +10,6 @@ namespace GameSceneObjects.Units
         
         protected int currentLevel = 1;
         private float currentHealth;
-
-        private void Start()
-        {
-            Init(); //TODO: tmp measure, remove after implementing pooling or spawning system
-        }
         
         public virtual void Init()
         {
@@ -26,6 +21,12 @@ namespace GameSceneObjects.Units
         {
             dmg *= (1f - info.Armor);
             currentHealth -= dmg;
+            
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                OnDie();
+            }
         }
 
         public bool IsAlive()
@@ -71,6 +72,16 @@ namespace GameSceneObjects.Units
         public float GetUnitStopDistance()
         {
             return info.UnitStopDistance;
+        }
+
+        public virtual void OnDie()
+        {
+            gameObject.SetActive(false);
+        }
+        
+        public UnitFaction GetFaction()
+        {
+            return info.Faction;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameSceneObjects.HeroManagement;
 using InputsManager;
 using Services;
 using UnityEngine;
@@ -22,12 +23,10 @@ namespace Camera
         [SerializeField] private List<CameraBorder> cameraBorders = new List<CameraBorder>(); //TODO: add a serialised dictionary
         [SerializeField] private float cameraZDeviationMin = -5f;
         [SerializeField] private float cameraZDeviationMax = 30f;
-        
-        [SerializeField][Header("Focusing Target")]
-         private Transform mainHero;
         [SerializeField] private float focusLerpSpeed = 5f;
         
         private IInputManager inputManager;
+        private IHeroManager heroManager;
         
         private InputAction panCameraAction;
         private InputAction zoomCameraAction;
@@ -53,6 +52,7 @@ namespace Camera
         private void Start()
         {
             inputManager = ServiceLocator.Instance.Get<IInputManager>();
+            heroManager = ServiceLocator.Instance.Get<IHeroManager>();
 
             panCameraAction = inputManager.GetInputAction(InputManager.MouseScreenPosActionKey);
             zoomCameraAction = inputManager.GetInputAction(InputManager.ZoomCameraActionKey);
@@ -157,7 +157,7 @@ namespace Camera
             cameraForward.y = 0;
             cameraForward.Normalize();
                 
-            Vector3 desiredPosition = mainHero.position - cameraForward * heroZdeviation;
+            Vector3 desiredPosition = heroManager.GetHeroPosition() - cameraForward * heroZdeviation;
             desiredPosition.y = mainCamera.transform.position.y;
             mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position,
                 desiredPosition, Time.deltaTime * focusLerpSpeed); //TODO: smoothing formula  a = b + (a - b) * exp( - decayConst * Time.deltaTime) 
@@ -195,6 +195,11 @@ namespace Camera
         public UnityEngine.Camera GetCamera()
         {
             return mainCamera;
+        }
+
+        public void SetFreeCameraMode()
+        {
+            heroInFocus = false;
         }
     }
     

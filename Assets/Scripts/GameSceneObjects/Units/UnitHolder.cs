@@ -6,20 +6,18 @@ namespace GameSceneObjects.Units
 {
     public class UnitHolder : MonoBehaviour, IUnitHolder
     {
-        [SerializeField] private List<EnemyUnit> enemyUnits = new List<EnemyUnit>(); //TODO: need to optimize, mb via add sectors
-        [SerializeField] private List<AllyUnit> allyUnits = new List<AllyUnit>();
-        
-        private void Awake()
+        private Dictionary<UnitFaction, List<Unit>> unitsByFaction = new Dictionary<UnitFaction, List<Unit>>()
         {
-            ServiceLocator.Instance.Register<IUnitHolder>(this);
-        }
-
+            {UnitFaction.Ally, new List<Unit>()},
+            {UnitFaction.Enemy, new List<Unit>()}
+        };
+        
         public bool TryGetGlosestEnemy(Vector3 currentPosition, out EnemyUnit unit)
         {
             unit = null;
             float closestDistanceSqrt = float.MaxValue;
-
-            foreach (EnemyUnit enemyUnit in enemyUnits)
+            List<Unit> enemyUnits = unitsByFaction[UnitFaction.Enemy];
+            foreach (EnemyUnit enemyUnit in enemyUnits) //TODO: optimize, use spatial partitioning or similar
             {
                 if (enemyUnit == null || !enemyUnit.gameObject.activeInHierarchy)
                 {
@@ -36,5 +34,34 @@ namespace GameSceneObjects.Units
 
             return enemyUnits.Count > 0;
         }
+
+        public void RegisterUnit(Unit unit)
+        {
+            if (unitsByFaction.TryGetValue(unit.GetFaction(), out List<Unit> units) == false)
+            {
+                units = new List<Unit>();
+                unitsByFaction[unit.GetFaction()] = units;
+            }
+
+            if (units.Contains(unit) == false)
+            {
+                units.Add(unit);
+            }
+        }
+        
+        public void UnregisterUnit(Unit unit)
+        {
+            if (unitsByFaction.TryGetValue(unit.GetFaction(), out List<Unit> units))
+            {
+                units.Remove(unit);
+            }
+        }
+        
+        private void Awake()
+        {
+            ServiceLocator.Instance.Register<IUnitHolder>(this);
+        }
+        
+        private
     }
 }

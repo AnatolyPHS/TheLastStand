@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58bc0a141e0b5fe46a3c7d72d58f6b3b, type: 3}
+  m_Name: SpawningBuildingInfo
+  m_EditorClassIdentifier: 
+  unitsToSpawn:
+  - Level: 1
+    Unit: {fileID: 777606477259258709, guid: 350fa61f5680c8944b49d5e3d2b43031, type: 3}
+    SpawnDuration: 15

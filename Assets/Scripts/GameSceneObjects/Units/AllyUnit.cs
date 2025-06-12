@@ -1,12 +1,11 @@
 using GameSceneObjects.Buildings;
 using GameSceneObjects.StateBehaviour;
-using Selector;
 using Services;
 using UnityEngine;
 
 namespace GameSceneObjects.Units
 {
-    public class AllyUnit : Unit, IWithTarget, IClickSelectable
+    public class AllyUnit : Unit, IWithTarget, IClickInteractable
     {
         [SerializeField] private GameObject selectionMark;
         
@@ -88,12 +87,16 @@ namespace GameSceneObjects.Units
             navMeshAgent.SetDestination(pointToMove);
         }
         
+        public override void OnDie()
+        {
+            base.OnDie();
+            unitHolder.UnregisterUnit(this);
+        }
+        
         private void Start()
         {
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
-
-            Init();
             
             stationBehaviour = new AllyStationBehaviour(this, unitHolder, buildingManager);
             stationBehaviour.SwitchState<AllyIdleState>();

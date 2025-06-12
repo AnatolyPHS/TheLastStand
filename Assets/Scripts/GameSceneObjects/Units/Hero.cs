@@ -1,10 +1,25 @@
-using Selector;
+using GameSceneObjects.HeroManagement;
+using Services;
 using UnityEngine;
 
 namespace GameSceneObjects.Units
 {
-    public class Hero : Unit, IClickSelectable
+    public class Hero : Unit, IClickInteractable
     {
+        private IHeroManager heroManager;
+        
+        public override void Init()
+        {
+            base.Init();
+            heroManager = ServiceLocator.Instance.Get<IHeroManager>();
+        }
+        
+        public override void OnDie()
+        {
+            heroManager.OnHeroDie(this);
+            base.OnDie();
+        }
+
         public void OnSelect()
         {
             Debug.Log("Hero selected! " + gameObject.name);
