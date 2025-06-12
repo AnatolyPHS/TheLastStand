@@ -13,12 +13,12 @@ namespace PoolingSystem
         
         public T GetObject<T>(T prefab, Vector3 spawnPos, Quaternion spawnRotation) where T : MonoBehaviour
         {
-            string type = prefab.gameObject.name;
+            string poolId = prefab.gameObject.name;
 
-            if (!pools.TryGetValue(type, out Pool pool))
+            if (!pools.TryGetValue(poolId, out Pool pool))
             {
                 pool = new Pool { prefab = prefab };
-                pools[type] = pool;
+                pools[poolId] = pool;
             }
 
             MonoBehaviour obj;
@@ -36,7 +36,7 @@ namespace PoolingSystem
             obj.gameObject.SetActive(true);
             obj.transform.SetParent(null);
 
-            pooledObjectOnScene[obj.gameObject] = type;
+            pooledObjectOnScene[obj.gameObject] = poolId;
             
             if (obj is IPoolable ip)
             {
@@ -56,12 +56,12 @@ namespace PoolingSystem
                 poolable.OnReturnToPool();
             }
             
-            string type = pooledObjectOnScene[obj.gameObject];
+            string poolID = pooledObjectOnScene[obj.gameObject];
 
-            if (pools.TryGetValue(type, out Pool pool) == false)
+            if (pools.TryGetValue(poolID, out Pool pool) == false)
             {
                 pool = new Pool {prefab = obj};
-                pools[type] = pool;
+                pools[poolID] = pool;
             }
             
             pooledObjectOnScene.Remove(obj.gameObject);

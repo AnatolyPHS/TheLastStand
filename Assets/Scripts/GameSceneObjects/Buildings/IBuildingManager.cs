@@ -6,5 +6,7 @@ namespace GameSceneObjects.Buildings
     {
         Vector3 GetMainTowerPosition();
         Vector3 GetSanctumPosition();
+        void OnSpawnerSelect(AllySpawningBuilding allySpawningBuilding);
+        void OnSpawnerDeselect(AllySpawningBuilding allySpawningBuilding);
     }
 }

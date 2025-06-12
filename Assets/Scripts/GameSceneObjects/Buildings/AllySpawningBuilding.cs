@@ -1,5 +1,6 @@
 using GameSceneObjects.Units;
 using Selector;
+using Services;
 using UnityEngine;
 
 
@@ -9,23 +10,28 @@ namespace GameSceneObjects.Buildings
     {
         [SerializeField] private GameObject SelectionMark;
 
+        private IBuildingManager buildingManager;
+        
         private int unitsToSpawnNumber = 0;
         
         public void OnSelect()
         {
             SelectionMark.SetActive(true);
             unitsToSpawnNumber++;
+            buildingManager.OnSpawnerSelect(this);
         }
 
         public void OnDeselect()
         {
+            buildingManager.OnSpawnerDeselect(this);
             SelectionMark.SetActive(false);
         }
         
         protected override void Start()
         {
             base.Start();
-            // add UI view reference to controll;
+            
+            buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
         }
         
         protected override void OnSpawn(Unit unit)
