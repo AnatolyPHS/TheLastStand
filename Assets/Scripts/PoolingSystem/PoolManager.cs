@@ -13,7 +13,7 @@ namespace PoolingSystem
         
         public T GetObject<T>(T prefab, Vector3 spawnPos, Quaternion spawnRotation) where T : MonoBehaviour
         {
-            Type type = typeof(T);
+            Type type = prefab.GetType();
 
             if (!pools.TryGetValue(type, out Pool pool))
             {
