@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Services;
 using UnityEngine;
@@ -7,13 +6,14 @@ namespace PoolingSystem
 {
     public class PoolManager : MonoBehaviour, IPoolManager
     {
-        private Dictionary<Type, Pool> pools = new Dictionary<Type, Pool>();
+        private readonly Dictionary<string, Pool> pools = new Dictionary<string, Pool>();
+        private readonly Dictionary<GameObject, string> pooledObjectOnScene = new Dictionary<GameObject, string>();
         
         //TODO: Add preload of pooled objects on start
         
         public T GetObject<T>(T prefab, Vector3 spawnPos, Quaternion spawnRotation) where T : MonoBehaviour
         {
-            Type type = prefab.GetType();
+            string type = prefab.gameObject.name;
 
             if (!pools.TryGetValue(type, out Pool pool))
             {
@@ -36,6 +36,8 @@ namespace PoolingSystem
             obj.gameObject.SetActive(true);
             obj.transform.SetParent(null);
 
+            pooledObjectOnScene[obj.gameObject] = type;
+            
             if (obj is IPoolable ip)
             {
                 ip.OnGetFromPool();    
@@ -54,14 +56,15 @@ namespace PoolingSystem
                 poolable.OnReturnToPool();
             }
             
-            Type type = obj.GetType();
+            string type = pooledObjectOnScene[obj.gameObject];
 
             if (pools.TryGetValue(type, out Pool pool) == false)
             {
                 pool = new Pool {prefab = obj};
                 pools[type] = pool;
-                return;
             }
+            
+            pooledObjectOnScene.Remove(obj.gameObject);
             pool.objects.Enqueue(obj);
         }
 

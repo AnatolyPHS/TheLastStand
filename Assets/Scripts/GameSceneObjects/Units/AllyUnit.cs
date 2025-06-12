@@ -93,8 +93,10 @@ namespace GameSceneObjects.Units
             unitHolder.UnregisterUnit(this);
         }
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+            
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
             

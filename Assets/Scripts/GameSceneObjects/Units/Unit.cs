@@ -1,4 +1,5 @@
 using PoolingSystem;
+using Services;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +9,8 @@ namespace GameSceneObjects.Units
     {
         [SerializeField] protected NavMeshAgent navMeshAgent;
         [SerializeField] protected UnitInfo info;
+        
+        private IPoolManager poolManager;
         
         protected int currentLevel = 1;
         private float currentHealth;
@@ -77,6 +80,7 @@ namespace GameSceneObjects.Units
 
         public virtual void OnDie()
         {
+            poolManager.ReturnObject(this);
             gameObject.SetActive(false);
         }
         
@@ -93,6 +97,11 @@ namespace GameSceneObjects.Units
         public void OnGetFromPool()
         {
             navMeshAgent.enabled = true;
+        }
+
+        protected virtual void Start()
+        {
+            poolManager = ServiceLocator.Instance.Get<IPoolManager>();
         }
     }
 }

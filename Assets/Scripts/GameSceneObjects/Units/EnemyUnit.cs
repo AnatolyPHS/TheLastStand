@@ -41,8 +41,10 @@ namespace GameSceneObjects.Units
             unitHolder.UnregisterUnit(this);
         }
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+            
             heroManager = ServiceLocator.Instance.Get<IHeroManager>();
             unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
             
