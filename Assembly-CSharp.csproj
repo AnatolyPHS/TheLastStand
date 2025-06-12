@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\UI\SelectorView\ISelectorView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IHittable.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\GameView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\IBuildingManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\BaseUnitState.cs" />
@@ -79,6 +80,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\BuildingManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\AllyUnit.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\BuildingBase.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\IGameView.cs" />
      <Compile Include="Assets\Scripts\InputsManager\IInputManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyAttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Hero.cs" />
@@ -153,6 +155,7 @@
      <Folder Include="Assets\Scripts\GameSceneObjects\Data" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne.json" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+     <Folder Include="Assets\Scripts\UI\GameView" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

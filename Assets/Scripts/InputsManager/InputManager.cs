@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Services;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace InputsManager
@@ -45,6 +45,11 @@ namespace InputsManager
                 Debug.LogError($"[InputManager] Input action with key '{actionKey}' not found.");
                 return null;
             }
+        }
+
+        public bool IsPointerOverGameObject()
+        {
+            return EventSystem.current.IsPointerOverGameObject();
         }
     }
 }

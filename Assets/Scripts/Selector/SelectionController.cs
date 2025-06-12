@@ -130,6 +130,11 @@ namespace Selector
 
         private void OnLeftClickStarted(InputAction.CallbackContext context)
         {
+            if (inputManager.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
             startScreenMousePosition = mousePositionAction.ReadValue<Vector2>();
 
             startWorldPoint = RecalculateWorldPointUnderMouse(startScreenMousePosition);
