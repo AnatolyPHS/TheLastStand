@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58bc0a141e0b5fe46a3c7d72d58f6b3b, type: 3}
-  m_Name: AllyMeleeSpawningBuildingInfo
+  m_Name: SanctrumSpawningBuildingInfo
   m_EditorClassIdentifier: 
   unitsToSpawn:
   - Level: 1
-    Unit: {fileID: 777606477259258709, guid: 350fa61f5680c8944b49d5e3d2b43031, type: 3}
-    SpawnDuration: 20
+    Unit: {fileID: 7001018454026461362, guid: af97f196c238620488fb85ed2a301fe4, type: 3}
+    SpawnDuration: 15

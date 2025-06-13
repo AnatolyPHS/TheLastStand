@@ -9,13 +9,15 @@ namespace GameSceneObjects.HeroManagement
 {
     public class HeroManager : MonoBehaviour, IHeroManager
     {
-        [SerializeField] private Hero hero;
+        [SerializeField] private Transform heroGameStartPosition;
         
         private ISelectorController selectorController;
         private ICameraController cameraController;
         private IBuildingManager buildingManager;
 
         private bool heroIsRespawning = false;
+        
+        private Hero hero;
         
         public Hero GetHero()
         {
@@ -34,6 +36,17 @@ namespace GameSceneObjects.HeroManagement
             return heroIsRespawning ? buildingManager.GetSanctumPosition() : hero.transform.position;
         }
 
+        public bool HeroIsRespawning()
+        {
+            return heroIsRespawning;
+        }
+
+        public void OnHeroRespawn(Unit unit)
+        {
+            hero = unit as Hero;
+            heroIsRespawning = false;
+        }
+
         private void Awake()
         {
             ServiceLocator.Instance.Register<IHeroManager>(this);
@@ -45,7 +58,12 @@ namespace GameSceneObjects.HeroManagement
             cameraController = ServiceLocator.Instance.Get<ICameraController>();
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             
-            hero.Init();//TODO: controll it on spawn
+            InstantHeroSpawn();
+        }
+
+        private void InstantHeroSpawn()
+        {
+            buildingManager.GetSanctum().InstantHeroSpawn(heroGameStartPosition.position, heroGameStartPosition.rotation); 
         }
     }
 }

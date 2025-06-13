@@ -8,5 +8,7 @@ namespace GameSceneObjects.HeroManagement
         Hero GetHero();
         void OnHeroDie(Hero hero);
         Vector3 GetHeroPosition();
+        bool HeroIsRespawning();
+        void OnHeroRespawn(Unit unit);
     }
 }

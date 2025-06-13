@@ -12,7 +12,7 @@ namespace GameSceneObjects.Buildings
         [SerializeField] private Transform spawnPoint;
 
         protected IUnitHolder unitsHolder;
-        private IPoolManager poolManager;
+        protected IPoolManager poolManager;
 
         protected int currentBuildingLevel = 1;
 

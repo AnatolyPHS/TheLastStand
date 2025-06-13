@@ -209,7 +209,7 @@ namespace Selector
             Ray ray = mainCamera.ScreenPointToRay(currentScreenMousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableLayer)
+             if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableLayer)
                 && hit.collider.TryGetComponent(out IClickSelectable selectable))
             {
                 ClearSelection();

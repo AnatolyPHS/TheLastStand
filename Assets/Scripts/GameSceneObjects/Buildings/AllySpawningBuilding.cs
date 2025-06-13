@@ -12,7 +12,7 @@ namespace GameSceneObjects.Buildings
 
         private IBuildingManager buildingManager;
         
-        private int unitsToSpawnNumber = 0;
+        protected int unitsToSpawnNumber = 0;
         
         public void OnSelect()
         {
@@ -49,7 +49,7 @@ namespace GameSceneObjects.Buildings
             Debug.Log("UpgradeBuilding");
         }
 
-        public void BuildUnit()
+        public virtual void BuildUnit()
         {
             unitsToSpawnNumber++;
         }

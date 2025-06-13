@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1052346440037092574}
   - component: {fileID: 5413150166615383778}
   - component: {fileID: 2830943656396773450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SelectionMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2304783106885012491}
   - component: {fileID: 777606477259258709}
   - component: {fileID: 7131090322510672668}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ally_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

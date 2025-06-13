@@ -1,3 +1,4 @@
+using GameSceneObjects.Units;
 using UnityEngine;
 
 namespace GameSceneObjects.Buildings
@@ -8,5 +9,6 @@ namespace GameSceneObjects.Buildings
         Vector3 GetSanctumPosition();
         void OnSpawnerSelect(AllySpawningBuilding allySpawningBuilding);
         void OnSpawnerDeselect();
+        Sanctum GetSanctum();
     }
 }

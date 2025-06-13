@@ -7,7 +7,7 @@ namespace GameSceneObjects.Buildings
     public class BuildingManager : MonoBehaviour, IBuildingManager
     {
         [SerializeField] GameObject mainTower;
-        [SerializeField] GameObject sanctum;
+        [SerializeField] Sanctum sanctum;
         
         private IBuildingViewController buildingViewController;
         
@@ -30,7 +30,12 @@ namespace GameSceneObjects.Buildings
         {
             buildingViewController.SetSelectedAllyBuilding(null);
         }
-        
+
+        public Sanctum GetSanctum()
+        {
+            return sanctum;
+        }
+
         private void Awake()
         {
             ServiceLocator.Instance.Register<IBuildingManager>(this);
