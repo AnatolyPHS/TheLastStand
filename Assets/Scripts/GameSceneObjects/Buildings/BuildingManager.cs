@@ -6,14 +6,14 @@ namespace GameSceneObjects.Buildings
 {
     public class BuildingManager : MonoBehaviour, IBuildingManager
     {
-        [SerializeField] GameObject mainTower;
+        [SerializeField] Сitadel citadel;
         [SerializeField] Sanctum sanctum;
         
         private IBuildingViewController buildingViewController;
         
         public Vector3 GetMainTowerPosition()
         {
-            return mainTower.transform.position;
+            return citadel.transform.position;
         }
 
         public Vector3 GetSanctumPosition()

@@ -914,7 +914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6908d91d5bb6184a839e0485c01084b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainTower: {fileID: 2069594945}
+  citadel: {fileID: 2069594949}
   sanctum: {fileID: 125743931}
 --- !u!4 &730162056
 Transform:
@@ -3538,8 +3538,9 @@ GameObject:
   - component: {fileID: 2069594948}
   - component: {fileID: 2069594947}
   - component: {fileID: 2069594946}
+  - component: {fileID: 2069594949}
   m_Layer: 7
-  m_Name: Main
+  m_Name: Citadel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3610,6 +3611,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1308794714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2069594949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069594945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dac78c83f2a68489ce99c89429b33c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1000
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
