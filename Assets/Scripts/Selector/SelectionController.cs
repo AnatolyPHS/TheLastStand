@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Camera;
 using GameSceneObjects;
+using GameSceneObjects.Buildings;
 using GameSceneObjects.Units;
 using InputsManager;
 using Services;
@@ -13,6 +14,9 @@ namespace Selector
     public class SelectionController : MonoBehaviour, ISelectorController
     {
         private const float YBoundSelectionThreshold = 20f;
+        
+        private readonly List<IClickSelectable> currentlySelectedObjects = new List<IClickSelectable>();
+        private readonly List<IClickSelectable> selectedObjectToPrioritise = new List<IClickSelectable>();
         
         [SerializeField][Header("Selection Settings")]
         private LayerMask selectableLayer;
@@ -33,8 +37,6 @@ namespace Selector
         private InputAction rightmouseClickAction;
 
         private bool isDragging = false;
-
-        private List<IClickSelectable> currentlySelectedObjects = new List<IClickSelectable>();
         
         private Plane groundPlane;
         private UnityEngine.Camera mainCamera;
@@ -195,12 +197,39 @@ namespace Selector
 
             Collider[] hits = Physics.OverlapBox(selectionBounds.center, selectionBounds.extents, Quaternion.identity, selectableLayer);
 
+            selectedObjectToPrioritise.Clear();
+            
             foreach (Collider col in hits)
             {
-                if (col.TryGetComponent(out IClickSelectable selectable))
+                if (col.TryGetComponent(out IClickSelectable selectable) && selectedObjectToPrioritise.Contains(selectable) == false)
+                {
+                    selectedObjectToPrioritise.Add(selectable);
+                }
+            }
+            
+            PrioritiseSelectedObjects();
+        }
+
+        private void PrioritiseSelectedObjects()
+        {
+            IClickSelectable buildingToSelect = null;
+            for (int i = 0; i < selectedObjectToPrioritise.Count; i++)
+            {
+                IClickSelectable selectable = selectedObjectToPrioritise[i];
+                if (selectable is Unit)
                 {
                     SelectObject(selectable);
                 }
+
+                if (selectable is BuildingBase)
+                {
+                    buildingToSelect = selectable;
+                }
+            }
+
+            if (currentlySelectedObjects.Count == 0 && buildingToSelect != null)
+            {
+                SelectObject(buildingToSelect);
             }
         }
 

@@ -71,11 +71,13 @@
      <Compile Include="Assets\Scripts\UI\GameView\View.cs" />
      <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyIdleState.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\Sanctum.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\HeroManagement\HeroManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyStationBehaviour.cs" />
      <Compile Include="Assets\Scripts\PoolingSystem\IPoolable.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\UnitHolder.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyMoveToTargetUnitState.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\SanctumTrigger.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\AllySpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IClickInteractable.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\StationBehaviour.cs" />
@@ -101,6 +103,7 @@
      <Compile Include="Assets\Scripts\PoolingSystem\PoolManager.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\BuildingViewController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Data\UnitsData\UnitInfo.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Units\ISanctumable.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Selector" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
