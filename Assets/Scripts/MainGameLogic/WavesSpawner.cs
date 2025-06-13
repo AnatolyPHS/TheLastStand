@@ -1,6 +1,7 @@
 using GameSceneObjects.Buildings;
 using GameSceneObjects.Units;
 using Services;
+using UI.GameView;
 using UnityEngine;
 
 namespace MainGameLogic
@@ -13,6 +14,7 @@ namespace MainGameLogic
 
         private IBuildingManager buildingManager;
         private IUnitHolder unitHolder;
+        private IEndGameViewController endGameViewController;
         
         private int currentWave = 0;
 
@@ -27,6 +29,7 @@ namespace MainGameLogic
         {
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
+            endGameViewController = ServiceLocator.Instance.Get<IEndGameViewController>();
             
             //TODO: run UI timer if any
             nextWaveTime = Time.time + firstWaveDelay;
@@ -51,7 +54,7 @@ namespace MainGameLogic
             }
             else
             {
-                Debug.Log("TODO: show game victory screen");
+                endGameViewController.ShowEndGameView("Congratulations! You have completed all waves!");
             }
         }
 

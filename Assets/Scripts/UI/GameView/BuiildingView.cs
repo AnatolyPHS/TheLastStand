@@ -19,7 +19,7 @@ namespace UI.GameView
             ServiceLocator.Instance.Register<IBuildingView>(this);
         }
         
-        private void Start()
+        public override void OnMainUIStart()
         {
             inputManager = ServiceLocator.Instance.Get<IInputManager>();
             buildingViewController = ServiceLocator.Instance.Get<IBuildingViewController>();
@@ -29,7 +29,9 @@ namespace UI.GameView
 
         private void OnAllySpawnerSelected(float value)
         {
-            buildingPanel.SetActive(value > float.Epsilon);
+            bool isSelected = value > float.Epsilon;
+            gameObject.SetActive(isSelected);
+            buildingPanel.SetActive(isSelected);
         }
 
         private void Update()

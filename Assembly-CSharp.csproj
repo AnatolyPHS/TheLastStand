@@ -48,8 +48,10 @@
      <Compile Include="Assets\Scripts\UI\SelectorView\ISelectorView.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IBuildingView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IHittable.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\IEndGameViewController.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IBuildingViewController.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\GameView.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\EndGameViewController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\IBuildingManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\BaseUnitState.cs" />
@@ -69,10 +71,12 @@
      <Compile Include="Assets\Scripts\InputsManager\Input.cs" />
      <Compile Include="Assets\Scripts\Selector\ISelectorController.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\View.cs" />
+     <Compile Include="Assets\Scripts\UI\EndGameView\IEndGameView.cs" />
      <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyIdleState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\Sanctum.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\HeroManagement\HeroManager.cs" />
+     <Compile Include="Assets\Scripts\UI\EndGameView\EndGameView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyStationBehaviour.cs" />
      <Compile Include="Assets\Scripts\PoolingSystem\IPoolable.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\UnitHolder.cs" />
@@ -80,6 +84,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\SanctumTrigger.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\AllySpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IClickInteractable.cs" />
+     <Compile Include="Assets\Scripts\MainGameLogic\WavesSpawner.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\StationBehaviour.cs" />
      <Compile Include="Assets\Scripts\Camera\ICameraController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyStationBehaviour.cs" />
@@ -89,6 +94,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\BuildingBase.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IGameView.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\BuiildingView.cs" />
+     <Compile Include="Assets\Scripts\MainGameLogic\IWavesSpawner.cs" />
      <Compile Include="Assets\Scripts\InputsManager\IInputManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyAttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Hero.cs" />
@@ -101,6 +107,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyUnitStates\EnemyMoveToTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\IStateSwitcher.cs" />
      <Compile Include="Assets\Scripts\PoolingSystem\PoolManager.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\Сitadel.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\BuildingViewController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Data\UnitsData\UnitInfo.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\ISanctumable.cs" />
@@ -153,8 +160,10 @@
      <Folder Include="Assets\Input" />
      <Folder Include="Assets\Scripts\Services" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <Folder Include="Assets\Scripts\MainGameLogic" />
      <Folder Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates" />
      <Folder Include="Assets\Prefabs\Units" />
+     <Folder Include="Assets\Scripts\UI\EndGameView" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
      <Folder Include="Assets\Materials" />

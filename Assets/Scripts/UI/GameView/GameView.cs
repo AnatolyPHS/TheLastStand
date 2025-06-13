@@ -9,9 +9,17 @@ namespace UI.GameView
         
         private void Awake()
         {
-            foreach (var view in views)
+            foreach (View view in views)
             {
                 view.Init();
+            }
+        }
+        
+        private void Start()
+        {
+            foreach (View view in views)
+            {
+                view.OnMainUIStart();
             }
         }
     }
