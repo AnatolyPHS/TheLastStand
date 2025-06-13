@@ -12,6 +12,7 @@ namespace UI.GameView
         private void Awake()
         {
             ServiceLocator.Instance.Register<IEndGameViewController>(this);
+            Time.timeScale = 1f; //TODO: need time manager with pause and resume methods
         }
         
         private void Start()
@@ -21,6 +22,7 @@ namespace UI.GameView
 
         public void ShowEndGameView(string congratulationsYouHaveCompletedAllWaves)
         {
+            Time.timeScale = 0f; //TODO: need time manager with pause and resume methods
             endGameView.ShowEndGamePanel(congratulationsYouHaveCompletedAllWaves);
         }
 

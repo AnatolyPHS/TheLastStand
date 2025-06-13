@@ -856,7 +856,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 610053551}
         m_TargetAssemblyTypeName: UI.EndGameView.EndGameView, Assembly-CSharp
-        m_MethodName: OnLevelRestartButtonClicked
+        m_MethodName: OnRestartClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4407,7 +4407,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 610053551}
         m_TargetAssemblyTypeName: UI.EndGameView.EndGameView, Assembly-CSharp
-        m_MethodName: OnApplicationButtonClicked
+        m_MethodName: OnQuitClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
