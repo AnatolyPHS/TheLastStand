@@ -53,5 +53,16 @@ namespace GameSceneObjects.Buildings
         {
             unitsToSpawnNumber++;
         }
+
+        public float GetBuildingProgress()
+        {
+            if (unitsToSpawnNumber <= 0)
+            {
+                return 0f;
+            }
+
+            float progress = 1f - nextSpawnTimer / nextUnit.SpawnDuration;
+            return Mathf.Clamp01(progress);
+        }
     }
 }

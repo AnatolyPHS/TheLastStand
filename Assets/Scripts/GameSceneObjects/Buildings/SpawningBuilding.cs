@@ -16,14 +16,16 @@ namespace GameSceneObjects.Buildings
 
         protected int currentBuildingLevel = 1;
 
-        private float nextSpawnTimer = float.MinValue;
+        protected UnitToSpawnData nextUnit;
+        protected float nextSpawnTimer = float.MinValue;
         
         protected virtual void Start()
         {
             unitsHolder = ServiceLocator.Instance.Get<IUnitHolder>();
             poolManager = ServiceLocator.Instance.Get<IPoolManager>();
             
-            nextSpawnTimer = spawningBuildingInfo.GetUnitOfLevel(currentBuildingLevel).SpawnDuration;
+            nextUnit = spawningBuildingInfo.GetUnitOfLevel(currentBuildingLevel);
+            nextSpawnTimer = nextUnit.SpawnDuration;
         }
 
         protected virtual bool CanSpawn()
@@ -49,14 +51,14 @@ namespace GameSceneObjects.Buildings
                 return;
             }
 
-            UnitToSpawnData unitToSpawnData = spawningBuildingInfo.GetUnitOfLevel(currentBuildingLevel);
+            nextUnit = spawningBuildingInfo.GetUnitOfLevel(currentBuildingLevel);
 
-            Unit unit = poolManager.GetObject(unitToSpawnData.Unit, spawnPoint.position, spawnPoint.rotation);
+            Unit unit = poolManager.GetObject(nextUnit.Unit, spawnPoint.position, spawnPoint.rotation);
             unit.Init();
 
             OnSpawn(unit);
 
-            nextSpawnTimer = unitToSpawnData.SpawnDuration;
+            nextSpawnTimer = nextUnit.SpawnDuration;
         }
 
         protected virtual void OnSpawn(Unit unit)
