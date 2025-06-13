@@ -17,10 +17,11 @@ namespace InputsManager
         public const string ZoomCameraActionKey = "ZoomCamera";
         public static string RightMouseClickActionKey = "RightClick";
         
+        private readonly Dictionary<string, InputAction> inputActions = new Dictionary<string, InputAction>();
+        private readonly Dictionary<InputType, Input> inputs = new Dictionary<InputType, Input>();
+        
         [SerializeField][Header("Input Actions")]
         private InputActionAsset playerInputActions;
-        
-        private readonly Dictionary<string, InputAction> inputActions = new Dictionary<string, InputAction>();
         
         private bool pointerOverUI = false;
         
@@ -35,8 +36,18 @@ namespace InputsManager
             inputActions.Add(ToggleCameraFocesActionKey, gameplayActionMap.FindAction(ToggleCameraFocesActionKey));
             inputActions.Add(ZoomCameraActionKey, gameplayActionMap.FindAction(ZoomCameraActionKey));
             inputActions.Add(RightMouseClickActionKey, gameplayActionMap.FindAction(RightMouseClickActionKey));
+            
+            SetEmptyInputs();
         }
-        
+
+        private void SetEmptyInputs()
+        {
+            foreach (InputType value in InputType.GetValues(typeof(InputType)))
+            {
+                inputs[value] = new Input();
+            }
+        }
+
         public InputAction GetInputAction(string actionKey)
         {
             if (inputActions.TryGetValue(actionKey, out InputAction action))
@@ -53,6 +64,21 @@ namespace InputsManager
         public bool IsPointerOverGameObject()
         {
             return pointerOverUI;
+        }
+
+        public void SubscribeToInputEvent(InputType type, Action<float> action, bool callWithLastInput = false)
+        {
+            inputs[type].Subscribe(action);
+        }
+
+        public void UnsubscribeFromInputEvent(InputType type, Action<float> action)
+        {
+            inputs[type].Unsubscribe(action);
+        }
+
+        public void RaiseInputEvent(InputType type, float value)
+        {
+            inputs[type].Raise(value);
         }
 
         private void LateUpdate()

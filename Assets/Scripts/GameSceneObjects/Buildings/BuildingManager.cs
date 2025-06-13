@@ -1,3 +1,4 @@
+using InputsManager;
 using Services;
 using UI.GameView;
 using UnityEngine;
@@ -9,7 +10,10 @@ namespace GameSceneObjects.Buildings
         [SerializeField] GameObject mainTower;
         [SerializeField] GameObject sanctum;
         
+        private IInputManager inputManager;
         private IGameView gameView;
+
+        private AllySpawningBuilding allySpawner;
         
         public Vector3 GetMainTowerPosition()
         {
@@ -21,13 +25,15 @@ namespace GameSceneObjects.Buildings
             return sanctum.transform.position;
         }
 
-        public void OnSpawnerSelect(AllySpawningBuilding allySpawningBuilding)
+        public void OnSpawnerSelect(AllySpawningBuilding allySpawer)
         {
+            this.allySpawner = allySpawer;
             gameView.SetBuildingPanelState(true);
         }
 
-        public void OnSpawnerDeselect(AllySpawningBuilding allySpawningBuilding)
+        public void OnSpawnerDeselect()
         {
+            allySpawner = null;
             gameView.SetBuildingPanelState(false);
         }
         
@@ -39,6 +45,33 @@ namespace GameSceneObjects.Buildings
         private void Start()
         {
             gameView = ServiceLocator.Instance.Get<IGameView>();
+            inputManager = ServiceLocator.Instance.Get<IInputManager>();
+            
+            inputManager.SubscribeToInputEvent(InputType.BuildClick, OnBuildClick);
+            inputManager.SubscribeToInputEvent(InputType.UpgradeClick, OnUpgradeClick);
+        }
+
+        private void OnUpgradeClick(float value)
+        {
+            if (value > 0f && allySpawner != null)
+            {
+                allySpawner.UpgradeBuilding();
+            }
+        }
+
+        private void OnBuildClick(float value)
+        {
+            if (value > 0f)
+            {
+                allySpawner.BuildUnit();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            inputManager.UnsubscribeFromInputEvent(InputType.BuildClick, OnBuildClick);
+            inputManager.UnsubscribeFromInputEvent(InputType.UpgradeClick, OnUpgradeClick);
+            ServiceLocator.Instance.Unregister<IBuildingManager>();
         }
     }
 }

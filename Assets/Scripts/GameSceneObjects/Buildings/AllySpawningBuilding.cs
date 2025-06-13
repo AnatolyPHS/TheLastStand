@@ -17,13 +17,12 @@ namespace GameSceneObjects.Buildings
         public void OnSelect()
         {
             SelectionMark.SetActive(true);
-            unitsToSpawnNumber++;
             buildingManager.OnSpawnerSelect(this);
         }
 
         public void OnDeselect()
         {
-            buildingManager.OnSpawnerDeselect(this);
+            buildingManager.OnSpawnerDeselect();
             SelectionMark.SetActive(false);
         }
         
@@ -43,6 +42,16 @@ namespace GameSceneObjects.Buildings
         protected override bool CanSpawn()
         {
             return unitsToSpawnNumber > 0;
+        }
+
+        public void UpgradeBuilding()
+        {
+            Debug.Log("UpgradeBuilding");
+        }
+
+        public void BuildUnit()
+        {
+            unitsToSpawnNumber++;
         }
     }
 }

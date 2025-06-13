@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 15979089}
   - component: {fileID: 15979088}
   - component: {fileID: 15979087}
+  - component: {fileID: 15979090}
   m_Layer: 5
   m_Name: UpgradeBuilding
   m_TagString: Untagged
@@ -159,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.55600005, y: 0.089}
   m_AnchorMax: {x: 0.9538409, y: 0.22900002}
-  m_AnchoredPosition: {x: -255, y: -0.7314148}
+  m_AnchoredPosition: {x: -255.00002, y: -0.7314148}
   m_SizeDelta: {x: 1.2595062, y: 1.4627991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15979087
@@ -205,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 15979088}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 15979090}
+        m_TargetAssemblyTypeName: InputsManager.InputButton, Assembly-CSharp
+        m_MethodName: OnButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &15979088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +257,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15979085}
   m_CullTransparentMesh: 1
+--- !u!114 &15979090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15979085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde0afc7fc75f8248b51baa8f1f58c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 20
 --- !u!1 &125743927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,15 +1921,15 @@ MonoBehaviour:
   m_MoveAction: {fileID: -2360927130284713697, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
   m_SubmitAction: {fileID: 3294250288670095762, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
   m_CancelAction: {fileID: 195713366882553729, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
-  m_LeftClickAction: {fileID: -7915018932488118008, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_LeftClickAction: {fileID: 253584973695619652, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
   m_MiddleClickAction: {fileID: -5293313744684855440, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
   m_RightClickAction: {fileID: -7915018932488118008, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
   m_ScrollWheelAction: {fileID: -6419385191862777323, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
   m_TrackedDevicePositionAction: {fileID: 3802100957125928696, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7451818840119634814, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
   m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 0
-  m_CursorLockBehavior: 0
+  m_PointerBehavior: 1
+  m_CursorLockBehavior: 1
 --- !u!1 &1257862174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,6 +2025,7 @@ GameObject:
   - component: {fileID: 1298238612}
   - component: {fileID: 1298238611}
   - component: {fileID: 1298238610}
+  - component: {fileID: 1298238613}
   m_Layer: 5
   m_Name: BuildUnit
   m_TagString: Untagged
@@ -2069,7 +2096,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1298238611}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1298238613}
+        m_TargetAssemblyTypeName: InputsManager.InputButton, Assembly-CSharp
+        m_MethodName: OnButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1298238611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2108,6 +2147,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298238608}
   m_CullTransparentMesh: 1
+--- !u!114 &1298238613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298238608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde0afc7fc75f8248b51baa8f1f58c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 10
 --- !u!1 &1308794713
 GameObject:
   m_ObjectHideFlags: 0
