@@ -56,7 +56,8 @@ namespace PoolingSystem
                 poolable.OnReturnToPool();
             }
             
-            string poolID = pooledObjectOnScene[obj.gameObject];
+            string poolID = pooledObjectOnScene.ContainsKey(obj.gameObject) ?
+                pooledObjectOnScene[obj.gameObject] : obj.gameObject.name;
 
             if (pools.TryGetValue(poolID, out Pool pool) == false)
             {

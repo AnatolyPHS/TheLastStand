@@ -1,20 +1,18 @@
-using Services;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UI.GameView
 {
     public class GameView : MonoBehaviour, IGameView
     {
-        [SerializeField] private GameObject buildingPanel;
-        
-        public void SetBuildingPanelState(bool state)
-        {
-            buildingPanel.SetActive(state);
-        }
+        [SerializeField] private List<View> views =  new List<View>();
         
         private void Awake()
         {
-            ServiceLocator.Instance.Register<IGameView>(this);
+            foreach (var view in views)
+            {
+                view.Init();
+            }
         }
     }
 }

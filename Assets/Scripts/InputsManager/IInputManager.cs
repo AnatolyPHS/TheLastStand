@@ -10,13 +10,14 @@ namespace InputsManager
         UpgradeClick = 20,
         MeteorsAbility = 30,
         FreezingArrowAbility = 40,
+        AllyBuildingSelected = 50,
     }
 
     public interface IInputManager
     {
         InputAction GetInputAction(string actionKey);
         bool IsPointerOverGameObject();
-        void SubscribeToInputEvent(InputType type, Action<float> action, bool callWithLastInput = false);
+        void SubscribeToInputEvent(InputType type, Action<float> action);
         void UnsubscribeFromInputEvent(InputType type, Action<float> action);
         void RaiseInputEvent(InputType type, float value);
     }

@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\UI\SelectorView\ISelectorView.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\IBuildingView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IHittable.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\IBuildingViewController.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\GameView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\IBuildingManager.cs" />
@@ -66,6 +68,7 @@
      <Compile Include="Assets\Scripts\InputsManager\InputButton.cs" />
      <Compile Include="Assets\Scripts\InputsManager\Input.cs" />
      <Compile Include="Assets\Scripts\Selector\ISelectorController.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\View.cs" />
      <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyIdleState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\HeroManagement\HeroManager.cs" />
@@ -83,6 +86,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\AllyUnit.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\BuildingBase.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IGameView.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\BuiildingView.cs" />
      <Compile Include="Assets\Scripts\InputsManager\IInputManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyAttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Hero.cs" />
@@ -95,6 +99,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyUnitStates\EnemyMoveToTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\IStateSwitcher.cs" />
      <Compile Include="Assets\Scripts\PoolingSystem\PoolManager.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\BuildingViewController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Data\UnitsData\UnitInfo.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Selector" />

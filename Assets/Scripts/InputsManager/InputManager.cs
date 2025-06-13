@@ -66,7 +66,7 @@ namespace InputsManager
             return pointerOverUI;
         }
 
-        public void SubscribeToInputEvent(InputType type, Action<float> action, bool callWithLastInput = false)
+        public void SubscribeToInputEvent(InputType type, Action<float> action)
         {
             inputs[type].Subscribe(action);
         }

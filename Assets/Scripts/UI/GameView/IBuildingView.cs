@@ -1,6 +1,6 @@
 namespace UI.GameView
 {
-    public interface IGameView 
+    public interface IBuildingView 
     {
     }
 }
