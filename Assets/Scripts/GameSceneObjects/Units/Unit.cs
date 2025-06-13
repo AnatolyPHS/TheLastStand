@@ -43,6 +43,20 @@ namespace GameSceneObjects.Units
             return transform.position;
         }
 
+        public void Heal(float healEffect)
+        {
+            currentHealth += healEffect;
+            if (currentHealth > info.Health)
+            {
+                currentHealth = info.Health;
+            }
+        }
+
+        public virtual bool CanBeAttacked()
+        {
+            return IsAlive();
+        }
+
         public float GetAttackRange()
         {
             return info.AttackRange;

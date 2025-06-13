@@ -52,7 +52,7 @@ public class MoveToTargetUnitState : BaseUnitState
     
     private void ProcessTargetApproach()
     {
-        if (unitWithTarget.HasTarget() == false || unitWithTarget.GetCurrentTarget().IsAlive() == false)
+        if (unitWithTarget.HasTarget() == false || unitWithTarget.GetCurrentTarget().CanBeAttacked() == false)
         {
             SwitchToNoTargetState();
             return;

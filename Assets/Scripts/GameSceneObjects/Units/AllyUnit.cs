@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameSceneObjects.Units
 {
-    public class AllyUnit : Unit, IWithTarget, IClickInteractable
+    public class AllyUnit : Unit, IWithTarget, IClickInteractable, ISanctumable
     {
         [SerializeField] private GameObject selectionMark;
         
@@ -16,6 +16,13 @@ namespace GameSceneObjects.Units
         private AllyStationBehaviour stationBehaviour;
 
         private Vector3 lastPointOfInterest;
+        
+        private bool isSanctumActive = false;
+        
+        public bool IsSanctumActive()
+        {
+            return isSanctumActive;
+        }
         
         public void SetTarget(IHittable target)
         {
@@ -32,6 +39,11 @@ namespace GameSceneObjects.Units
             return currentTarget != null;
         }
 
+        public override bool CanBeAttacked()
+        {
+            return base.CanBeAttacked() && isSanctumActive == false;
+        }
+        
         public void InflictDamage()
         {
             if (HasTarget() == false || currentTarget.IsAlive() == false)
@@ -112,6 +124,26 @@ namespace GameSceneObjects.Units
         private float CalculateDamage()
         {
             return info.AttackPower * currentLevel; //TODO: add an animation curves to calculate damage
+        }
+
+        public void Heal(float healEffect)
+        {
+            if (IsAlive() == false)
+            {
+                return;
+            }
+            
+            base.Heal(healEffect);
+        }
+
+        public void OnSanctumeEnter()
+        {
+            isSanctumActive = true;
+        }
+
+        public void OnSanctumExit()
+        {
+            isSanctumActive = false;
         }
     }
 }

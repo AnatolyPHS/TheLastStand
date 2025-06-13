@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.Units;
 using Services;
@@ -7,11 +8,25 @@ namespace GameSceneObjects.Buildings
 {
     public class Sanctum : AllySpawningBuilding
     {
+        private const float TickPeriod = 1f;
+        
+        [SerializeField] private float healEffect = 10f;
+        [SerializeField] private SanctumTrigger sanctumTrigger;
+        
         private IHeroManager heroManager;
+
+        private float nextTickTime = float.MinValue;
         
         public override void BuildUnit()
         {
             unitsToSpawnNumber = 1;
+        }
+        
+        public void InstantHeroSpawn(Vector3 position, Quaternion rotation)
+        {
+            Unit unit = poolManager.GetObject(nextUnit.Unit, position, rotation);
+            unit.Init();
+            OnSpawn(unit);
         }
         
         protected override bool CanSpawn()
@@ -31,11 +46,27 @@ namespace GameSceneObjects.Buildings
             unitsToSpawnNumber = 0;
         }
 
-        public void InstantHeroSpawn(Vector3 position, Quaternion rotation)
+        protected override void Update()
         {
-            Unit unit = poolManager.GetObject(nextUnit.Unit, position, rotation);
-            unit.Init();
-            OnSpawn(unit);
+            base.Update();
+
+            ProcessHeal();
+        }
+
+        private void ProcessHeal()
+        {
+            if (Time.time < nextTickTime)
+            {
+                return;
+            }
+            
+            nextTickTime = Time.time + TickPeriod;
+
+            IReadOnlyList<ISanctumable> UnitsInSanctum = sanctumTrigger.UnitsInSanctum;
+            foreach (ISanctumable unit in UnitsInSanctum)
+            {
+                unit.Heal(healEffect);
+            }
         }
     }
 }

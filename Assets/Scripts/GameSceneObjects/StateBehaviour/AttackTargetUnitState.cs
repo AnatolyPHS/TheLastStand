@@ -48,7 +48,7 @@ namespace GameSceneObjects.StateBehaviour
             }
 
             IHittable target = attacker.GetCurrentTarget();
-            if (CloseToAttack(target))
+            if (CanAttack(target))
             {
                 attacker.InflictDamage();
             }
@@ -68,7 +68,7 @@ namespace GameSceneObjects.StateBehaviour
             stateSwitcher.SwitchState<SearchForTargetUnitState>();
         }
 
-        private bool CloseToAttack(IHittable target)
+        protected virtual bool CanAttack(IHittable target)
         {
             return Vector3.Distance(unitToControl.transform.position, target.GetPosition()) <= unitToControl.GetAttackRange();
         }

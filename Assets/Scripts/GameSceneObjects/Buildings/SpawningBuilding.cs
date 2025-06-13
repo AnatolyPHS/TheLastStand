@@ -33,7 +33,7 @@ namespace GameSceneObjects.Buildings
             return true;
         }
         
-        private void Update()
+        protected virtual void Update()
         {
             if (CanSpawn() == false)
             {

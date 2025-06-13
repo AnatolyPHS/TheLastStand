@@ -18,7 +18,7 @@ namespace GameSceneObjects.StateBehaviour
         
         protected override void ProcessLookForTarget()
         {
-            if (heroManager.GetHero().IsAlive() == false)
+            if (heroManager.GetHero().CanBeAttacked() == false)
             {
                 return;
             }

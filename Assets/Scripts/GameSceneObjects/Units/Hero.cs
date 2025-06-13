@@ -4,9 +4,16 @@ using UnityEngine;
 
 namespace GameSceneObjects.Units
 {
-    public class Hero : Unit, IClickInteractable
+    public class Hero : Unit, IClickInteractable, ISanctumable
     {
         private IHeroManager heroManager;
+        
+        private bool isSanctumActive = false;
+        
+        public bool IsSanctumActive()
+        {
+            return isSanctumActive;
+        }
         
         public override void Init()
         {
@@ -38,6 +45,31 @@ namespace GameSceneObjects.Units
         public void MoveTo(Vector3 targetPosition)
         {
             navMeshAgent.SetDestination(targetPosition);
+        }
+        
+        public override bool CanBeAttacked()
+        {
+            return base.CanBeAttacked() && isSanctumActive == false;
+        }
+        
+        public void Heal(float healEffect)
+        {
+            if (IsAlive() == false)
+            {
+                return;
+            }
+            
+            base.Heal(healEffect);
+        }
+
+        public void OnSanctumeEnter()
+        {
+            isSanctumActive = true;
+        }
+
+        public void OnSanctumExit()
+        {
+            isSanctumActive = false;
         }
     }
 }
