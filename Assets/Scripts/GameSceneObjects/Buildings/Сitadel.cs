@@ -43,6 +43,11 @@ namespace GameSceneObjects.Buildings
             return IsAlive();
         }
 
+        public void ShowTargetPointer()
+        {
+            Debug.Log("TODO: add pointer effect after embedded EffectManager");
+        }
+
         private void Start()
         {
             currentHealth = maxHealth;

@@ -9,5 +9,6 @@ namespace GameSceneObjects
         Vector3 GetPosition();
         void Heal(float healEffect);
         bool CanBeAttacked();
+        void ShowTargetPointer();
     }
 }

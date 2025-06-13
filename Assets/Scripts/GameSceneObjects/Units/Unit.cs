@@ -57,6 +57,11 @@ namespace GameSceneObjects.Units
             return IsAlive();
         }
 
+        public void ShowTargetPointer()
+        {
+            Debug.Log("TODO: add poionter effec after embeded EffectManager");
+        }
+
         public float GetAttackRange()
         {
             return info.AttackRange;
