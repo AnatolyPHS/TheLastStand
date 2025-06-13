@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.55600005, y: 0.089}
   m_AnchorMax: {x: 0.9538409, y: 0.22900002}
-  m_AnchoredPosition: {x: -255, y: -0.7314}
+  m_AnchoredPosition: {x: -255, y: -0.7314148}
   m_SizeDelta: {x: 1.2595062, y: 1.4627991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15979087
@@ -1890,17 +1890,17 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_PointAction: {fileID: 5934344186405259958, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_MoveAction: {fileID: -2360927130284713697, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_SubmitAction: {fileID: 3294250288670095762, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_CancelAction: {fileID: 195713366882553729, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_LeftClickAction: {fileID: -7915018932488118008, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_MiddleClickAction: {fileID: -5293313744684855440, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_RightClickAction: {fileID: -7915018932488118008, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_ScrollWheelAction: {fileID: -6419385191862777323, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 3802100957125928696, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7451818840119634814, guid: 306c1328f8d1ef0409b08b80c055ca10, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
@@ -3155,7 +3155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7302917, y: 0}
   m_AnchorMax: {x: 1, y: 0.3778523}
-  m_AnchoredPosition: {x: -1.4393921, y: -0.65338135}
+  m_AnchoredPosition: {x: -1.439331, y: -0.65338135}
   m_SizeDelta: {x: 2.8781128, y: -1.306488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034642445

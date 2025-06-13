@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Services;
 using UnityEngine;
@@ -21,6 +22,8 @@ namespace InputsManager
         
         private readonly Dictionary<string, InputAction> inputActions = new Dictionary<string, InputAction>();
         
+        private bool pointerOverUI = false;
+        
         private void Awake()
         {
             ServiceLocator.Instance.Register<IInputManager>(this);
@@ -33,7 +36,7 @@ namespace InputsManager
             inputActions.Add(ZoomCameraActionKey, gameplayActionMap.FindAction(ZoomCameraActionKey));
             inputActions.Add(RightMouseClickActionKey, gameplayActionMap.FindAction(RightMouseClickActionKey));
         }
-
+        
         public InputAction GetInputAction(string actionKey)
         {
             if (inputActions.TryGetValue(actionKey, out InputAction action))
@@ -49,7 +52,12 @@ namespace InputsManager
 
         public bool IsPointerOverGameObject()
         {
-            return EventSystem.current.IsPointerOverGameObject();
+            return pointerOverUI;
+        }
+
+        private void LateUpdate()
+        {
+            pointerOverUI = EventSystem.current.IsPointerOverGameObject();
         }
     }
 }
