@@ -15,5 +15,6 @@ namespace GameSceneObjects.Units
         void RegisterUnit(Unit unit);
         void UnregisterUnit(Unit unit);
         int GetUnitsCount(UnitFaction faction);
+        bool HasEnemiesOnField();
     }
 }

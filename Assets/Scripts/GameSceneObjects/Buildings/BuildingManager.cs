@@ -1,4 +1,4 @@
-using InputsManager;
+using System.Collections.Generic;
 using Services;
 using UnityEngine;
 
@@ -8,6 +8,9 @@ namespace GameSceneObjects.Buildings
     {
         [SerializeField] Сitadel citadel;
         [SerializeField] Sanctum sanctum;
+        
+        [SerializeField][Header("Enemy barraks")]
+        private List<EnemiesSpawningBuilding> allySpawners = new List<EnemiesSpawningBuilding>();
         
         private IBuildingViewController buildingViewController;
         
@@ -34,6 +37,27 @@ namespace GameSceneObjects.Buildings
         public Sanctum GetSanctum()
         {
             return sanctum;
+        }
+
+        public void SetEnemySpawnersLevel(int currentWave)
+        {
+            foreach (var spawner in allySpawners)
+            {
+                spawner.StartNextWaveSpawn(currentWave);
+            }
+        }
+
+        public bool EnemiesAreSpawning()
+        {
+            foreach (var spawner in allySpawners)
+            {
+                if (spawner.FinishedSpawn() == false)
+                {
+                    return true;
+                }
+            }
+            
+            return false;
         }
 
         private void Awake()

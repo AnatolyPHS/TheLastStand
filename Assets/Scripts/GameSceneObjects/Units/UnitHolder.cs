@@ -63,6 +63,11 @@ namespace GameSceneObjects.Units
             return unitsByFaction[faction].Count;
         }
 
+        public bool HasEnemiesOnField()
+        {
+            return unitsByFaction[UnitFaction.Enemy].Count > 0;
+        }
+
         private void Awake()
         {
             ServiceLocator.Instance.Register<IUnitHolder>(this);

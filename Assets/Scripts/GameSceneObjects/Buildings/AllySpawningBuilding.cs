@@ -64,5 +64,10 @@ namespace GameSceneObjects.Buildings
             float progress = 1f - nextSpawnTimer / nextUnit.SpawnDuration;
             return Mathf.Clamp01(progress);
         }
+
+        public void SetLevel(int currentWave)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,12 +1,36 @@
 using GameSceneObjects.Units;
+using UnityEngine;
 
 namespace GameSceneObjects.Buildings
 {
     public class EnemiesSpawningBuilding : SpawningBuilding
     {
+        [SerializeField] private AnimationCurve enemiesNumberALevel;
+        
+        private int spawnedEnemiesCount = 0;
+        private int needToSpawnCount = 0;
+        
         protected override bool CanSpawn()
         {
-            return unitsHolder.GetUnitsCount(UnitFaction.Enemy) < currentBuildingLevel;
+            return spawnedEnemiesCount < needToSpawnCount;
+        }
+
+        public void StartNextWaveSpawn(int currentWave)
+        {
+            currentBuildingLevel = currentWave;
+            needToSpawnCount = Mathf.RoundToInt(enemiesNumberALevel.Evaluate(currentBuildingLevel));
+            nextSpawnTimer = float.MinValue;
+        }
+        
+        protected override void OnSpawn(Unit unit)
+        {
+            base.OnSpawn(unit);
+            spawnedEnemiesCount++;
+        }
+
+        public bool FinishedSpawn()
+        {
+            return spawnedEnemiesCount >= needToSpawnCount;
         }
     }
 }

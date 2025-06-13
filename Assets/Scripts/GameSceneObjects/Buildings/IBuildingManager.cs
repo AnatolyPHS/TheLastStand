@@ -10,5 +10,7 @@ namespace GameSceneObjects.Buildings
         void OnSpawnerSelect(AllySpawningBuilding allySpawningBuilding);
         void OnSpawnerDeselect();
         Sanctum GetSanctum();
+        void SetEnemySpawnersLevel(int currentWave);
+        bool EnemiesAreSpawning();
     }
 }

@@ -676,6 +676,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawningBuildingInfo: {fileID: 11400000, guid: 09fe96f2eb7932a4780c9d672109b6d7, type: 2}
   spawnPoint: {fileID: 1541307903}
+  enemiesNumberALevel:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 11
+      value: 11
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!135 &425106498
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -916,6 +940,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   citadel: {fileID: 2069594949}
   sanctum: {fileID: 125743931}
+  allySpawners:
+  - {fileID: 1786997905}
+  - {fileID: 1862272678}
+  - {fileID: 425106497}
 --- !u!4 &730162056
 Transform:
   m_ObjectHideFlags: 0
@@ -1908,6 +1936,53 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1786997904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1200508462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1200508464}
+  - component: {fileID: 1200508463}
+  m_Layer: 0
+  m_Name: MainGameProcessor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1200508463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200508462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6084e3cadd26064d9e65b590608bcfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstWaveDelay: 10
+  nextWaveDelay: 5
+  numberOfWaves: 6
+--- !u!4 &1200508464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200508462}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5973781, y: 1.6617382, z: -8.292961}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1218439115
 GameObject:
@@ -2981,6 +3056,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawningBuildingInfo: {fileID: 11400000, guid: 09fe96f2eb7932a4780c9d672109b6d7, type: 2}
   spawnPoint: {fileID: 1192867640}
+  enemiesNumberALevel:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 11
+      value: 11
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!135 &1786997906
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3102,6 +3201,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawningBuildingInfo: {fileID: 11400000, guid: 09fe96f2eb7932a4780c9d672109b6d7, type: 2}
   spawnPoint: {fileID: 891469583}
+  enemiesNumberALevel:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 11
+      value: 11
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!135 &1862272679
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3644,3 +3767,4 @@ SceneRoots:
   - {fileID: 730162056}
   - {fileID: 729240109}
   - {fileID: 1308794714}
+  - {fileID: 1200508464}
