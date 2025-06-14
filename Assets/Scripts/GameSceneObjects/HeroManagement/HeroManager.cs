@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using Camera;
 using GameEvents;
 using GameSceneObjects.Buildings;
+using GameSceneObjects.Data.AbilityData;
+using GameSceneObjects.HeroManagement.Abilities;
 using GameSceneObjects.Units;
+using InputsManager;
 using Selector;
 using Services;
 using UnityEngine;
@@ -15,10 +18,12 @@ namespace GameSceneObjects.HeroManagement
         private readonly Dictionary<int, float> levelExperienceMap = new Dictionary<int, float>();
         
         [SerializeField] private AnimationCurve experienceCurve;
+        [SerializeField] private List<AbilityBaseInfo> heroAbilities = new List<AbilityBaseInfo>();
         
         private ISelectorController selectorController;
         private ICameraController cameraController;
         private IBuildingManager buildingManager;
+        private IInputManager inputManager;
 
         private bool heroIsRespawning = false;
        
@@ -27,6 +32,7 @@ namespace GameSceneObjects.HeroManagement
         private float heroSkillPoints = 0f;
         
         private Hero hero;
+        private AbilityController abilityController;
         
         private EventTrigger eventTrigger;
         
@@ -106,10 +112,13 @@ namespace GameSceneObjects.HeroManagement
             selectorController = ServiceLocator.Instance.Get<ISelectorController>();
             cameraController = ServiceLocator.Instance.Get<ICameraController>();
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
+            inputManager = ServiceLocator.Instance.Get<IInputManager>();
+            
             
             InstantHeroSpawn();
+            abilityController = new AbilityController(heroAbilities);
         }
-
+        
         private void InstantHeroSpawn()
         {
             buildingManager.GetSanctum().InstantHeroSpawn(); 
@@ -145,6 +154,11 @@ namespace GameSceneObjects.HeroManagement
                 heroLvl = heroLvl
             };
             eventTrigger.RaiseEvent<HeroChangeState, HeroChangeStateEventData>(eventData);
+        }
+
+        private void OnDestroy()
+        {
+            abilityController.OnDestroy();
         }
     }
 }

@@ -64,7 +64,7 @@ namespace GameSceneObjects.Units
             return base.CanBeAttacked() && isSanctumActive == false;
         }
         
-        public void Heal(float healEffect)
+        public override void Heal(float healEffect)
         {
             heroManager.OnHPChange(); //TODO: check ingame behaviour on incative hero near sancrtum
             

@@ -128,7 +128,7 @@ namespace GameSceneObjects.Units
             return info.AttackPower * currentLevel; //TODO: add an animation curves to calculate damage
         }
 
-        public void Heal(float healEffect)
+        public override void Heal(float healEffect)
         {
             if (IsAlive() == false)
             {

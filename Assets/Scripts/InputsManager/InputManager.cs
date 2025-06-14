@@ -37,7 +37,16 @@ namespace InputsManager
             inputActions.Add(ZoomCameraActionKey, gameplayActionMap.FindAction(ZoomCameraActionKey));
             inputActions.Add(RightMouseClickActionKey, gameplayActionMap.FindAction(RightMouseClickActionKey));
             
+            EnableActions();
             SetEmptyInputs();
+        }
+
+        private void EnableActions()
+        {
+            foreach (InputAction action in inputActions.Values)
+            {
+                action.Enable();
+            }
         }
 
         private void SetEmptyInputs()
@@ -84,6 +93,19 @@ namespace InputsManager
         private void LateUpdate()
         {
             pointerOverUI = EventSystem.current.IsPointerOverGameObject();
+        }
+        
+        private void OnDestroy()
+        {
+            ServiceLocator.Instance.Unregister<IInputManager>();
+            
+            foreach (InputAction action in inputActions.Values)
+            {
+                action.Disable();
+            }
+            
+            inputActions.Clear();
+            inputs.Clear();
         }
     }
 }

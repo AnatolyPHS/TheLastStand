@@ -69,10 +69,6 @@ namespace Camera
             borderThicknessX = Screen.width * borderThicknessPercent;
             borderThicknessY = Screen.height * borderThicknessPercent;
             
-            panCameraAction.Enable();
-            zoomCameraAction.Enable();
-            toggleFocusAction.Enable();
-            
             foreach (CameraBorder border in cameraBorders)
             {
                 camBorders[border.BorderType] = border.BorderValue;
@@ -185,10 +181,7 @@ namespace Camera
             zoomCameraAction.canceled -= OnZoomCamera;
 
             toggleFocusAction.performed -= OnToggleFocus;
-
-            panCameraAction.Disable();
-            zoomCameraAction.Disable();
-            toggleFocusAction.Disable();
+            
             ServiceLocator.Instance.Unregister<ICameraController>();
         }
 

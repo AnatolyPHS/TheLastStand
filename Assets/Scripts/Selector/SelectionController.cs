@@ -65,10 +65,6 @@ namespace Selector
             
             groundPlane = new Plane(Vector3.up, Vector3.up * groundPlaneHeight);
             
-            leftClickAction.Enable();
-            mousePositionAction.Enable();
-            rightmouseClickAction.Enable();
-            
             selectorView.SetSelectorState(false);
         }
 
@@ -264,7 +260,12 @@ namespace Selector
                 currentlySelectedObjects.Remove(interactable);
             }
         }
-        
+
+        public Vector3 GetCurrentWorldPoint()
+        {
+            return currentWorldPoint;
+        }
+
         private void ClearSelection()
         {
             foreach (IClickSelectable selectable in currentlySelectedObjects)
@@ -279,10 +280,6 @@ namespace Selector
             leftClickAction.started -= OnLeftClickStarted;
             leftClickAction.canceled -= OnLeftClickCanceled;
             rightmouseClickAction.performed -= OnRightClickPerformed;
-
-            leftClickAction.Disable();
-            mousePositionAction.Disable();
-            rightmouseClickAction.Disable();
             
             ServiceLocator.Instance.Unregister<ISelectorController>();
         }

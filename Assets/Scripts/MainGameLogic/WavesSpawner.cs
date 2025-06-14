@@ -18,7 +18,7 @@ namespace MainGameLogic
         
         private int currentWave = 0;
 
-        private float nextWaveTime = float.MaxValue;
+        private float nextWaveTimer = float.MaxValue;
         
         private void Awake()
         {
@@ -32,7 +32,7 @@ namespace MainGameLogic
             endGameViewController = ServiceLocator.Instance.Get<IEndGameViewController>();
             
             //TODO: run UI timer if any
-            nextWaveTime = Time.time + firstWaveDelay;
+            nextWaveTimer = firstWaveDelay;
         }
 
         private void Update() //TODO: add spawning states
@@ -42,13 +42,15 @@ namespace MainGameLogic
                 return;
             }
             
-            if (Time.time < nextWaveTime)
+            if (nextWaveTimer > 0f)
             {
+                nextWaveTimer -= Time.deltaTime;
                 return;
             }
             
             if (currentWave < numberOfWaves)
             {
+                nextWaveTimer = nextWaveDelay;
                 currentWave++;
                 SpawnNextWave();
             }

@@ -43,7 +43,7 @@ namespace GameSceneObjects.Units
             return transform.position;
         }
 
-        public void Heal(float healEffect)
+        public virtual void Heal(float healEffect)
         {
             if (IsAlive() == false)
             {
