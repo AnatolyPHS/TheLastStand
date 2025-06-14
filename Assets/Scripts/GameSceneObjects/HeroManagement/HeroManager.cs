@@ -66,7 +66,6 @@ namespace GameSceneObjects.HeroManagement
             
             if (heroExperience >= nextLevelExperience)
             {
-                heroExperience -= nextLevelExperience;
                 heroLvl++;
                 heroSkillPoints++;
             }
