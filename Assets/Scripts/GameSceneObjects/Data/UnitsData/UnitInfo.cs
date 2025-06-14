@@ -14,6 +14,7 @@ public class UnitInfo : ScriptableObject
     [SerializeField] private float searchRange = 5f;
     [SerializeField] private float unitStopDistance = 1f;
     [SerializeField] private UnitFaction faction = UnitFaction.None;
+    [SerializeField] private int unitCost = 100;
     
     public float Health => health;
     public float Armor => armor;
@@ -24,4 +25,5 @@ public class UnitInfo : ScriptableObject
     public float SearchRange => searchRange;
     public float UnitStopDistance => unitStopDistance;
     public UnitFaction Faction => faction;
+    public int UnitCost => unitCost;
 }

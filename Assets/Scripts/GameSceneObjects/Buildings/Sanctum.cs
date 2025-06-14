@@ -24,7 +24,7 @@ namespace GameSceneObjects.Buildings
         
         public void InstantHeroSpawn(Vector3 position, Quaternion rotation)
         {
-            Unit unit = poolManager.GetObject(nextUnit.Unit, position, rotation);
+            Unit unit = poolManager.GetObject(nextUnit.UnitToSpawn, position, rotation);
             unit.Init();
             OnSpawn(unit);
         }

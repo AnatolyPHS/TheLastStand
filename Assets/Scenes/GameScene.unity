@@ -373,6 +373,7 @@ MonoBehaviour:
   spawningBuildingInfo: {fileID: 11400000, guid: 6a44df8e60a8678448f9075d993f1cfa, type: 2}
   spawnPoint: {fileID: 1738866196}
   SelectionMark: {fileID: 977121917}
+  upgradeCost: 100
   healEffect: 10
   sanctumTrigger: {fileID: 1937418439}
 --- !u!136 &125743932
@@ -1492,6 +1493,7 @@ MonoBehaviour:
   spawningBuildingInfo: {fileID: 11400000, guid: eddfeb52fd521a94494a86271890af07, type: 2}
   spawnPoint: {fileID: 995211886}
   SelectionMark: {fileID: 1436055096}
+  upgradeCost: 100
 --- !u!1 &745903722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1591,7 @@ MonoBehaviour:
   spawningBuildingInfo: {fileID: 11400000, guid: eddfeb52fd521a94494a86271890af07, type: 2}
   spawnPoint: {fileID: 631471812}
   SelectionMark: {fileID: 1257862174}
+  upgradeCost: 100
 --- !u!135 &797558098
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3252,6 +3255,7 @@ MonoBehaviour:
   views:
   - {fileID: 1746830640}
   - {fileID: 610053551}
+  - {fileID: 384476433}
 --- !u!1 &1374055425
 GameObject:
   m_ObjectHideFlags: 0

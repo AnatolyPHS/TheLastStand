@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemySpawningBuildingInfo
   m_EditorClassIdentifier: 
   unitsToSpawn:
-  - Level: 1
-    Unit: {fileID: 3558871456768165088, guid: 534940dd0a7cd1241970bfb6e9183350, type: 3}
+  - SpawnerLevel: 1
+    UnitToSpawn: {fileID: 3558871456768165088, guid: 534940dd0a7cd1241970bfb6e9183350, type: 3}
     SpawnDuration: 15

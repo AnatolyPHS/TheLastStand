@@ -1,3 +1,4 @@
+using Services;
 using TMPro;
 using UI.GameView;
 using UnityEngine;
@@ -13,9 +14,14 @@ namespace UI.CurrencyView
             currencyText.text = value.ToString();
         }
 
+        public void SetActiveState(bool state)
+        {
+            gameObject.SetActive(state);
+        }
+
         public override void Init()
         {
-            throw new System.NotImplementedException();
+            ServiceLocator.Instance.Register<ICurrencyView>(this);
         }
     }
 }

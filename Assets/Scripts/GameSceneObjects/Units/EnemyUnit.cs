@@ -1,3 +1,4 @@
+using Currencies;
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.StateBehaviour;
 using Services;
@@ -9,6 +10,7 @@ namespace GameSceneObjects.Units
     {
         private IHeroManager heroManager;
         private IUnitHolder unitHolder;
+        private ICurrencyTracker currencyTracker;
         
         private EnemyStationBehaviour stationBehaviour;
         
@@ -39,6 +41,7 @@ namespace GameSceneObjects.Units
         {
             base.OnDie();
             unitHolder.UnregisterUnit(this);
+            currencyTracker.ChangeCurrencyValue(info.UnitCost);
         }
         
         protected override void Start()
@@ -47,6 +50,7 @@ namespace GameSceneObjects.Units
             
             heroManager = ServiceLocator.Instance.Get<IHeroManager>();
             unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
+            currencyTracker = ServiceLocator.Instance.Get<ICurrencyTracker>();
             
             stationBehaviour = new EnemyStationBehaviour(this, heroManager);
             stationBehaviour.SwitchState<EnemySearchForTargetUnitState>();

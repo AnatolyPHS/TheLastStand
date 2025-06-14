@@ -4,7 +4,8 @@ namespace Currencies
 {
     public interface ICurrencyTracker : IEventTrigger<CurrencyEvent, CurrencyEventParams>
     {
-        void ChangeCurrency(int delta);
+        void ChangeCurrencyValue(int delta);
+        int CurrencyValue { get; }
     }
 
     public struct CurrencyEventParams

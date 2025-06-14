@@ -53,7 +53,7 @@ namespace GameSceneObjects.Buildings
 
             nextUnit = spawningBuildingInfo.GetUnitOfLevel(currentBuildingLevel);
 
-            Unit unit = poolManager.GetObject(nextUnit.Unit, spawnPoint.position, spawnPoint.rotation);
+            Unit unit = poolManager.GetObject(nextUnit.UnitToSpawn, spawnPoint.position, spawnPoint.rotation);
             unit.Init();
 
             OnSpawn(unit);

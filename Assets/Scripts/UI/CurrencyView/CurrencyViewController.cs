@@ -20,6 +20,10 @@ namespace UI.CurrencyView
             currencyView = ServiceLocator.Instance.Get<ICurrencyView>();
 
             currencyTracker.AddListener(OnCurrencyChanged);
+            
+            currencyView.SetCurrency(currencyTracker.CurrencyValue);
+
+            currencyView.SetActiveState(true);
         }
 
         private void OnCurrencyChanged(CurrencyEventParams obj)

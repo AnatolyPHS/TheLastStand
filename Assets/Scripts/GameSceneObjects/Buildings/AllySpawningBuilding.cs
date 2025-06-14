@@ -1,3 +1,4 @@
+using Currencies;
 using GameSceneObjects.Units;
 using Selector;
 using Services;
@@ -9,8 +10,10 @@ namespace GameSceneObjects.Buildings
     public class AllySpawningBuilding : SpawningBuilding, IClickSelectable
     {
         [SerializeField] private GameObject SelectionMark;
+        [SerializeField] private int upgradeCost = 100;
 
         private IBuildingManager buildingManager;
+        private ICurrencyTracker currencyTracker;
         
         protected int unitsToSpawnNumber = 0;
         
@@ -31,6 +34,7 @@ namespace GameSceneObjects.Buildings
             base.Start();
             
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
+            currencyTracker = ServiceLocator.Instance.Get<ICurrencyTracker>();
         }
         
         protected override void OnSpawn(Unit unit)
@@ -46,11 +50,24 @@ namespace GameSceneObjects.Buildings
 
         public void UpgradeBuilding()
         {
-            Debug.Log("UpgradeBuilding");
+            if (currencyTracker.CurrencyValue < upgradeCost)
+            {
+                return;
+            }
+            
+            currencyTracker.ChangeCurrencyValue(-upgradeCost);
+            currentBuildingLevel++;
         }
 
         public virtual void BuildUnit()
         {
+            int price = nextUnit.UnitToSpawn.GetCost();
+            if (currencyTracker.CurrencyValue < price)
+            {
+                return;
+            }
+            
+            currencyTracker.ChangeCurrencyValue(-price);
             unitsToSpawnNumber++;
         }
 

@@ -16,13 +16,13 @@ namespace GameSceneObjects.Data
             
             for (int i = 0; i < unitsToSpawn.Count; i++)
             {
-                if (unitsToSpawn[i].Level == level)
+                if (unitsToSpawn[i].SpawnerLevel == level)
                 {
                     result = unitsToSpawn[i];
                     break; 
                 }
                 
-                if (unitsToSpawn[i].Level < level)
+                if (unitsToSpawn[i].SpawnerLevel < level)
                 {
                     result = unitsToSpawn[i];
                 }    
@@ -35,8 +35,8 @@ namespace GameSceneObjects.Data
     [Serializable]
     public class UnitToSpawnData
     {
-        public int Level;
-        public Unit Unit;
+        public int SpawnerLevel = 1;
+        public Unit UnitToSpawn;
         public float SpawnDuration = 5f;
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SanctrumSpawningBuildingInfo
   m_EditorClassIdentifier: 
   unitsToSpawn:
-  - Level: 1
-    Unit: {fileID: 7001018454026461362, guid: af97f196c238620488fb85ed2a301fe4, type: 3}
+  - SpawnerLevel: 1
+    UnitToSpawn: {fileID: 7001018454026461362, guid: af97f196c238620488fb85ed2a301fe4, type: 3}
     SpawnDuration: 15

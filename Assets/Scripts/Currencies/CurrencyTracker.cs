@@ -12,13 +12,17 @@ namespace Currencies
         private EventTrigger eventTrigger;
         private int currencyValue;
         
+        public int CurrencyValue => currencyValue;
+        
         private void Awake()
         {
+            currencyValue = initialCurrencyValue;
+            
             ServiceLocator.Instance.Register<ICurrencyTracker>(this);
             
             eventTrigger = new EventTrigger();
         }
-
+        
         public void AddListener(Action<CurrencyEventParams> listener)
         {
             eventTrigger.AddListener<CurrencyEvent, CurrencyEventParams>(listener);
@@ -29,7 +33,7 @@ namespace Currencies
             eventTrigger.RemoveListener<CurrencyEvent, CurrencyEventParams>(listener);
         }
 
-        public void ChangeCurrency(int delta)
+        public void ChangeCurrencyValue(int delta)
         {
             int oldValue = currencyValue;
             currencyValue += delta;

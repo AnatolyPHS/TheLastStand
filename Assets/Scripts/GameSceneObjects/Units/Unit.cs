@@ -122,5 +122,10 @@ namespace GameSceneObjects.Units
         {
             poolManager = ServiceLocator.Instance.Get<IPoolManager>();
         }
+
+        public int GetCost()
+        {
+            return info.UnitCost * currentLevel;
+        }
     }
 }
