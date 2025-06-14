@@ -9,12 +9,15 @@ namespace GameSceneObjects.HeroManagement
         
         public override void OnUpdate(Vector3 pointer)
         {
-            throw new System.NotImplementedException();
         }
 
         public override void ActivateAbility(Vector3 mouseGroundPosition)
         {
-            throw new System.NotImplementedException();
+            abilityController.SetCurrentAbilityType(AbilityType.None);
+            GameObject arrow = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            arrow.transform.position = mouseGroundPosition;
+            arrow.transform.localScale = new Vector3(0.1f, 0.5f, 0.1f);
+            arrow.GetComponent<Renderer>().material.color = Color.blue;
         }
 
         public FreezingArrowAbility(AbilityBaseInfo abilityBaseInfo, AbilityController controller) : base(abilityBaseInfo, controller)

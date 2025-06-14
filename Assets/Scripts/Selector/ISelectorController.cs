@@ -1,4 +1,3 @@
-using GameSceneObjects.Units;
 using UnityEngine;
 
 namespace Selector
@@ -6,6 +5,6 @@ namespace Selector
     public interface ISelectorController
     {
         void DeselectObject(IClickSelectable selectable);
-        Vector3 GetCurrentWorldPoint();
+        Vector3 RecalculateWorldPointUnderMouse(Vector2 screenPosition);
     }
 }

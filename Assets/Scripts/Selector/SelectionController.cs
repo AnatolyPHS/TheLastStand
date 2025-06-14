@@ -41,6 +41,29 @@ namespace Selector
         private Plane groundPlane;
         private UnityEngine.Camera mainCamera;
         
+        public void DeselectObject(IClickSelectable selectable)
+        {
+            IClickInteractable interactable = selectable as IClickInteractable;
+            if (currentlySelectedObjects.Contains(interactable))
+            {
+                interactable.OnDeselect();
+                currentlySelectedObjects.Remove(interactable);
+            }
+        }
+        
+        public Vector3 RecalculateWorldPointUnderMouse(Vector2 screenPosition)
+        {
+            Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+            
+            float distance;
+            if (groundPlane.Raycast(ray, out distance))
+            {
+                return ray.GetPoint(distance);
+            }
+            
+            return Vector3.zero; 
+        }
+        
         private void Awake()
         {
             ServiceLocator.Instance.Register<ISelectorController>(this);
@@ -170,19 +193,6 @@ namespace Selector
             currentWorldPoint = RecalculateWorldPointUnderMouse(currentScreenMousePosition);
         }
         
-        private Vector3 RecalculateWorldPointUnderMouse(Vector2 screenPosition)
-        {
-            Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-            
-            float distance;
-            if (groundPlane.Raycast(ray, out distance))
-            {
-                return ray.GetPoint(distance);
-            }
-            
-            return Vector3.zero; 
-        }
-
         private void SelectUnitsInRectangle(Vector3 startWorldPoint, Vector3 endWorldPoint)
         {
             Bounds selectionBounds = new Bounds();
@@ -250,22 +260,7 @@ namespace Selector
                 currentlySelectedObjects.Add(selectable);
             }
         }
-
-        public void DeselectObject(IClickSelectable selectable)
-        {
-            IClickInteractable interactable = selectable as IClickInteractable;
-            if (currentlySelectedObjects.Contains(interactable))
-            {
-                interactable.OnDeselect();
-                currentlySelectedObjects.Remove(interactable);
-            }
-        }
-
-        public Vector3 GetCurrentWorldPoint()
-        {
-            return currentWorldPoint;
-        }
-
+        
         private void ClearSelection()
         {
             foreach (IClickSelectable selectable in currentlySelectedObjects)

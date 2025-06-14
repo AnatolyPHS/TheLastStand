@@ -12,6 +12,7 @@ namespace GameSceneObjects.HeroManagement
 
         public override void ActivateAbility(Vector3 mouseGroundPosition)
         {
+            abilityController.SetCurrentAbilityType(AbilityType.None);
             GameObject meteor = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             meteor.transform.position = mouseGroundPosition;
         }

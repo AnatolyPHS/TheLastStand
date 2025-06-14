@@ -18,6 +18,9 @@ namespace GameSceneObjects.HeroManagement.Abilities
         private ISelectorController selectorController;
         
         private AbilityType currentAbilityType = AbilityType.None;
+
+        private InputAction inputLeftMouseClickAction;
+        private InputAction mousePositionAction;
         
         public AbilityController(List<AbilityBaseInfo> heroAbilities)
         {
@@ -26,8 +29,8 @@ namespace GameSceneObjects.HeroManagement.Abilities
             
             EquipAbilities(heroAbilities);
             
-            InputAction inputLeftMouseClickAction = inputManager.GetInputAction(InputManager.LeftMouseClickActionKey);
-            InputAction mousePositionAction = inputManager.GetInputAction(InputManager.MouseScreenPosActionKey);
+            inputLeftMouseClickAction = inputManager.GetInputAction(InputManager.LeftMouseClickActionKey);
+            mousePositionAction = inputManager.GetInputAction(InputManager.MouseScreenPosActionKey);
             
             inputLeftMouseClickAction.performed += OnLeftMouseClick;
             mousePositionAction.performed += OnMousePositionUpdate;
@@ -40,7 +43,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
                 return;
             }
             
-            Vector3 mouseGroundPosition = selectorController.GetCurrentWorldPoint();
+            Vector3 mouseGroundPosition = selectorController.RecalculateWorldPointUnderMouse(mousePositionAction.ReadValue<Vector2>());
             equippedAbilities[currentAbilityType].OnUpdate(mouseGroundPosition);
         }
 
@@ -50,7 +53,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
                 return;
             }
             
-            Vector3 mouseGroundPosition = selectorController.GetCurrentWorldPoint();
+            Vector3 mouseGroundPosition = selectorController.RecalculateWorldPointUnderMouse(mousePositionAction.ReadValue<Vector2>());
             equippedAbilities[currentAbilityType].ActivateAbility(mouseGroundPosition);
         }
 
