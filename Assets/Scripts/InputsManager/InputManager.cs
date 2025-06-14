@@ -103,9 +103,6 @@ namespace InputsManager
             {
                 action.Disable();
             }
-            
-            inputActions.Clear();
-            inputs.Clear();
         }
     }
 }

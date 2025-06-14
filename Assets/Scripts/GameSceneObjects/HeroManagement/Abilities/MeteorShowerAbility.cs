@@ -1,3 +1,4 @@
+using EffectsManager;
 using GameSceneObjects.Data.AbilityData;
 using GameSceneObjects.HeroManagement.Abilities;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace GameSceneObjects.HeroManagement
 {
     public class MeteorShowerAbility : AbilityBase
     {
+        private IEffectHolder effectHolder;
+        
         public override void OnUpdate(Vector3 pointer)
         {
         }
@@ -13,12 +16,13 @@ namespace GameSceneObjects.HeroManagement
         public override void ActivateAbility(Vector3 mouseGroundPosition)
         {
             abilityController.SetCurrentAbilityType(AbilityType.None);
-            GameObject meteor = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            meteor.transform.position = mouseGroundPosition;
+            effectHolder.PlayEffect(EffectType.MeteorShower, mouseGroundPosition, Quaternion.identity);
         }
 
-        public MeteorShowerAbility(AbilityBaseInfo abilityBaseInfo, AbilityController controller) : base(abilityBaseInfo, controller)
+        public MeteorShowerAbility(AbilityBaseInfo abilityBaseInfo, IEffectHolder effectHolder,
+            AbilityController controller) : base(abilityBaseInfo, controller)
         {
+            this.effectHolder = effectHolder;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using EffectsManager;
 using GameSceneObjects.Data.AbilityData;
 using InputsManager;
 using Selector;
@@ -16,6 +17,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
         
         private IInputManager inputManager;
         private ISelectorController selectorController;
+        private IEffectHolder effectHolder;
         
         private AbilityType currentAbilityType = AbilityType.None;
 
@@ -26,6 +28,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
         {
             this.inputManager = ServiceLocator.Instance.Get<IInputManager>();
             this.selectorController = ServiceLocator.Instance.Get<ISelectorController>();
+            this.effectHolder = ServiceLocator.Instance.Get<IEffectHolder>();
             
             EquipAbilities(heroAbilities);
             
@@ -87,7 +90,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
                 switch (heroAbilities[i].AbilityType)
                 {
                     case AbilityType.MeteorShower:
-                        equippedAbilities[AbilityType.MeteorShower] = new MeteorShowerAbility(heroAbilities[i], this);
+                        equippedAbilities[AbilityType.MeteorShower] = new MeteorShowerAbility(heroAbilities[i], effectHolder, this);
                         inputManager.SubscribeToInputEvent(heroAbilities[i].AbilityInputType, equippedAbilities[AbilityType.MeteorShower].AbilityButtonClick);
                         break;
                     case AbilityType.FreezingArrow:
