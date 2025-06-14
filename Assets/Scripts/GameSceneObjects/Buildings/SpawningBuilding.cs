@@ -58,7 +58,12 @@ namespace GameSceneObjects.Buildings
 
             OnSpawn(unit);
 
-            nextSpawnTimer = nextUnit.SpawnDuration;
+            nextSpawnTimer = CalculateSpawnDuration();
+        }
+
+        protected virtual float CalculateSpawnDuration()
+        {
+            return nextUnit.SpawnDuration;
         }
 
         protected virtual void OnSpawn(Unit unit)

@@ -13,6 +13,7 @@ namespace GameSceneObjects.HeroManagement
         void OnHeroRespawn(Unit unit);
         void AddExperience(int experience);
         void OnHPChange();
+        int GetHeroLevel();
     }
 
     public struct HeroChangeStateEventData

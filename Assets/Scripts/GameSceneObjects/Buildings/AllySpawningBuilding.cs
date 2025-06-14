@@ -78,7 +78,7 @@ namespace GameSceneObjects.Buildings
                 return 0f;
             }
 
-            float progress = 1f - nextSpawnTimer / nextUnit.SpawnDuration;
+            float progress = 1f - nextSpawnTimer / CalculateSpawnDuration();
             return Mathf.Clamp01(progress);
         }
 
