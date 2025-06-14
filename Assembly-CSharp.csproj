@@ -45,7 +45,9 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\UI\CurrencyView\CurrencyView.cs" />
      <Compile Include="Assets\Scripts\UI\SelectorView\ISelectorView.cs" />
+     <Compile Include="Assets\Scripts\GameEvents\IEventTrigger.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IBuildingView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IHittable.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IEndGameViewController.cs" />
@@ -60,6 +62,7 @@
      <Compile Include="Assets\Scripts\PoolingSystem\IPoolManager.cs" />
      <Compile Include="Assets\Scripts\UI\SelectorView\SelectorView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyUnitStates\EnemyAttackTargetUnitState.cs" />
+     <Compile Include="Assets\Scripts\UI\CurrencyView\ICurrencyView.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\SpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyUnitStates\EnemySearchForTargetUnitState.cs" />
@@ -68,6 +71,8 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Unit.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\EnemiesSpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\InputsManager\InputButton.cs" />
+     <Compile Include="Assets\Scripts\GameEvents\EventTrigger.cs" />
+     <Compile Include="Assets\Scripts\Currencies\ICurrencyTracker.cs" />
      <Compile Include="Assets\Scripts\InputsManager\Input.cs" />
      <Compile Include="Assets\Scripts\Selector\ISelectorController.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\View.cs" />
@@ -91,10 +96,13 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyMoveToPointUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\BuildingManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\AllyUnit.cs" />
+     <Compile Include="Assets\Scripts\UI\CurrencyView\ICurrencyController.cs" />
+     <Compile Include="Assets\Scripts\UI\CurrencyView\CurrencyViewController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\BuildingBase.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IGameView.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\BuiildingView.cs" />
      <Compile Include="Assets\Scripts\MainGameLogic\IWavesSpawner.cs" />
+     <Compile Include="Assets\Scripts\Currencies\CurrencyTracker.cs" />
      <Compile Include="Assets\Scripts\InputsManager\IInputManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyAttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Hero.cs" />
@@ -139,6 +147,7 @@
      <Folder Include="Assets\Scripts\UI" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <Folder Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyUnitStates" />
+     <Folder Include="Assets\Scripts\GameEvents" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
@@ -148,6 +157,7 @@
      <Folder Include="Assets\Scripts\PoolingSystem" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+     <Folder Include="Assets\Scripts\Currencies" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <Folder Include="Assets\TextMesh Pro\Shaders" />
      <Folder Include="Assets\TextMesh Pro\Resources\Style Sheets" />
@@ -156,6 +166,7 @@
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\Scenes\GameScene" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <Folder Include="Assets\Scripts\UI\CurrencyView" />
      <Folder Include="Assets\Prefabs\Units\Enemies" />
      <Folder Include="Assets\Input" />
      <Folder Include="Assets\Scripts\Services" />
