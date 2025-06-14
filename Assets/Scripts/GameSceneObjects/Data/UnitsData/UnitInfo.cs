@@ -15,6 +15,7 @@ public class UnitInfo : ScriptableObject
     [SerializeField] private float unitStopDistance = 1f;
     [SerializeField] private UnitFaction faction = UnitFaction.None;
     [SerializeField] private int unitCost = 100;
+    [SerializeField] private Sprite icon;
     
     public float Health => health;
     public float Armor => armor;
@@ -26,4 +27,5 @@ public class UnitInfo : ScriptableObject
     public float UnitStopDistance => unitStopDistance;
     public UnitFaction Faction => faction;
     public int UnitCost => unitCost;
+    public Sprite UnitIcon => icon;
 }

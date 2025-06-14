@@ -86,5 +86,20 @@ namespace GameSceneObjects.Buildings
         {
             throw new System.NotImplementedException();
         }
+
+        public Sprite GetUnitIcon()
+        {
+            return nextUnit.UnitToSpawn.GetIcon();
+        }
+
+        public int GetUnitCost()
+        {
+            return nextUnit.UnitToSpawn.GetCost();
+        }
+
+        public int GetUpgradeCost()
+        {
+            return upgradeCost;
+        }
     }
 }

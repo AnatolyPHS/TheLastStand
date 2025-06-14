@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 2510886794083467782}
-  info: {fileID: 11400000, guid: 2abeb85195f351c41b0f0e34453a72c9, type: 2}
+  info: {fileID: 11400000, guid: 4e5884feaacd21d4fb2646018af2f190, type: 2}
 --- !u!195 &2510886794083467782
 NavMeshAgent:
   m_ObjectHideFlags: 0

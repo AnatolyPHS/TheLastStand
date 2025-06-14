@@ -1,6 +1,7 @@
 using GameSceneObjects.Buildings;
 using InputsManager;
 using Services;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,11 @@ namespace UI.GameView
     {
         [SerializeField] private GameObject buildingPanel;
         [SerializeField] private Image buildingProgress;
+        
+        [SerializeField][Header("Spawner info")]
+        private Image unitIcon;
+        [SerializeField] private TextMeshProUGUI unitCost;
+        [SerializeField] private TextMeshProUGUI upgradeCost;
         
         private IBuildingViewController buildingViewController;
         private IInputManager inputManager;
@@ -32,6 +38,18 @@ namespace UI.GameView
             bool isSelected = value > float.Epsilon;
             gameObject.SetActive(isSelected);
             buildingPanel.SetActive(isSelected);
+
+            if (isSelected == false)
+            {
+                return;
+            }
+            
+            AllySpawningBuilding allySpawner = buildingViewController.GetSelectedAllyBuilding();
+            bool hasSelectedSpawner = allySpawner != null;
+            
+            unitIcon.sprite = hasSelectedSpawner ? allySpawner.GetUnitIcon() : null;
+            unitCost.text = hasSelectedSpawner ? allySpawner.GetUnitCost().ToString() : string.Empty;
+            upgradeCost.text = hasSelectedSpawner ? allySpawner.GetUpgradeCost().ToString() : string.Empty;
         }
 
         private void Update()

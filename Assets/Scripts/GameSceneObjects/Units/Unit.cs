@@ -127,5 +127,10 @@ namespace GameSceneObjects.Units
         {
             return info.UnitCost * currentLevel;
         }
+
+        public Sprite GetIcon()
+        {
+            return info.UnitIcon;
+        }
     }
 }

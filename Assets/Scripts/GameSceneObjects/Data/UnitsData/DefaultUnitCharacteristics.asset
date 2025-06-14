@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aee42f977e0f224f9b4ecc1845fd4b5, type: 3}
   m_Name: DefaultUnitCharacteristics
   m_EditorClassIdentifier: 
-  level: 1
   health: 100
   armor: 0
   attackPower: 10
   attackSpeed: 1
   attackRange: 2
   movementSpeed: 5
+  searchRange: 5
+  unitStopDistance: 1
+  faction: 0
+  unitCost: 100
+  icon: {fileID: 21300000, guid: 634f4948d5d0e0242a663613470ffeca, type: 3}
