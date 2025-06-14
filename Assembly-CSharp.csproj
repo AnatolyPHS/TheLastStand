@@ -66,9 +66,11 @@
      <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\SpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyUnitStates\EnemySearchForTargetUnitState.cs" />
+     <Compile Include="Assets\Scripts\UI\HeroPanel\HeroViewController.cs" />
      <Compile Include="Assets\Scripts\InputsManager\InputManager.cs" />
      <Compile Include="Assets\Scripts\Selector\SelectionController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Unit.cs" />
+     <Compile Include="Assets\Scripts\UI\HeroPanel\IHeroView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\EnemiesSpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\InputsManager\InputButton.cs" />
      <Compile Include="Assets\Scripts\GameEvents\EventTrigger.cs" />
@@ -81,6 +83,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyIdleState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\Sanctum.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\HeroManagement\HeroManager.cs" />
+     <Compile Include="Assets\Scripts\UI\HeroPanel\IHeroViewController.cs" />
      <Compile Include="Assets\Scripts\UI\EndGameView\EndGameView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyStationBehaviour.cs" />
      <Compile Include="Assets\Scripts\PoolingSystem\IPoolable.cs" />
@@ -95,6 +98,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyStationBehaviour.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyMoveToPointUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\BuildingManager.cs" />
+     <Compile Include="Assets\Scripts\UI\HeroPanel\HeroView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\AllyUnit.cs" />
      <Compile Include="Assets\Scripts\UI\CurrencyView\ICurrencyController.cs" />
      <Compile Include="Assets\Scripts\UI\CurrencyView\CurrencyViewController.cs" />
@@ -151,6 +155,7 @@
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+     <Folder Include="Assets\Scripts\UI\HeroPanel" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Buildings" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
      <Folder Include="Assets\Prefabs\Units\Ally" />

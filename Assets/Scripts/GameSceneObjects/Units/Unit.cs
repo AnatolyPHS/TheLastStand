@@ -13,7 +13,7 @@ namespace GameSceneObjects.Units
         private IPoolManager poolManager;
         
         protected int currentLevel = 1;
-        private float currentHealth;
+        protected float currentHealth;
         
         public virtual void Init()
         {
@@ -21,7 +21,7 @@ namespace GameSceneObjects.Units
             navMeshAgent.speed = info.MovementSpeed;
         }
 
-        public void GetDamage(float dmg)
+        public virtual void GetDamage(float dmg)
         {
             dmg *= (1f - info.Armor);
             currentHealth -= dmg;
@@ -45,6 +45,11 @@ namespace GameSceneObjects.Units
 
         public void Heal(float healEffect)
         {
+            if (IsAlive() == false)
+            {
+                return;
+            }
+            
             currentHealth += healEffect;
             if (currentHealth > info.Health)
             {

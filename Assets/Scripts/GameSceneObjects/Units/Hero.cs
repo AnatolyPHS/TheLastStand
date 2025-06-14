@@ -21,6 +21,18 @@ namespace GameSceneObjects.Units
             heroManager = ServiceLocator.Instance.Get<IHeroManager>();
         }
         
+        public override void GetDamage(float dmg)
+        {
+            base.GetDamage(dmg);
+            
+            heroManager.OnHPChange();   
+        }
+        
+        public float GetHealthRatio()
+        {
+            return currentHealth / info.Health;
+        }
+        
         public override void OnDie()
         {
             heroManager.OnHeroDie(this);
@@ -54,10 +66,7 @@ namespace GameSceneObjects.Units
         
         public void Heal(float healEffect)
         {
-            if (IsAlive() == false)
-            {
-                return;
-            }
+            heroManager.OnHPChange(); //TODO: check ingame behaviour on incative hero near sancrtum
             
             base.Heal(healEffect);
         }

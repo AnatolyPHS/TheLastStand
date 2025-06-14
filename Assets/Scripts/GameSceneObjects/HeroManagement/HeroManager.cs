@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Camera;
+using GameEvents;
 using GameSceneObjects.Buildings;
 using GameSceneObjects.Units;
 using Selector;
@@ -9,15 +12,23 @@ namespace GameSceneObjects.HeroManagement
 {
     public class HeroManager : MonoBehaviour, IHeroManager
     {
-        [SerializeField] private Transform heroGameStartPosition;
+        private readonly Dictionary<int, float> levelExperienceMap = new Dictionary<int, float>();
+        
+        [SerializeField] private AnimationCurve experienceCurve;
         
         private ISelectorController selectorController;
         private ICameraController cameraController;
         private IBuildingManager buildingManager;
 
         private bool heroIsRespawning = false;
+       
+        private float heroExperience = 0f;
+        private int heroLvl = 0;
+        private float heroSkillPoints = 0f;
         
         private Hero hero;
+        
+        private EventTrigger eventTrigger;
         
         public Hero GetHero()
         {
@@ -29,6 +40,7 @@ namespace GameSceneObjects.HeroManagement
             selectorController.DeselectObject(hero);
             cameraController.SetFreeCameraMode();
             heroIsRespawning = true;
+            SendHeroChangeStateEvent();
         }
 
         public Vector3 GetHeroPosition()
@@ -47,9 +59,42 @@ namespace GameSceneObjects.HeroManagement
             heroIsRespawning = false;
         }
 
+        public void AddExperience(int experience)
+        {
+            heroExperience += experience;
+            float nextLevelExperience = levelExperienceMap[heroLvl + 1];
+            
+            if (heroExperience >= nextLevelExperience)
+            {
+                heroExperience -= nextLevelExperience;
+                heroLvl++;
+                heroSkillPoints++;
+            }
+            
+            SendHeroChangeStateEvent();
+        }
+        
+        public void OnHPChange()
+        {
+            SendHeroChangeStateEvent();
+        }
+
+        public void AddListener(Action<HeroChangeStateEventData> listener)
+        {
+            eventTrigger.AddListener<HeroChangeState, HeroChangeStateEventData>(listener);
+        }
+
+        public void RemoveListener(Action<HeroChangeStateEventData> listener)
+        {
+            eventTrigger.RemoveListener<HeroChangeState, HeroChangeStateEventData>(listener);
+        }
+        
         private void Awake()
         {
             ServiceLocator.Instance.Register<IHeroManager>(this);
+            
+            eventTrigger = new EventTrigger();
+            ConvertCurveToLevelExperienceThresholds();
         }
         
         private void Start()
@@ -63,7 +108,39 @@ namespace GameSceneObjects.HeroManagement
 
         private void InstantHeroSpawn()
         {
-            buildingManager.GetSanctum().InstantHeroSpawn(heroGameStartPosition.position, heroGameStartPosition.rotation); 
+            buildingManager.GetSanctum().InstantHeroSpawn(); 
+        }
+        
+        private void ConvertCurveToLevelExperienceThresholds()
+        {
+            if (experienceCurve.length == 0)
+            {
+                return;
+            }
+
+            int maxLevel = Mathf.RoundToInt(experienceCurve.keys[experienceCurve.length - 1].time);
+            
+            for (int i = 0; i <= maxLevel; i++)
+            {
+                levelExperienceMap[i] = experienceCurve.Evaluate(i);
+            }
+            
+            levelExperienceMap[maxLevel + 1] = float.MaxValue;
+        }
+        
+        private void SendHeroChangeStateEvent()
+        {
+            float currentLevelExperience = levelExperienceMap[heroLvl];
+            float nextLevelExperience = levelExperienceMap[heroLvl + 1];
+            
+            HeroChangeStateEventData eventData = new HeroChangeStateEventData
+            {
+                nextLevelRatio = (heroExperience - currentLevelExperience) / (nextLevelExperience - currentLevelExperience),
+                skillPoints = heroSkillPoints,
+                hpRatio = heroIsRespawning ? 0f : hero.GetHealthRatio(),
+                heroLvl = heroLvl
+            };
+            eventTrigger.RaiseEvent<HeroChangeState, HeroChangeStateEventData>(eventData);
         }
     }
 }

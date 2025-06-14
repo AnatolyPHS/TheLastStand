@@ -22,9 +22,9 @@ namespace GameSceneObjects.Buildings
             unitsToSpawnNumber = 1;
         }
         
-        public void InstantHeroSpawn(Vector3 position, Quaternion rotation)
+        public void InstantHeroSpawn()
         {
-            Unit unit = poolManager.GetObject(nextUnit.UnitToSpawn, position, rotation);
+            Unit unit = poolManager.GetObject(nextUnit.UnitToSpawn, spawnPoint.position, spawnPoint.rotation);
             unit.Init();
             OnSpawn(unit);
         }

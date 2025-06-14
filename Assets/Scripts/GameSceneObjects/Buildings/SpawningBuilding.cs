@@ -9,7 +9,7 @@ namespace GameSceneObjects.Buildings
     public class SpawningBuilding : BuildingBase
     {
         [SerializeField] private SpawningBuildingInfo spawningBuildingInfo;
-        [SerializeField] private Transform spawnPoint;
+        [SerializeField] protected Transform spawnPoint;
 
         protected IUnitHolder unitsHolder;
         protected IPoolManager poolManager;

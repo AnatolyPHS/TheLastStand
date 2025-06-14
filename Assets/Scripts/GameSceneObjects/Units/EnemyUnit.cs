@@ -40,8 +40,10 @@ namespace GameSceneObjects.Units
         public override void OnDie()
         {
             base.OnDie();
+            
             unitHolder.UnregisterUnit(this);
-            currencyTracker.ChangeCurrencyValue(info.UnitCost);
+            currencyTracker.ChangeCurrencyValue(GetCost());
+            heroManager.AddExperience(GetCost()); //TODO: check if the hero killed it
         }
         
         protected override void Start()
