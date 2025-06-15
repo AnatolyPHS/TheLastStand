@@ -45,7 +45,7 @@ public class MoveToTargetUnitState : BaseUnitState
         ProcessTargetApproach();
     }
 
-    protected virtual void SwitchToNoTargetState()
+    protected virtual void SwitchToNoTargetState() //TODO: instead of overriding it mb better to use Type fields/parameters/variables
     {
         stateSwitcher.SwitchState<SearchForTargetUnitState>();
     }

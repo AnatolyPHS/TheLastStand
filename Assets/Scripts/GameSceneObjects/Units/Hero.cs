@@ -1,13 +1,18 @@
 using GameSceneObjects.HeroManagement;
+using GameSceneObjects.StateBehaviour;
+using GameSceneObjects.StateBehaviour.HeroStates;
 using Services;
 using UnityEngine;
 
 namespace GameSceneObjects.Units
 {
-    public class Hero : Unit, IClickInteractable, ISanctumable
+    public class Hero : Unit, IClickInteractable, ISanctumable, IWithTarget
     {
         private IHeroManager heroManager;
         
+        private HeroStationBehaviour stationBehaviour;
+        
+        private IHittable currentTarget;
         private bool isSanctumActive = false;
         
         public bool IsSanctumActive()
@@ -51,11 +56,16 @@ namespace GameSceneObjects.Units
 
         public void InteractWithUnit(Unit unt)
         {
-            Debug.Log("Hero interacting with unit: " + unt.gameObject.name);
+            if (unt is EnemyUnit enemy)
+            {
+                SetTarget(enemy);
+                stationBehaviour.SwitchState<HeroMoveToTargetUnitState>();
+            }
         }
 
         public void MoveTo(Vector3 targetPosition)
         {
+            stationBehaviour.SwitchState<HeroMoveToTargetUnitState>();
             navMeshAgent.SetDestination(targetPosition);
         }
         
@@ -79,6 +89,38 @@ namespace GameSceneObjects.Units
         public void OnSanctumExit()
         {
             isSanctumActive = false;
+        }
+        
+        public void SetTarget(IHittable target)
+        {
+            currentTarget = target;
+        }
+
+        public IHittable GetCurrentTarget()
+        {
+            return currentTarget;
+        }
+
+        public bool HasTarget()
+        {
+            return currentTarget != null;
+        }
+
+        public void InflictDamage()
+        {
+            float damage = info.AttackPower * currentLevel; //TODO: add an animation curve to calculate damage
+            currentTarget.GetDamage(damage);
+        }
+        
+        protected override void Start()
+        {
+            base.Start();
+            stationBehaviour = new HeroStationBehaviour(this, heroManager);
+        }
+        
+        private void Update()
+        {
+            stationBehaviour.OnUpdate(Time.deltaTime);
         }
     }
 }

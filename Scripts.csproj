@@ -55,9 +55,11 @@
      <Compile Include="Assets\Scripts\UI\GameView\IBuildingViewController.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\GameView.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\EndGameViewController.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroCalmUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\IBuildingManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\BaseUnitState.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroMoveToTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\IWithTarget.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\MoveToTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\PoolingSystem\IPoolManager.cs" />
@@ -79,6 +81,7 @@
      <Compile Include="Assets\Scripts\Currencies\ICurrencyTracker.cs" />
      <Compile Include="Assets\Scripts\InputsManager\Input.cs" />
      <Compile Include="Assets\Scripts\Selector\ISelectorController.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStationBehaviour.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\View.cs" />
      <Compile Include="Assets\Scripts\UI\EndGameView\IEndGameView.cs" />
      <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
@@ -92,6 +95,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\UnitHolder.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyMoveToTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\SanctumTrigger.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroAttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\AllySpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IClickInteractable.cs" />
      <Compile Include="Assets\Scripts\MainGameLogic\WavesSpawner.cs" />
@@ -148,6 +152,7 @@
      <Folder Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyUnitStates" />
      <Folder Include="Assets\Scripts\GameEvents" />
      <Folder Include="Assets\Scripts\UI\HeroPanel" />
+     <Folder Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Buildings" />
      <Folder Include="Assets\Scripts\PoolingSystem" />
      <Folder Include="Assets\Scripts\Currencies" />
