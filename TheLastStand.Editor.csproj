@@ -45,9 +45,9 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\PlaymodeTests\Editor\ExampleEditorTest.cs" />
-     <None Include="Assets\PlaymodeTests\Editor\TheLastStand.Editor.Tests.asmdef" />
-     <Folder Include="Assets\PlaymodeTests\Editor" />
+     <Compile Include="Assets\Tests\Editor\ExampleEditorTest.cs" />
+     <None Include="Assets\Tests\Editor\TheLastStand.Editor.Tests.asmdef" />
+     <Folder Include="Assets\Tests\Editor" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
