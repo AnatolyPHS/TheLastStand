@@ -24,12 +24,14 @@ namespace GameSceneObjects.Units
         protected float levelFactor = 1f;
         
         protected float currentHealth;
-        protected float attackRange;
-        protected float attackCooldown;
-        protected float attackDamage;
-        protected int unitCost;
+        private float attackRange;
+        private float attackCooldown;
+        private float attackDamage;
+        private int unitCost;
         private float maxHealth;
         private float armor;
+        
+        private float targetPointerShowTime = float.MinValue;
 
         public virtual void SetLevel(int level)
         {
@@ -92,6 +94,12 @@ namespace GameSceneObjects.Units
 
         public void ShowTargetPointer()
         {
+            if (Time.time - targetPointerShowTime < EffectHolder.TargetPointerShowDelay)
+            {
+                return;
+            }
+            
+            targetPointerShowTime = Time.time;
             effectHolder.PlayEffect(EffectType.EnemyPointer, transform.position, Quaternion.identity, transform);
         }
 

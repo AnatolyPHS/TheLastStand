@@ -8,6 +8,8 @@ namespace EffectsManager
 {
     public class EffectHolder : MonoBehaviour, IEffectHolder
     {
+        public const float TargetPointerShowDelay = 1f;
+        
         [SerializeField] private List<EffectEntry> effects = new List<EffectEntry>(); //TODO: need a serializable dictionary
         [SerializeField] private List<HighlightAreaEntry> highlightAreas = new List<HighlightAreaEntry>();
         [SerializeField] public Texture2D abilityCursorTexture;
