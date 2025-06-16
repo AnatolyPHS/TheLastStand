@@ -16,4 +16,4 @@ MonoBehaviour:
   abilityInputtype: 30
   cooldownTime: 5
   damage: 50
-  radius: 1
+  radius: 0.2

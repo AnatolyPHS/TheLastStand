@@ -9,10 +9,12 @@ namespace EffectsManager
     public class EffectHolder : MonoBehaviour, IEffectHolder
     {
         [SerializeField] private List<EffectEntry> effects = new List<EffectEntry>();
+        [SerializeField] private List<HighlightAreaEntry> highlightAreas = new List<HighlightAreaEntry>();
         
         private IPoolManager poolManager;
         
         private Dictionary<EffectType, BaseEffect> effectPrefabs = new Dictionary<EffectType, BaseEffect>();
+        private Dictionary<HighlightAreaType, HighlightArea> highlightAreaPrefabs = new Dictionary<HighlightAreaType, HighlightArea>();
         
         public void RemoveFromScene(BaseEffect baseEffect)
         {
@@ -45,6 +47,23 @@ namespace EffectsManager
             effectInstance.Emit(this, from, to);
         }
 
+        public HighlightArea GetHighlightAreaEffect()
+        {
+            if (!highlightAreaPrefabs.TryGetValue(HighlightAreaType.MeteorShowerArea, out HighlightArea highlightAreaPrefab))
+            {
+                Debug.LogError("Highlight area of type MeteorShowerArea not found.");
+                return null;
+            }
+
+            HighlightArea highlightAreaInstance = poolManager.GetObject(highlightAreaPrefab, Vector3.zero, Quaternion.identity);
+            return highlightAreaInstance;
+        }
+
+        public void RemoveHighlightAreaEffect(HighlightArea selectionArea)
+        {
+            poolManager.ReturnObject(selectionArea);
+        }
+
         private void Awake()
         {
             ServiceLocator.Instance.Register<IEffectHolder>(this);
@@ -62,6 +81,16 @@ namespace EffectsManager
                 
                 effectPrefabs.Add(effect.GetEffectType, effect.GetEffectPrefab);
             }
+            
+            foreach (HighlightAreaEntry highlightArea in highlightAreas)
+            {
+                if (highlightAreaPrefabs.ContainsKey(highlightArea.GetHighlightAreaType))
+                {
+                    continue;
+                }
+                
+                highlightAreaPrefabs.Add(highlightArea.GetHighlightAreaType, highlightArea.GetHighlightAreaPrefab);
+            }
         }
         
         private void OnDestroy()
@@ -78,5 +107,15 @@ namespace EffectsManager
         
         public EffectType GetEffectType => effectType;
         public BaseEffect GetEffectPrefab => effectPrefab;
+    }
+
+    [Serializable]
+    public class HighlightAreaEntry
+    {
+        [SerializeField] private HighlightAreaType highlightAreaType;
+        [SerializeField] private HighlightArea highlightAreaPrefab;
+
+        public HighlightAreaType GetHighlightAreaType => highlightAreaType;
+        public HighlightArea GetHighlightAreaPrefab => highlightAreaPrefab;
     }
 }

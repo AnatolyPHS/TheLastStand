@@ -5,8 +5,13 @@ namespace EffectsManager
     public enum CursorType
     {
         None = 0,
-        MeteorCursor = 10,
         FreezeArrowCursor = 20,
+    }
+    
+    public enum HighlightAreaType
+    {
+        None = 0,
+        MeteorShowerArea = 10,
     }
     
     public enum EffectType
@@ -21,5 +26,7 @@ namespace EffectsManager
         void RemoveFromScene(BaseEffect baseEffect);
         void PlayEffect(EffectType meteorShower, Vector3 mouseGroundPosition, Quaternion identity);
         void ShootEffect(EffectType freezeArrow, Vector3 from, Vector3 to);
+        HighlightArea GetHighlightAreaEffect();
+        void RemoveHighlightAreaEffect(HighlightArea selectionArea);
     }
 }

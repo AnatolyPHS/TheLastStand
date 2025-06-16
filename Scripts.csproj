@@ -135,6 +135,7 @@
      <Compile Include="Assets\Scripts\PoolingSystem\PoolManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\Сitadel.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\BuildingViewController.cs" />
+     <Compile Include="Assets\Scripts\EffectsManager\HighlightArea.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Data\UnitsData\UnitInfo.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\ISanctumable.cs" />
      <Folder Include="Assets\Scripts\Selector" />

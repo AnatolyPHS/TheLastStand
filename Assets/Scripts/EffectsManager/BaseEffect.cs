@@ -4,10 +4,10 @@ namespace EffectsManager
 {
     public class BaseEffect : MonoBehaviour
     {
-        private IEffectHolder effectHolder;
-        
         [SerializeField] private float duartion = 1f;
         [SerializeField] private ParticleSystem particleSystem;
+     
+        private IEffectHolder effectHolder;
         
         private float effectEndTime;
 

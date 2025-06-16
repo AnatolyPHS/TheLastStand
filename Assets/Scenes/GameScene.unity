@@ -784,6 +784,9 @@ MonoBehaviour:
     effectPrefab: {fileID: 7478633689924543403, guid: bad1d9a370883484fa971b18a789e3d9, type: 3}
   - effectType: 20
     effectPrefab: {fileID: 219451168673961647, guid: 356f249fd0317b24a980841534c58e58, type: 3}
+  highlightAreas:
+  - highlightAreaType: 10
+    highlightAreaPrefab: {fileID: 3318292655170501709, guid: 3e183879bb50c354186c703c0dc41b22, type: 3}
 --- !u!1 &282634399
 GameObject:
   m_ObjectHideFlags: 0
