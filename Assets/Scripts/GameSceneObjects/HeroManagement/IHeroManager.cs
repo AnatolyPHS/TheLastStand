@@ -14,6 +14,7 @@ namespace GameSceneObjects.HeroManagement
         void AddExperience(int experience);
         void OnHPChange();
         int GetHeroLevel();
+        void OnAbilityUpgradeClick(AbilityType abilityType);
     }
 
     public struct HeroChangeStateEventData

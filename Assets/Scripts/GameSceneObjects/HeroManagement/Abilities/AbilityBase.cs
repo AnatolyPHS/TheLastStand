@@ -39,5 +39,10 @@ namespace GameSceneObjects.HeroManagement
         }
         public abstract void OnUpdate(Vector3 pointer);
         public abstract void ActivateAbility(Vector3 mouseGroundPosition);
+
+        public void UpgradeAbility()
+        {
+            abiliyLevel++;
+        }
     }
 }

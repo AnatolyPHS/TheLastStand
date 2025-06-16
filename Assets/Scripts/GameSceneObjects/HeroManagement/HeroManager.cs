@@ -15,7 +15,7 @@ namespace GameSceneObjects.HeroManagement
 {
     public class HeroManager : MonoBehaviour, IHeroManager
     {
-        private readonly Dictionary<int, float> levelExperienceMap = new Dictionary<int, float>();
+        private readonly Dictionary<int, int> levelExperienceMap = new Dictionary<int, int>();
         
         [SerializeField] private AnimationCurve experienceCurve;
         [SerializeField] private List<AbilityBaseInfo> heroAbilities = new List<AbilityBaseInfo>();
@@ -27,9 +27,9 @@ namespace GameSceneObjects.HeroManagement
 
         private bool heroIsRespawning = false;
        
-        private float heroExperience = 0f;
+        private int heroExperience = 0;
         private int heroLvl = 0;
-        private float heroSkillPoints = 0f;
+        private int heroSkillPoints = 1;
         
         private Hero hero;
         private AbilityController abilityController;
@@ -68,7 +68,7 @@ namespace GameSceneObjects.HeroManagement
         public void AddExperience(int experience)
         {
             heroExperience += experience;
-            float nextLevelExperience = levelExperienceMap[heroLvl + 1];
+            int nextLevelExperience = levelExperienceMap[heroLvl + 1];
             
             if (heroExperience >= nextLevelExperience)
             {
@@ -87,6 +87,18 @@ namespace GameSceneObjects.HeroManagement
         public int GetHeroLevel()
         {
             return heroLvl;
+        }
+
+        public void OnAbilityUpgradeClick(AbilityType abilityType)
+        {
+            if (heroSkillPoints <= 0)
+            {
+                return;
+            }
+
+            abilityController.TryUpgradeAbility(abilityType);
+            heroSkillPoints--;
+            SendHeroChangeStateEvent();
         }
 
         public void AddListener(Action<HeroChangeStateEventData> listener)
@@ -135,10 +147,10 @@ namespace GameSceneObjects.HeroManagement
             
             for (int i = 0; i <= maxLevel; i++)
             {
-                levelExperienceMap[i] = experienceCurve.Evaluate(i);
+                levelExperienceMap[i] = (int) experienceCurve.Evaluate(i);
             }
             
-            levelExperienceMap[maxLevel + 1] = float.MaxValue;
+            levelExperienceMap[maxLevel + 1] = int.MaxValue;
         }
         
         private void SendHeroChangeStateEvent()

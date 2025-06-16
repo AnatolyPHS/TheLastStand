@@ -29,5 +29,10 @@ namespace UI.HeroPanel
             heroView.UpdateHeroLevel(obj.heroLvl);
             heroView.UpdateHP(obj.hpRatio);
         }
+
+        public void OnAbilityUpgradeClick(AbilityType abilityType)
+        {
+            heroManager.OnAbilityUpgradeClick(abilityType);
+        }
     }
 }
