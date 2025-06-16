@@ -4,7 +4,7 @@ namespace GameSceneObjects.StateBehaviour.HeroStates
 {
     public class HeroAttackTargetUnitState : AttackTargetUnitState
     {
-        public HeroAttackTargetUnitState(GameUnit gameUnit, StationBehaviour stationBehaviour) : base(gameUnit, stationBehaviour)
+        public HeroAttackTargetUnitState(GameUnit unit, StationBehaviour stationBehaviour) : base(unit, stationBehaviour)
         {
         }
 

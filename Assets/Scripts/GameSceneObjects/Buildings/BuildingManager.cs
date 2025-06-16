@@ -60,6 +60,11 @@ namespace GameSceneObjects.Buildings
             return false;
         }
 
+        public Сitadel GetCitadel()
+        {
+            return citadel;
+        }
+
         private void Awake()
         {
             ServiceLocator.Instance.Register<IBuildingManager>(this);

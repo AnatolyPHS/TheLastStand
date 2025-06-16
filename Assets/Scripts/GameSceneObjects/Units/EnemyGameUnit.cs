@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Currencies;
+using GameSceneObjects.Buildings;
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.StateBehaviour;
 using GameSceneObjects.Units.Buffs;
@@ -15,6 +16,7 @@ namespace GameSceneObjects.Units
         private IHeroManager heroManager;
         private IUnitHolder unitHolder;
         private ICurrencyTracker currencyTracker;
+        private IBuildingManager buildingManager;
         
         private EnemyStationBehaviour stationBehaviour;
         
@@ -96,8 +98,9 @@ namespace GameSceneObjects.Units
             heroManager = ServiceLocator.Instance.Get<IHeroManager>();
             unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
             currencyTracker = ServiceLocator.Instance.Get<ICurrencyTracker>();
+            buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             
-            stationBehaviour = new EnemyStationBehaviour(this, heroManager);
+            stationBehaviour = new EnemyStationBehaviour(this, heroManager, buildingManager, unitHolder);
             stationBehaviour.SwitchState<EnemySearchForTargetUnitState>();
         }
 

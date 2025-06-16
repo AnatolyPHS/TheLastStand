@@ -16,10 +16,10 @@ namespace GameSceneObjects.StateBehaviour
         private float nextTickTime = float.MinValue;
         private Vector3 pointToMove;
         
-        public AllyMoveToPointUnitState(GameUnit gameUnit, IStateSwitcher stateSwitcher) : base(gameUnit, stateSwitcher)
+        public AllyMoveToPointUnitState(GameUnit unit, IStateSwitcher stateSwitcher) : base(unit, stateSwitcher)
         {
-            _allyGameUnitToControl = gameUnit as AllyGameUnit;
-            approachDistance = gameUnit.GetUnitStopDistance();
+            _allyGameUnitToControl = unit as AllyGameUnit;
+            approachDistance = unit.GetUnitStopDistance();
         }
 
         public override void OnStateEnter()

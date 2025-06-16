@@ -11,7 +11,7 @@ namespace GameSceneObjects.Units
     
     public interface IUnitHolder
     {
-        bool TryGetGlosestEnemy(Vector3 currentPosition, out EnemyGameUnit gameUnit);
+        bool TryGetGlosestUnit(UnitFaction enemyFaction, Vector3 currentPosition, out EnemyGameUnit gameUnit);
         void RegisterUnit(GameUnit gameUnit);
         void UnregisterUnit(GameUnit gameUnit);
         int GetUnitsCount(UnitFaction faction);

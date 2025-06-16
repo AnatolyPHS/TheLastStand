@@ -17,13 +17,13 @@ namespace GameSceneObjects.StateBehaviour
 
         private EnemyGameUnit _closestEnemyGame;
         
-        public AllyIdleState(GameUnit gameUnit, IStateSwitcher stateSwitcher, IBuildingManager buildingManager,
-            IUnitHolder unitHolder) : base(gameUnit, stateSwitcher)
+        public AllyIdleState(GameUnit unit, IStateSwitcher stateSwitcher, IBuildingManager buildingManager,
+            IUnitHolder unitHolder) : base(unit, stateSwitcher)
         {
             this.buildingManager = buildingManager;
             this.unitHolder = unitHolder;
             
-            _allyGameUnitToControl = gameUnit as AllyGameUnit;
+            _allyGameUnitToControl = unit as AllyGameUnit;
         }
 
         public override void OnStateEnter()
@@ -70,27 +70,27 @@ namespace GameSceneObjects.StateBehaviour
         private bool FarFromTower()
         {
             Vector3 mainTowerPosition = buildingManager.GetMainTowerPosition();
-            Vector3 currentPosition = GameUnitToControl.GetPosition();
+            Vector3 currentPosition = UnitToControl.GetPosition();
             float distanceToTower = Vector3.Distance(currentPosition, mainTowerPosition);
-            return distanceToTower > GameUnitToControl.GetSearchRadius();
+            return distanceToTower > UnitToControl.GetSearchRadius();
         }
 
         private bool EnemyIsNear()
         {
-            Vector3 currentPosition = GameUnitToControl.GetPosition();
-            if (unitHolder.TryGetGlosestEnemy(currentPosition, out _closestEnemyGame) == false)
+            Vector3 currentPosition = UnitToControl.GetPosition();
+            if (unitHolder.TryGetGlosestUnit(UnitFaction.Enemy, currentPosition, out _closestEnemyGame) == false)
             {
                 return false;
             }
             
             float distanceToEnemy = Vector3.Distance(currentPosition, _closestEnemyGame.GetPosition());
             
-            return distanceToEnemy < GameUnitToControl.GetSearchRadius();
+            return distanceToEnemy < UnitToControl.GetSearchRadius();
         }
 
         private bool NeedToHeal()
         {
-            return GameUnitToControl.GetCurrentHealth() < GameUnitToControl.GetMaxHealth() * HPAllowedThreshold;
+            return UnitToControl.GetCurrentHealth() < UnitToControl.GetMaxHealth() * HPAllowedThreshold;
         }
     }
 }

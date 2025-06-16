@@ -6,9 +6,9 @@ public class HeroCalmUnitState : BaseUnitState
     private Hero heroToControl;
     
     //TODO: controll hero animations here
-    public HeroCalmUnitState(GameUnit gameUnit, IStateSwitcher stateSwitcher) : base(gameUnit, stateSwitcher)
+    public HeroCalmUnitState(GameUnit unit, IStateSwitcher stateSwitcher) : base(unit, stateSwitcher)
     {
-        heroToControl = gameUnit as Hero;
+        heroToControl = unit as Hero;
     }
 
     public override void OnStateEnter()

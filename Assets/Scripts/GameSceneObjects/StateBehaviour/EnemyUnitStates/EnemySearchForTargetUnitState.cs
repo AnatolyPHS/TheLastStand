@@ -1,3 +1,4 @@
+using GameSceneObjects.Buildings;
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.Units;
 using UnityEngine;
@@ -7,41 +8,44 @@ namespace GameSceneObjects.StateBehaviour
     public class EnemySearchForTargetUnitState : SearchForTargetUnitState
     {
         private IHeroManager heroManager;
-        private EnemyGameUnit _controlledEnemyGame;
+        private IBuildingManager buildingManager;
+        private IUnitHolder unitHolder;
         
-        public EnemySearchForTargetUnitState(EnemyGameUnit gameUnit, EnemyStationBehaviour stateSwitcher, IHeroManager heroManager)
-            : base(gameUnit, stateSwitcher)
+        private EnemyGameUnit controlledEnemy;
+        
+        public EnemySearchForTargetUnitState(EnemyGameUnit unit, EnemyStationBehaviour stateSwitcher, IHeroManager heroManager,
+            IBuildingManager buildingManager, IUnitHolder unitHolder)
+            : base(unit, stateSwitcher)
         {
             this.heroManager = heroManager;
-            _controlledEnemyGame = gameUnit;
+            controlledEnemy = unit;
+            this.buildingManager = buildingManager;
+            this.unitHolder = unitHolder;
         }
         
         protected override void ProcessLookForTarget()
         {
-            if (heroManager.GetHero().CanBeAttacked() == false)
-            {
-                return;
-            }
-
-            if (HeroIsFar())
-            {
-                return;
-            }
-            //TODO: check the Tower
-            //TODO: check the hero's allies
+            IHittable target = GetNearestTarget();
             
-            _controlledEnemyGame.SetTarget(heroManager.GetHero());
+            controlledEnemy.SetTarget(target);
             stateSwitcher.SwitchState<EnemyMoveToTargetUnitState>();
         }
-        
-        private bool HeroIsFar() //TODO: temporary measure
+
+        private IHittable GetNearestTarget()
         {
-            float distanceToHero = Vector3.Distance(_controlledEnemyGame.transform.position, heroManager.GetHero().transform.position);
-            if (distanceToHero > 5f)
+            Hero hero = heroManager.GetHero();
+            if (hero.CanBeAttacked() &&
+                Vector3.Distance(hero.transform.position, controlledEnemy.transform.position) <= controlledEnemy.GetSearchRadius())
             {
-                return true;
+                return hero;
             }
-            return false;
+            
+            if (unitHolder.TryGetGlosestUnit(UnitFaction.Ally, controlledEnemy.transform.position, out EnemyGameUnit closestEnemy))
+            {
+                return closestEnemy;
+            }
+
+            return buildingManager.GetCitadel();
         }
     }
 }

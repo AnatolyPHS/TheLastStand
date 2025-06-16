@@ -1,4 +1,3 @@
-using GameSceneObjects.Units;
 using UnityEngine;
 
 namespace GameSceneObjects.Buildings
@@ -12,5 +11,6 @@ namespace GameSceneObjects.Buildings
         Sanctum GetSanctum();
         void SetEnemySpawnersLevel(int currentWave);
         bool EnemiesAreSpawning();
+        Сitadel GetCitadel();
     }
 }

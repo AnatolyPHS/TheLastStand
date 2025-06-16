@@ -9,7 +9,7 @@ namespace GameSceneObjects.StateBehaviour
         
         private float nextTickTime = float.MinValue;
         
-        public SearchForTargetUnitState(GameUnit gameUnit, IStateSwitcher stateSwitcher) : base(gameUnit, stateSwitcher)
+        public SearchForTargetUnitState(GameUnit unit, IStateSwitcher stateSwitcher) : base(unit, stateSwitcher)
         {
         }
         

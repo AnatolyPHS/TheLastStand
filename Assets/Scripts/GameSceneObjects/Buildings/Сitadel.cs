@@ -1,3 +1,5 @@
+using Services;
+using UI.GameView;
 using UnityEngine;
 
 namespace GameSceneObjects.Buildings
@@ -5,6 +7,8 @@ namespace GameSceneObjects.Buildings
     public class Сitadel : BuildingBase, IHittable
     {
         [SerializeField] private float maxHealth = 1000f;
+     
+        private IEndGameViewController endGameViewController;
         
         private float currentHealth;
         
@@ -15,7 +19,7 @@ namespace GameSceneObjects.Buildings
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
-                //TODO: show gameover screen
+                endGameViewController.ShowEndGameView("The citadel has been destroyed! Game Over!");
             }
         }
 
@@ -45,12 +49,13 @@ namespace GameSceneObjects.Buildings
 
         public void ShowTargetPointer()
         {
-            Debug.Log("TODO: add pointer effect after embedded EffectManager");
+            //TODO: implement target pointer after adding an ability to repair the citadel
         }
 
         private void Start()
         {
             currentHealth = maxHealth;
+            endGameViewController = ServiceLocator.Instance.Get<IEndGameViewController>();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace GameSceneObjects.StateBehaviour
 {
     public class AllyMoveToTargetUnitState : MoveToTargetUnitState
     {
-        public AllyMoveToTargetUnitState(GameUnit gameUnit, StationBehaviour enemyStationBehaviour) : base(gameUnit, enemyStationBehaviour)
+        public AllyMoveToTargetUnitState(GameUnit unit, StationBehaviour enemyStationBehaviour) : base(unit, enemyStationBehaviour)
         {
         }
 
