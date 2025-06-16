@@ -7,10 +7,9 @@ using UnityEngine.AI;
 public class MoveToTargetUnitState : BaseUnitState
 {
     private const float TickPeriod = 1f;
-    
-    private IWithTarget unitWithTarget;
-    private float attackRange = 0;
-    private NavMeshAgent controllableAgent;
+
+    protected IWithTarget unitWithTarget;
+    protected NavMeshAgent controllableAgent;
     
     private float nextTickTime = float.MinValue;
     
@@ -18,7 +17,6 @@ public class MoveToTargetUnitState : BaseUnitState
         : base(unit, enemyStationBehaviour)
     {
         unitWithTarget = unit as IWithTarget;
-        attackRange = unit.GetAttackRange();
         controllableAgent = unit.GetNavMeshAgent();
     }
 
@@ -45,12 +43,12 @@ public class MoveToTargetUnitState : BaseUnitState
         ProcessTargetApproach();
     }
 
-    protected virtual void SwitchToNoTargetState() //TODO: instead of overriding it mb better to use Type fields/parameters/variables
+    protected virtual void SwitchToNoTargetState()
     {
         stateSwitcher.SwitchState<SearchForTargetUnitState>();
     }
     
-    private void ProcessTargetApproach()
+    protected virtual void ProcessTargetApproach()
     {
         if (unitWithTarget.HasTarget() == false || unitWithTarget.GetCurrentTarget().CanBeAttacked() == false)
         {
@@ -62,7 +60,7 @@ public class MoveToTargetUnitState : BaseUnitState
         Vector3 targetPosition = target.GetPosition();
         controllableAgent.SetDestination(targetPosition);
 
-        if (Vector3.Distance(UnitToControl.transform.position, targetPosition) <= attackRange)
+        if (Vector3.Distance(unitToControl.transform.position, targetPosition) <= unitToControl.GetAttackRange())
         {
             SwitchToAttackState();
         }

@@ -18,7 +18,7 @@ namespace GameSceneObjects.StateBehaviour
         public override void OnStateEnter()
         {
             ProcessAttack();
-            nextAttackTime = Time.time + UnitToControl.GetAttackCooldown();
+            nextAttackTime = Time.time + unitToControl.GetAttackCooldown();
         }
 
         public override void OnStateExit()
@@ -33,7 +33,7 @@ namespace GameSceneObjects.StateBehaviour
                 return;
             }
         
-            nextAttackTime = Time.time + UnitToControl.GetAttackCooldown();
+            nextAttackTime = Time.time + unitToControl.GetAttackCooldown();
             ProcessAttack();
         }
 
@@ -68,7 +68,7 @@ namespace GameSceneObjects.StateBehaviour
 
         protected virtual bool CanAttack(IHittable target)
         {
-            return Vector3.Distance(UnitToControl.transform.position, target.GetPosition()) <= UnitToControl.GetAttackRange();
+            return Vector3.Distance(unitToControl.transform.position, target.GetPosition()) <= unitToControl.GetAttackRange();
         }
     }
 }

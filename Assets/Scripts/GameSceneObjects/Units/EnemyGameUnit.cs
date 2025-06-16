@@ -28,7 +28,7 @@ namespace GameSceneObjects.Units
             get => attackSpeedFactor;
             set => attackSpeedFactor = value;
         }
-
+        
         public void SetTarget(IHittable target)
         {
             currentTarget = target;

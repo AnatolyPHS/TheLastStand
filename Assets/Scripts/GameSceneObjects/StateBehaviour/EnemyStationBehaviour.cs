@@ -11,7 +11,7 @@ namespace GameSceneObjects.StateBehaviour
         {
             currentUnitState = new EnemySearchForTargetUnitState(gameUnit, this, heroManager, buildingManager, unitHolder);
             states.Add(currentUnitState);
-            states.Add(new EnemyMoveToTargetUnitState(gameUnit, this));
+            states.Add(new EnemyMoveToTargetUnitState(gameUnit, heroManager, unitHolder, this));
             states.Add(new EnemyAttackTargetUnitState(gameUnit, this));
         }
     }
