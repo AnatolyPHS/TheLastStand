@@ -7,6 +7,11 @@ namespace UI.GameView
     {
         [SerializeField] private List<View> views =  new List<View>();
         
+        public void QuitGame() //TODO: replace with open menu button and add menu view
+        {
+            Application.Quit();
+        }
+        
         private void Awake()
         {
             foreach (View view in views)
