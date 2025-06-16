@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using GameSceneObjects.Units;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameSceneObjects.Data
 {
@@ -36,7 +37,7 @@ namespace GameSceneObjects.Data
     public class UnitToSpawnData
     {
         public int SpawnerLevel = 1;
-        public Unit UnitToSpawn;
+        [FormerlySerializedAs("UnitToSpawn")] public GameUnit gameUnitToSpawn;
         public float SpawnDuration = 5f;
     }
 }

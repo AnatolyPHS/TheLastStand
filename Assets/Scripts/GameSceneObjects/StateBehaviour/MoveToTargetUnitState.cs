@@ -14,12 +14,12 @@ public class MoveToTargetUnitState : BaseUnitState
     
     private float nextTickTime = float.MinValue;
     
-    public MoveToTargetUnitState(Unit unit, StationBehaviour enemyStationBehaviour) 
-        : base(unit, enemyStationBehaviour)
+    public MoveToTargetUnitState(GameUnit gameUnit, StationBehaviour enemyStationBehaviour) 
+        : base(gameUnit, enemyStationBehaviour)
     {
-        unitWithTarget = unit as IWithTarget;
-        attackRange = unit.GetAttackRange();
-        controllableAgent = unit.GetNavMeshAgent();
+        unitWithTarget = gameUnit as IWithTarget;
+        attackRange = gameUnit.GetAttackRange();
+        controllableAgent = gameUnit.GetNavMeshAgent();
     }
 
     public override void OnStateEnter()
@@ -62,7 +62,7 @@ public class MoveToTargetUnitState : BaseUnitState
         Vector3 targetPosition = target.GetPosition();
         controllableAgent.SetDestination(targetPosition);
 
-        if (Vector3.Distance(unitToControl.transform.position, targetPosition) <= attackRange)
+        if (Vector3.Distance(GameUnitToControl.transform.position, targetPosition) <= attackRange)
         {
             SwitchToAttackState();
         }

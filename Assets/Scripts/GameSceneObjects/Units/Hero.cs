@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameSceneObjects.Units
 {
-    public class Hero : Unit, IClickInteractable, ISanctumable, IWithTarget
+    public class Hero : GameUnit, IClickInteractable, ISanctumable, IWithTarget
     {
         private IHeroManager heroManager;
         
@@ -54,9 +54,9 @@ namespace GameSceneObjects.Units
             Debug.Log("Hero deselected! " + gameObject.name);
         }
 
-        public void InteractWithUnit(Unit unt)
+        public void InteractWithUnit(GameUnit unt)
         {
-            if (unt is EnemyUnit enemy)
+            if (unt is EnemyGameUnit enemy)
             {
                 SetTarget(enemy);
                 stationBehaviour.SwitchState<HeroMoveToTargetUnitState>();

@@ -10,25 +10,25 @@ namespace GameSceneObjects.StateBehaviour
         
         private float TickDuraction = 1f;
         
-        private AllyUnit allyUnitToControl;
+        private AllyGameUnit _allyGameUnitToControl;
         private float approachDistance = float.MaxValue;
         
         private float nextTickTime = float.MinValue;
         private Vector3 pointToMove;
         
-        public AllyMoveToPointUnitState(Unit unit, IStateSwitcher stateSwitcher) : base(unit, stateSwitcher)
+        public AllyMoveToPointUnitState(GameUnit gameUnit, IStateSwitcher stateSwitcher) : base(gameUnit, stateSwitcher)
         {
-            allyUnitToControl = unit as AllyUnit;
-            approachDistance = unit.GetUnitStopDistance();
+            _allyGameUnitToControl = gameUnit as AllyGameUnit;
+            approachDistance = gameUnit.GetUnitStopDistance();
         }
 
         public override void OnStateEnter()
         {
-            pointToMove = allyUnitToControl.GetLastInterestPoint();
+            pointToMove = _allyGameUnitToControl.GetLastInterestPoint();
             if (NavMesh.SamplePosition(pointToMove, out NavMeshHit hit, NavMeshPointSearchRadius, NavMesh.AllAreas))
             {
                 pointToMove = hit.position;
-                allyUnitToControl.SetNavigationPoint(pointToMove);
+                _allyGameUnitToControl.SetNavigationPoint(pointToMove);
                 nextTickTime = Time.time + TickDuraction;
                 return;
             }
@@ -50,7 +50,7 @@ namespace GameSceneObjects.StateBehaviour
 
             nextTickTime = Time.time + TickDuraction;
             
-            if (Vector3.Distance(allyUnitToControl.transform.position, allyUnitToControl.GetLastInterestPoint()) 
+            if (Vector3.Distance(_allyGameUnitToControl.transform.position, _allyGameUnitToControl.GetLastInterestPoint()) 
                 <= approachDistance)
             {
                 stateSwitcher.SwitchState<AllyIdleState>();

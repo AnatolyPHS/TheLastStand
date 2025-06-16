@@ -10,8 +10,8 @@ namespace GameSceneObjects.Units.Buffs
         public UnitBuffType GetBuffType => buffType;
         public float EndTime => endTime;
         
-        public abstract void OnImplement(EnemyUnit target, float duration, float power);
-        public abstract void OnRemoveDebuff(EnemyUnit target);
+        public abstract void OnImplement(EnemyGameUnit target, float duration, float power);
+        public abstract void OnRemoveDebuff(EnemyGameUnit target);
 
         public abstract void RefreshBuff(float freezeDuration, float power);
     }

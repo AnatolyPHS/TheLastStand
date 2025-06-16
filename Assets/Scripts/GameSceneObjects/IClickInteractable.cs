@@ -6,7 +6,7 @@ namespace GameSceneObjects
 {
     public interface IClickInteractable : IClickSelectable
     {
-        void InteractWithUnit(Unit unt);
+        void InteractWithUnit(GameUnit unt);
         void MoveTo(Vector3 targetPosition);
     }
 }

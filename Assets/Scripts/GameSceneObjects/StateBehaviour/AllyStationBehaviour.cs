@@ -5,13 +5,13 @@ namespace GameSceneObjects.StateBehaviour
 {
     public class AllyStationBehaviour : StationBehaviour
     {
-        public AllyStationBehaviour(AllyUnit allyUnit, IUnitHolder unitHolder, IBuildingManager buildingManager)
+        public AllyStationBehaviour(AllyGameUnit allyGameUnit, IUnitHolder unitHolder, IBuildingManager buildingManager)
         {
-            currentUnitState = new AllyIdleState(allyUnit, this, buildingManager, unitHolder);
+            currentUnitState = new AllyIdleState(allyGameUnit, this, buildingManager, unitHolder);
             states.Add(currentUnitState);
-            states.Add(new AllyMoveToTargetUnitState(allyUnit, this));
-            states.Add(new AllyAttackTargetUnitState(allyUnit, this));
-            states.Add(new AllyMoveToPointUnitState(allyUnit, this));
+            states.Add(new AllyMoveToTargetUnitState(allyGameUnit, this));
+            states.Add(new AllyAttackTargetUnitState(allyGameUnit, this));
+            states.Add(new AllyMoveToPointUnitState(allyGameUnit, this));
         }
     }
 }

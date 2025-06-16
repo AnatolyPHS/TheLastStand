@@ -12,7 +12,7 @@ namespace GameSceneObjects.Units.Buffs
             buffType = UnitBuffType.Slow;
         }
         
-        public override void OnImplement(EnemyUnit target, float duration, float power)
+        public override void OnImplement(EnemyGameUnit target, float duration, float power)
         {
             float effectMultiplier = 1f - power;
             initialSpeed = target.GetNavMeshAgent().speed;
@@ -24,7 +24,7 @@ namespace GameSceneObjects.Units.Buffs
             endTime = Time.time + duration;
         }
         
-        public override void OnRemoveDebuff(EnemyUnit target)
+        public override void OnRemoveDebuff(EnemyGameUnit target)
         {
             target.GetNavMeshAgent().speed = initialSpeed; //TODO: check the allocation!
             target.AttackSpeedFactor = initialAttackSpeedFactor;

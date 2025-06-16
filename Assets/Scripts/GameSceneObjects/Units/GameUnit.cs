@@ -11,7 +11,7 @@ namespace GameSceneObjects.Units
         Slow = 10,
     }
     
-    public abstract class Unit : MonoBehaviour, IHittable, IPoolable
+    public abstract class GameUnit : MonoBehaviour, IHittable, IPoolable
     {
         [SerializeField] protected NavMeshAgent navMeshAgent;
         [SerializeField] protected UnitInfo info;

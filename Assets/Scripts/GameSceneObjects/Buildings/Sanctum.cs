@@ -37,9 +37,9 @@ namespace GameSceneObjects.Buildings
         
         public void InstantHeroSpawn()
         {
-            Unit unit = poolManager.GetObject(nextUnit.UnitToSpawn, spawnPoint.position, spawnPoint.rotation);
-            unit.Init();
-            OnSpawn(unit);
+            GameUnit gameUnit = poolManager.GetObject(nextUnit.gameUnitToSpawn, spawnPoint.position, spawnPoint.rotation);
+            gameUnit.Init();
+            OnSpawn(gameUnit);
         }
         
         protected override bool CanSpawn()
@@ -54,9 +54,9 @@ namespace GameSceneObjects.Buildings
             cameraController = ServiceLocator.Instance.Get<ICameraController>();
         }
         
-        protected override void OnSpawn(Unit unit)
+        protected override void OnSpawn(GameUnit gameUnit)
         {
-            heroManager.OnHeroRespawn(unit);
+            heroManager.OnHeroRespawn(gameUnit);
             unitsToSpawnNumber = 0;
             cameraController.FocusOnHero();
         }

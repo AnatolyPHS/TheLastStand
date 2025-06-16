@@ -3,7 +3,7 @@ using GameSceneObjects.Units;
 
 public class HeroMoveToTargetUnitState : MoveToTargetUnitState
 {
-    public HeroMoveToTargetUnitState(Unit unit, StationBehaviour enemyStationBehaviour) : base(unit, enemyStationBehaviour)
+    public HeroMoveToTargetUnitState(GameUnit gameUnit, StationBehaviour enemyStationBehaviour) : base(gameUnit, enemyStationBehaviour)
     {
     }
 

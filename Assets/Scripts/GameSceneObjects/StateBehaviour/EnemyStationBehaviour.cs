@@ -5,12 +5,12 @@ namespace GameSceneObjects.StateBehaviour
 {
     public class EnemyStationBehaviour : StationBehaviour
     { 
-        public EnemyStationBehaviour(EnemyUnit unit, IHeroManager heroManager)
+        public EnemyStationBehaviour(EnemyGameUnit gameUnit, IHeroManager heroManager)
         {
-            currentUnitState = new EnemySearchForTargetUnitState(unit, this,  heroManager);
+            currentUnitState = new EnemySearchForTargetUnitState(gameUnit, this,  heroManager);
             states.Add(currentUnitState);
-            states.Add(new EnemyMoveToTargetUnitState(unit, this));
-            states.Add(new EnemyAttackTargetUnitState(unit, this));
+            states.Add(new EnemyMoveToTargetUnitState(gameUnit, this));
+            states.Add(new EnemyAttackTargetUnitState(gameUnit, this));
         }
     }
 }

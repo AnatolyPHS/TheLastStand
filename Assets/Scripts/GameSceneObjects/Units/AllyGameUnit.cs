@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameSceneObjects.Units
 {
-    public class AllyUnit : Unit, IWithTarget, IClickInteractable, ISanctumable
+    public class AllyGameUnit : GameUnit, IWithTarget, IClickInteractable, ISanctumable
     {
         [SerializeField] private GameObject selectionMark;
         
@@ -68,9 +68,9 @@ namespace GameSceneObjects.Units
             selectionMark.SetActive(false);
         }
 
-        public void InteractWithUnit(Unit unt)
+        public void InteractWithUnit(GameUnit unt)
         {
-            if (unt is EnemyUnit)
+            if (unt is EnemyGameUnit)
             {
                 SetTarget(unt);
                 stationBehaviour.SwitchState<AllyMoveToTargetUnitState>();

@@ -22,9 +22,9 @@ namespace GameSceneObjects.Buildings
             nextSpawnTimer = float.MinValue;
         }
         
-        protected override void OnSpawn(Unit unit)
+        protected override void OnSpawn(GameUnit gameUnit)
         {
-            base.OnSpawn(unit);
+            base.OnSpawn(gameUnit);
             spawnedEnemiesCount++;
         }
 

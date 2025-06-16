@@ -40,7 +40,7 @@ namespace GameSceneObjects.HeroManagement
             Collider[] hitColliders = Physics.OverlapSphere(mouseGroundPosition, EnemyCheckRadius);
             foreach (Collider hitCollider in hitColliders)
             {
-                if (hitCollider.TryGetComponent(out EnemyUnit enemy))
+                if (hitCollider.TryGetComponent(out EnemyGameUnit enemy))
                 {
                     enemy.GetDamage(freezingArrowInfo.CalculateDamage(abiliyLevel));
                     enemy.AddBuff(UnitBuffType.Slow, freezingArrowInfo.FreezePower, freezingArrowInfo.FreezeDuration);

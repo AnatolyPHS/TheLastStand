@@ -5,7 +5,7 @@ namespace GameSceneObjects.StateBehaviour
 {
     public class EnemyAttackTargetUnitState : AttackTargetUnitState
     {
-        public EnemyAttackTargetUnitState(Unit unit, StationBehaviour stationBehaviour) : base(unit, stationBehaviour)
+        public EnemyAttackTargetUnitState(GameUnit gameUnit, StationBehaviour stationBehaviour) : base(gameUnit, stationBehaviour)
         {
         }
         

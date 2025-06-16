@@ -48,7 +48,7 @@ namespace GameSceneObjects.HeroManagement
             Collider[] hitColliders = Physics.OverlapSphere(mouseGroundPosition, meteorShowerAbilityInfo.Radius);
             foreach (Collider hitCollider in hitColliders)
             {
-                if (hitCollider.TryGetComponent(out EnemyUnit enemy))
+                if (hitCollider.TryGetComponent(out EnemyGameUnit enemy))
                 {
                     enemy.GetDamage(meteorShowerAbilityInfo.CalculateDamage(abiliyLevel));//TODO: Add damage scaling via animation curve
                 }

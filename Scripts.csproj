@@ -48,9 +48,11 @@
      <Compile Include="Assets\Scripts\UI\CurrencyView\CurrencyView.cs" />
      <Compile Include="Assets\Scripts\UI\SelectorView\ISelectorView.cs" />
      <Compile Include="Assets\Scripts\GameEvents\IEventTrigger.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Units\AllyGameUnit.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IBuildingView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Data\AbilityData\MeteorShowerAbilityInfo.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IHittable.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Units\GameUnit.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IEndGameViewController.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IBuildingViewController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Buffs\SlowDebuff.cs" />
@@ -60,6 +62,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Buffs\BuffBase.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\IBuildingManager.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Units\EnemyGameUnit.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\BaseUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroMoveToTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\IWithTarget.cs" />
@@ -75,7 +78,6 @@
      <Compile Include="Assets\Scripts\UI\HeroPanel\HeroViewController.cs" />
      <Compile Include="Assets\Scripts\InputsManager\InputManager.cs" />
      <Compile Include="Assets\Scripts\Selector\SelectionController.cs" />
-     <Compile Include="Assets\Scripts\GameSceneObjects\Units\Unit.cs" />
      <Compile Include="Assets\Scripts\UI\HeroPanel\IHeroView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\EnemiesSpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\InputsManager\InputButton.cs" />
@@ -111,7 +113,6 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyMoveToPointUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\BuildingManager.cs" />
      <Compile Include="Assets\Scripts\UI\HeroPanel\HeroView.cs" />
-     <Compile Include="Assets\Scripts\GameSceneObjects\Units\AllyUnit.cs" />
      <Compile Include="Assets\Scripts\UI\CurrencyView\ICurrencyController.cs" />
      <Compile Include="Assets\Scripts\UI\CurrencyView\CurrencyViewController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\HeroManagement\Abilities\AbilityController.cs" />
@@ -129,7 +130,6 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\SearchForTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\IUnitHolder.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\HeroManagement\Abilities\MeteorShowerAbility.cs" />
-     <Compile Include="Assets\Scripts\GameSceneObjects\Units\EnemyUnit.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IClickSelectable.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyUnitStates\EnemyMoveToTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\HeroManagement\Abilities\AbilityBase.cs" />

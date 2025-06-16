@@ -9,16 +9,16 @@ namespace GameSceneObjects.StateBehaviour
     
         private float nextAttackTime = float.MinValue;
     
-        public AttackTargetUnitState(Unit unit, StationBehaviour stationBehaviour) 
-            : base(unit, stationBehaviour)
+        public AttackTargetUnitState(GameUnit gameUnit, StationBehaviour stationBehaviour) 
+            : base(gameUnit, stationBehaviour)
         {
-            attacker = unit as IWithTarget;
+            attacker = gameUnit as IWithTarget;
         }
 
         public override void OnStateEnter()
         {
             ProcessAttack();
-            nextAttackTime = Time.time + unitToControl.GetAttackCooldown();
+            nextAttackTime = Time.time + GameUnitToControl.GetAttackCooldown();
         }
 
         public override void OnStateExit()
@@ -33,7 +33,7 @@ namespace GameSceneObjects.StateBehaviour
                 return;
             }
         
-            nextAttackTime = Time.time + unitToControl.GetAttackCooldown();
+            nextAttackTime = Time.time + GameUnitToControl.GetAttackCooldown();
             ProcessAttack();
         }
 
@@ -68,7 +68,7 @@ namespace GameSceneObjects.StateBehaviour
 
         protected virtual bool CanAttack(IHittable target)
         {
-            return Vector3.Distance(unitToControl.transform.position, target.GetPosition()) <= unitToControl.GetAttackRange();
+            return Vector3.Distance(GameUnitToControl.transform.position, target.GetPosition()) <= GameUnitToControl.GetAttackRange();
         }
     }
 }

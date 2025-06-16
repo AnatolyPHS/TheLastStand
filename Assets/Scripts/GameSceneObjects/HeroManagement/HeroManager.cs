@@ -59,9 +59,9 @@ namespace GameSceneObjects.HeroManagement
             return heroIsRespawning;
         }
 
-        public void OnHeroRespawn(Unit unit)
+        public void OnHeroRespawn(GameUnit gameUnit)
         {
-            hero = unit as Hero;
+            hero = gameUnit as Hero;
             heroIsRespawning = false;
         }
 

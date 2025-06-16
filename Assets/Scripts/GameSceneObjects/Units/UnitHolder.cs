@@ -6,19 +6,19 @@ namespace GameSceneObjects.Units
 {
     public class UnitHolder : MonoBehaviour, IUnitHolder
     {
-        private Dictionary<UnitFaction, List<Unit>> unitsByFaction = new Dictionary<UnitFaction, List<Unit>>()
+        private Dictionary<UnitFaction, List<GameUnit>> unitsByFaction = new Dictionary<UnitFaction, List<GameUnit>>()
         {
-            {UnitFaction.None, new List<Unit>()},
-            {UnitFaction.Ally, new List<Unit>()},
-            {UnitFaction.Enemy, new List<Unit>()}
+            {UnitFaction.None, new List<GameUnit>()},
+            {UnitFaction.Ally, new List<GameUnit>()},
+            {UnitFaction.Enemy, new List<GameUnit>()}
         };
         
-        public bool TryGetGlosestEnemy(Vector3 currentPosition, out EnemyUnit unit)
+        public bool TryGetGlosestEnemy(Vector3 currentPosition, out EnemyGameUnit gameUnit)
         {
-            unit = null;
+            gameUnit = null;
             float closestDistanceSqrt = float.MaxValue;
-            List<Unit> enemyUnits = unitsByFaction[UnitFaction.Enemy];
-            foreach (EnemyUnit enemyUnit in enemyUnits) //TODO: optimize, use spatial partitioning or similar
+            List<GameUnit> enemyUnits = unitsByFaction[UnitFaction.Enemy];
+            foreach (EnemyGameUnit enemyUnit in enemyUnits) //TODO: optimize, use spatial partitioning or similar
             {
                 if (enemyUnit == null || !enemyUnit.gameObject.activeInHierarchy)
                 {
@@ -29,32 +29,32 @@ namespace GameSceneObjects.Units
                 if (distanceSqrt < closestDistanceSqrt)
                 {
                     closestDistanceSqrt = distanceSqrt;
-                    unit = enemyUnit;
+                    gameUnit = enemyUnit;
                 }
             }
 
             return enemyUnits.Count > 0;
         }
 
-        public void RegisterUnit(Unit unit)
+        public void RegisterUnit(GameUnit gameUnit)
         {
-            if (unitsByFaction.TryGetValue(unit.GetFaction(), out List<Unit> units) == false)
+            if (unitsByFaction.TryGetValue(gameUnit.GetFaction(), out List<GameUnit> units) == false)
             {
-                units = new List<Unit>();
-                unitsByFaction[unit.GetFaction()] = units;
+                units = new List<GameUnit>();
+                unitsByFaction[gameUnit.GetFaction()] = units;
             }
 
-            if (units.Contains(unit) == false)
+            if (units.Contains(gameUnit) == false)
             {
-                units.Add(unit);
+                units.Add(gameUnit);
             }
         }
         
-        public void UnregisterUnit(Unit unit)
+        public void UnregisterUnit(GameUnit gameUnit)
         {
-            if (unitsByFaction.TryGetValue(unit.GetFaction(), out List<Unit> units))
+            if (unitsByFaction.TryGetValue(gameUnit.GetFaction(), out List<GameUnit> units))
             {
-                units.Remove(unit);
+                units.Remove(gameUnit);
             }
         }
 

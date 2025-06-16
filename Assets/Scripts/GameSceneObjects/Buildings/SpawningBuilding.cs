@@ -53,10 +53,10 @@ namespace GameSceneObjects.Buildings
 
             nextUnit = spawningBuildingInfo.GetUnitOfLevel(currentBuildingLevel);
 
-            Unit unit = poolManager.GetObject(nextUnit.UnitToSpawn, spawnPoint.position, spawnPoint.rotation);
-            unit.Init();
+            GameUnit gameUnit = poolManager.GetObject(nextUnit.gameUnitToSpawn, spawnPoint.position, spawnPoint.rotation);
+            gameUnit.Init();
 
-            OnSpawn(unit);
+            OnSpawn(gameUnit);
 
             nextSpawnTimer = CalculateSpawnDuration();
         }
@@ -66,9 +66,9 @@ namespace GameSceneObjects.Buildings
             return nextUnit.SpawnDuration;
         }
 
-        protected virtual void OnSpawn(Unit unit)
+        protected virtual void OnSpawn(GameUnit gameUnit)
         {
-            unitsHolder.RegisterUnit(unit);
+            unitsHolder.RegisterUnit(gameUnit);
         }
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace GameSceneObjects.Units
 {
-    public class EnemyUnit : Unit, IWithTarget
+    public class EnemyGameUnit : GameUnit, IWithTarget
     {
         private List<BuffBase> buffs = new List<BuffBase>();
         
@@ -66,7 +66,7 @@ namespace GameSceneObjects.Units
         {
             if (buff != UnitBuffType.Slow)
             {
-                Debug.LogError($"Buff {buff} is not implemented for {nameof(EnemyUnit)}");
+                Debug.LogError($"Buff {buff} is not implemented for {nameof(EnemyGameUnit)}");
                 return;
             }
 

@@ -4,13 +4,13 @@ namespace GameSceneObjects.StateBehaviour
 {
     public abstract class BaseUnitState
     {
-        protected readonly Unit unitToControl;
+        protected readonly GameUnit GameUnitToControl;
         protected readonly IStateSwitcher stateSwitcher;
 
-        protected BaseUnitState(Unit unit, IStateSwitcher stateSwitcher)
+        protected BaseUnitState(GameUnit gameUnit, IStateSwitcher stateSwitcher)
         {
             this.stateSwitcher = stateSwitcher;
-            unitToControl = unit;
+            GameUnitToControl = gameUnit;
         }
         
         public abstract void OnStateEnter();

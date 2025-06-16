@@ -37,9 +37,9 @@ namespace GameSceneObjects.Buildings
             currencyTracker = ServiceLocator.Instance.Get<ICurrencyTracker>();
         }
         
-        protected override void OnSpawn(Unit unit)
+        protected override void OnSpawn(GameUnit gameUnit)
         {
-            base.OnSpawn(unit);
+            base.OnSpawn(gameUnit);
             unitsToSpawnNumber--;
         }
 
@@ -61,7 +61,7 @@ namespace GameSceneObjects.Buildings
 
         public virtual void BuildUnit()
         {
-            int price = nextUnit.UnitToSpawn.GetCost();
+            int price = nextUnit.gameUnitToSpawn.GetCost();
             if (currencyTracker.CurrencyValue < price)
             {
                 return;
@@ -89,12 +89,12 @@ namespace GameSceneObjects.Buildings
 
         public Sprite GetUnitIcon()
         {
-            return nextUnit.UnitToSpawn.GetIcon();
+            return nextUnit.gameUnitToSpawn.GetIcon();
         }
 
         public int GetUnitCost()
         {
-            return nextUnit.UnitToSpawn.GetCost();
+            return nextUnit.gameUnitToSpawn.GetCost();
         }
 
         public int GetUpgradeCost()

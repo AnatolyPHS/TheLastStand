@@ -10,7 +10,7 @@ namespace GameSceneObjects.HeroManagement
         void OnHeroDie(Hero hero);
         Vector3 GetHeroPosition();
         bool HeroIsRespawning();
-        void OnHeroRespawn(Unit unit);
+        void OnHeroRespawn(GameUnit gameUnit);
         void AddExperience(int experience);
         void OnHPChange();
         int GetHeroLevel();

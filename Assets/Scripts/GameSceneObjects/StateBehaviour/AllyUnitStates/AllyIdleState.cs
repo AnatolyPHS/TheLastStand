@@ -12,18 +12,18 @@ namespace GameSceneObjects.StateBehaviour
         private IBuildingManager buildingManager;
         private IUnitHolder unitHolder;
 
-        private AllyUnit allyUnitToControl;
+        private AllyGameUnit _allyGameUnitToControl;
         private float nextTickTime = float.MinValue;
 
-        private EnemyUnit closestEnemy;
+        private EnemyGameUnit _closestEnemyGame;
         
-        public AllyIdleState(Unit unit, IStateSwitcher stateSwitcher, IBuildingManager buildingManager,
-            IUnitHolder unitHolder) : base(unit, stateSwitcher)
+        public AllyIdleState(GameUnit gameUnit, IStateSwitcher stateSwitcher, IBuildingManager buildingManager,
+            IUnitHolder unitHolder) : base(gameUnit, stateSwitcher)
         {
             this.buildingManager = buildingManager;
             this.unitHolder = unitHolder;
             
-            allyUnitToControl = unit as AllyUnit;
+            _allyGameUnitToControl = gameUnit as AllyGameUnit;
         }
 
         public override void OnStateEnter()
@@ -47,21 +47,21 @@ namespace GameSceneObjects.StateBehaviour
             
             if (EnemyIsNear()) //TODO: think about adding conditions 
             {
-                allyUnitToControl.SetTarget(closestEnemy);
+                _allyGameUnitToControl.SetTarget(_closestEnemyGame);
                 stateSwitcher.SwitchState<AllyMoveToTargetUnitState>();
                 return;
             }
             
             if (NeedToHeal())
             {
-                allyUnitToControl.SetPointToMove(buildingManager.GetSanctumPosition());
+                _allyGameUnitToControl.SetPointToMove(buildingManager.GetSanctumPosition());
                 stateSwitcher.SwitchState<AllyMoveToPointUnitState>();
                 return;
             }
             
             if (FarFromTower())
             {
-                allyUnitToControl.SetPointToMove(buildingManager.GetMainTowerPosition());
+                _allyGameUnitToControl.SetPointToMove(buildingManager.GetMainTowerPosition());
                 stateSwitcher.SwitchState<AllyMoveToPointUnitState>();
                 return;
             }
@@ -70,27 +70,27 @@ namespace GameSceneObjects.StateBehaviour
         private bool FarFromTower()
         {
             Vector3 mainTowerPosition = buildingManager.GetMainTowerPosition();
-            Vector3 currentPosition = unitToControl.GetPosition();
+            Vector3 currentPosition = GameUnitToControl.GetPosition();
             float distanceToTower = Vector3.Distance(currentPosition, mainTowerPosition);
-            return distanceToTower > unitToControl.GetSearchRadius();
+            return distanceToTower > GameUnitToControl.GetSearchRadius();
         }
 
         private bool EnemyIsNear()
         {
-            Vector3 currentPosition = unitToControl.GetPosition();
-            if (unitHolder.TryGetGlosestEnemy(currentPosition, out closestEnemy) == false)
+            Vector3 currentPosition = GameUnitToControl.GetPosition();
+            if (unitHolder.TryGetGlosestEnemy(currentPosition, out _closestEnemyGame) == false)
             {
                 return false;
             }
             
-            float distanceToEnemy = Vector3.Distance(currentPosition, closestEnemy.GetPosition());
+            float distanceToEnemy = Vector3.Distance(currentPosition, _closestEnemyGame.GetPosition());
             
-            return distanceToEnemy < unitToControl.GetSearchRadius();
+            return distanceToEnemy < GameUnitToControl.GetSearchRadius();
         }
 
         private bool NeedToHeal()
         {
-            return unitToControl.GetCurrentHealth() < unitToControl.GetMaxHealth() * HPAllowedThreshold;
+            return GameUnitToControl.GetCurrentHealth() < GameUnitToControl.GetMaxHealth() * HPAllowedThreshold;
         }
     }
 }

@@ -105,7 +105,7 @@ namespace Selector
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableLayer)//TODO: calculate max cast limit
-                && hit.collider.TryGetComponent(out Unit unit))
+                && hit.collider.TryGetComponent(out GameUnit unit))
             {
                 CommandSelectedToInteract(unit);
             }
@@ -115,7 +115,7 @@ namespace Selector
             }
         }
 
-        private void CommandSelectedToInteract(Unit unt)
+        private void CommandSelectedToInteract(GameUnit unt)
         {
             for (int i = 0; i < currentlySelectedObjects.Count; i++)
             {
@@ -222,7 +222,7 @@ namespace Selector
             for (int i = 0; i < selectedObjectToPrioritise.Count; i++)
             {
                 IClickSelectable selectable = selectedObjectToPrioritise[i];
-                if (selectable is Unit)
+                if (selectable is GameUnit)
                 {
                     SelectObject(selectable);
                 }
