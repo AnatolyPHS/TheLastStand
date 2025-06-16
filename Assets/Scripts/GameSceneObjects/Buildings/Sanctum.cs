@@ -11,7 +11,7 @@ namespace GameSceneObjects.Buildings
     {
         private const float TickPeriod = 1f;
         
-        [SerializeField] private float healEffect = 10f;
+        [SerializeField] private float healEffect = .1f;
         [SerializeField] private SanctumTrigger sanctumTrigger;
         [SerializeField] private AnimationCurve spawnDurationPerLvl;
         
@@ -85,7 +85,7 @@ namespace GameSceneObjects.Buildings
             IReadOnlyList<ISanctumable> UnitsInSanctum = sanctumTrigger.UnitsInSanctum;
             foreach (ISanctumable unit in UnitsInSanctum)
             {
-                unit.Heal(healEffect);
+                unit.Heal(healEffect * currentBuildingLevel);
             }
         }
     }

@@ -584,8 +584,8 @@ MonoBehaviour:
   spawningBuildingInfo: {fileID: 11400000, guid: 6a44df8e60a8678448f9075d993f1cfa, type: 2}
   spawnPoint: {fileID: 1738866196}
   SelectionMark: {fileID: 977121917}
-  upgradeCost: 100
-  healEffect: 10
+  upgradeCost: 1000
+  healEffect: 0.1
   sanctumTrigger: {fileID: 1937418439}
   spawnDurationPerLvl:
     serializedVersion: 2
@@ -787,6 +787,7 @@ MonoBehaviour:
   highlightAreas:
   - highlightAreaType: 10
     highlightAreaPrefab: {fileID: 3318292655170501709, guid: 3e183879bb50c354186c703c0dc41b22, type: 3}
+  abilityCursorTexture: {fileID: 2800000, guid: 25414d0e545615b43b43021d4510ce63, type: 3}
 --- !u!1 &282634399
 GameObject:
   m_ObjectHideFlags: 0

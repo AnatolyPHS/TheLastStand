@@ -56,7 +56,7 @@ namespace GameSceneObjects.Units
                 return;
             }
             
-            currentHealth += healEffect;
+            currentHealth += healEffect * info.Health;
             if (currentHealth > info.Health)
             {
                 currentHealth = info.Health;
