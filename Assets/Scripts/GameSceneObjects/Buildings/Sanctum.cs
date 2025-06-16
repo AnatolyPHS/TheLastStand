@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Camera;
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.Units;
 using Services;
@@ -15,6 +16,7 @@ namespace GameSceneObjects.Buildings
         [SerializeField] private AnimationCurve spawnDurationPerLvl;
         
         private IHeroManager heroManager;
+        private ICameraController cameraController;
 
         private float nextTickTime = float.MinValue;
         
@@ -49,12 +51,14 @@ namespace GameSceneObjects.Buildings
         {
             base.Start();
             heroManager = ServiceLocator.Instance.Get<IHeroManager>();
+            cameraController = ServiceLocator.Instance.Get<ICameraController>();
         }
         
         protected override void OnSpawn(Unit unit)
         {
             heroManager.OnHeroRespawn(unit);
             unitsToSpawnNumber = 0;
+            cameraController.FocusOnHero();
         }
 
         protected override void Update()

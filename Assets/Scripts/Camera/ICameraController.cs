@@ -5,5 +5,6 @@ namespace Camera
     {
         UnityEngine.Camera GetCamera();
         void SetFreeCameraMode();
+        void FocusOnHero();
     }
 }

@@ -194,6 +194,11 @@ namespace Camera
         {
             heroInFocus = false;
         }
+
+        public void FocusOnHero()
+        {
+            heroInFocus = true;
+        }
     }
     
     public enum CameraBorderType
