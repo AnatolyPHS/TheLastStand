@@ -7,6 +7,7 @@ namespace EffectsManager
         private IEffectHolder effectHolder;
         
         [SerializeField] private float duartion = 1f;
+        [SerializeField] private ParticleSystem particleSystem;
         
         private float effectEndTime;
 
@@ -24,6 +25,23 @@ namespace EffectsManager
             }
             
             effectHolder.RemoveFromScene(this);
+        }
+
+        public void Emit(IEffectHolder effectHolder, Vector3 from, Vector3 to)
+        {
+            effectEndTime = Time.time + duartion;
+            transform.position = from;
+            transform.LookAt(to);
+            
+            ParticleSystem.MainModule mainModule = particleSystem.main;
+            float distanceToTarget = Vector3.Distance(to, from);
+            float requiredSpeed = distanceToTarget / duartion;
+            
+            mainModule.startSpeed = requiredSpeed;
+            mainModule.startLifetime = duartion;
+            
+            particleSystem.Play();
+            PlayOnScene(effectHolder);
         }
     }
 }

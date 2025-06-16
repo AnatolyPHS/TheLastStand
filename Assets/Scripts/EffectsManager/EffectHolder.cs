@@ -32,6 +32,19 @@ namespace EffectsManager
             effectInstance.PlayOnScene(this);
         }
 
+        public void ShootEffect(EffectType freezeArrow, Vector3 from, Vector3 to)
+        {
+            if (!effectPrefabs.TryGetValue(freezeArrow, out BaseEffect effectPrefab))
+            {
+                Debug.LogError($"Effect of type {freezeArrow} not found.");
+                return;
+            }
+
+            BaseEffect effectInstance = poolManager.GetObject(effectPrefab, from, Quaternion.identity);
+            
+            effectInstance.Emit(this, from, to);
+        }
+
         private void Awake()
         {
             ServiceLocator.Instance.Register<IEffectHolder>(this);

@@ -782,6 +782,8 @@ MonoBehaviour:
   effects:
   - effectType: 10
     effectPrefab: {fileID: 7478633689924543403, guid: bad1d9a370883484fa971b18a789e3d9, type: 3}
+  - effectType: 20
+    effectPrefab: {fileID: 219451168673961647, guid: 356f249fd0317b24a980841534c58e58, type: 3}
 --- !u!1 &282634399
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
         private IInputManager inputManager;
         private ISelectorController selectorController;
         private IEffectHolder effectHolder;
+        private IHeroManager heroManager;
         
         private AbilityType currentAbilityType = AbilityType.None;
 
@@ -29,6 +30,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
             this.inputManager = ServiceLocator.Instance.Get<IInputManager>();
             this.selectorController = ServiceLocator.Instance.Get<ISelectorController>();
             this.effectHolder = ServiceLocator.Instance.Get<IEffectHolder>();
+            this.heroManager = ServiceLocator.Instance.Get<IHeroManager>();
             
             EquipAbilities(heroAbilities);
             
@@ -94,7 +96,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
                         inputManager.SubscribeToInputEvent(heroAbilities[i].AbilityInputType, equippedAbilities[AbilityType.MeteorShower].AbilityButtonClick);
                         break;
                     case AbilityType.FreezingArrow:
-                        equippedAbilities[AbilityType.FreezingArrow] = new FreezingArrowAbility(heroAbilities[i], this);
+                        equippedAbilities[AbilityType.FreezingArrow] = new FreezingArrowAbility(heroAbilities[i], effectHolder, heroManager, this);
                         inputManager.SubscribeToInputEvent(heroAbilities[i].AbilityInputType, equippedAbilities[AbilityType.FreezingArrow].AbilityButtonClick);
                         break;
                     default:

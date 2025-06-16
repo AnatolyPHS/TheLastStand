@@ -1,3 +1,4 @@
+using EffectsManager;
 using GameSceneObjects.Data.AbilityData;
 using GameSceneObjects.HeroManagement.Abilities;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace GameSceneObjects.HeroManagement
 {
     public class FreezingArrowAbility : AbilityBase
     {
+        private IEffectHolder effectHolder;
+        private IHeroManager heroManager; 
         
         public override void OnUpdate(Vector3 pointer)
         {
@@ -14,14 +17,15 @@ namespace GameSceneObjects.HeroManagement
         public override void ActivateAbility(Vector3 mouseGroundPosition)
         {
             abilityController.SetCurrentAbilityType(AbilityType.None);
-            GameObject arrow = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-            arrow.transform.position = mouseGroundPosition;
-            arrow.transform.localScale = new Vector3(0.1f, 0.5f, 0.1f);
-            arrow.GetComponent<Renderer>().material.color = Color.blue;
+            effectHolder.ShootEffect(EffectType.FreezeArrow, heroManager.GetHeroPosition(), mouseGroundPosition);
         }
 
-        public FreezingArrowAbility(AbilityBaseInfo abilityBaseInfo, AbilityController controller) : base(abilityBaseInfo, controller)
+        public FreezingArrowAbility(AbilityBaseInfo abilityBaseInfo, 
+            IEffectHolder effectHolder, IHeroManager heroManager, AbilityController controller) 
+            : base(abilityBaseInfo, controller)
         {
+            this.effectHolder = effectHolder;
+            this.heroManager = heroManager;
         }
     }
 }
