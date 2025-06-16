@@ -5,7 +5,7 @@ namespace EffectsManager
     public class BaseEffect : MonoBehaviour
     {
         [SerializeField] private float duartion = 1f;
-        [SerializeField] private ParticleSystem particleSystem;
+        [SerializeField] private ParticleSystem effectPS;
      
         private IEffectHolder effectHolder;
         
@@ -33,14 +33,14 @@ namespace EffectsManager
             transform.position = from;
             transform.LookAt(to);
             
-            ParticleSystem.MainModule mainModule = particleSystem.main;
+            ParticleSystem.MainModule mainModule = effectPS.main;
             float distanceToTarget = Vector3.Distance(to, from);
             float requiredSpeed = distanceToTarget / duartion;
             
             mainModule.startSpeed = requiredSpeed;
             mainModule.startLifetime = duartion;
             
-            particleSystem.Play();
+            effectPS.Play();
             PlayOnScene(effectHolder);
         }
     }

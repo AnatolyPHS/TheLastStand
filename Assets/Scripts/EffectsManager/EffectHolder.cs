@@ -8,8 +8,9 @@ namespace EffectsManager
 {
     public class EffectHolder : MonoBehaviour, IEffectHolder
     {
-        [SerializeField] private List<EffectEntry> effects = new List<EffectEntry>();
+        [SerializeField] private List<EffectEntry> effects = new List<EffectEntry>(); //TODO: need a serializable dictionary
         [SerializeField] private List<HighlightAreaEntry> highlightAreas = new List<HighlightAreaEntry>();
+        [SerializeField] public Texture2D abilityCursorTexture;
         
         private IPoolManager poolManager;
         
@@ -62,6 +63,12 @@ namespace EffectsManager
         public void RemoveHighlightAreaEffect(HighlightArea selectionArea)
         {
             poolManager.ReturnObject(selectionArea);
+        }
+
+        public void ChangeCursor(CursorType cursorType)
+        {
+            Cursor.SetCursor(cursorType == CursorType.Magic ? abilityCursorTexture : null,
+                Vector2.zero, CursorMode.Auto);
         }
 
         private void Awake()

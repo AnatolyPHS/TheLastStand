@@ -4,8 +4,8 @@ namespace EffectsManager
 {
     public enum CursorType
     {
-        None = 0,
-        FreezeArrowCursor = 20,
+        Default = 0,
+        Magic = 20,
     }
     
     public enum HighlightAreaType
@@ -28,5 +28,6 @@ namespace EffectsManager
         void ShootEffect(EffectType freezeArrow, Vector3 from, Vector3 to);
         HighlightArea GetHighlightAreaEffect();
         void RemoveHighlightAreaEffect(HighlightArea selectionArea);
+        void ChangeCursor(CursorType freezeArrowCursor);
     }
 }

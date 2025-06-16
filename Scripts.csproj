@@ -53,10 +53,12 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\IHittable.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IEndGameViewController.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IBuildingViewController.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Units\Buffs\SlowDebuff.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\GameView.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\EndGameViewController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroCalmUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AttackTargetUnitState.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\Units\Buffs\BuffBase.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\IBuildingManager.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\BaseUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroMoveToTargetUnitState.cs" />
@@ -144,6 +146,7 @@
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Units" />
      <Folder Include="Assets\Scripts\GameSceneObjects\HeroManagement" />
+     <Folder Include="Assets\Scripts\GameSceneObjects\Units\Buffs" />
      <Folder Include="Assets\Scripts\UI\SelectorView" />
      <Folder Include="Assets\Scripts\EffectsManager" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Data\UnitsData" />

@@ -4842,4 +4842,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duartion: 0.3
-  particleSystem: {fileID: 7129089829419084488}
+  effectPS: {fileID: 7129089829419084488}

@@ -22,4 +22,4 @@ MonoBehaviour:
   unitStopDistance: 1
   faction: 20
   unitCost: 0
-  icon: {fileID: 21300000, guid: 105190c693a9886499aae9f1d3223027, type: 3}
+  icon: {fileID: 21300000, guid: 5dab7f58e5fcfee4b9ff8ec49e14cc30, type: 3}

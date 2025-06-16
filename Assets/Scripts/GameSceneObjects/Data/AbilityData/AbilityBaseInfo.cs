@@ -9,11 +9,16 @@ namespace GameSceneObjects.Data.AbilityData
         [SerializeField] private AbilityType abilityType = AbilityType.None;
         [SerializeField] private InputType abilityInputtype = InputType.None;
         [SerializeField] private float cooldownTime = 5f;
-        [SerializeField] private float damage = 50f;
+        [SerializeField] private AnimationCurve damagePerLvl;
+        
         
         public AbilityType AbilityType => abilityType;
         public float CooldownTime => cooldownTime;
-        public float Damage => damage;
         public InputType AbilityInputType => abilityInputtype;
+        
+        public float CalculateDamage(int abiliyLevel)
+        {
+            return damagePerLvl.Evaluate(abiliyLevel);
+        }
     }
 }
