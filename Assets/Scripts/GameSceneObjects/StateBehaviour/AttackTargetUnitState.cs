@@ -8,19 +8,17 @@ namespace GameSceneObjects.StateBehaviour
         private IWithTarget attacker;
     
         private float nextAttackTime = float.MinValue;
-        private float attackCooldown = float.MaxValue;
     
         public AttackTargetUnitState(Unit unit, StationBehaviour stationBehaviour) 
             : base(unit, stationBehaviour)
         {
-            attackCooldown = unit.GetAttackCooldown();
             attacker = unit as IWithTarget;
         }
 
         public override void OnStateEnter()
         {
             ProcessAttack();
-            nextAttackTime = Time.time + attackCooldown;
+            nextAttackTime = Time.time + unitToControl.GetAttackCooldown();
         }
 
         public override void OnStateExit()
@@ -35,7 +33,7 @@ namespace GameSceneObjects.StateBehaviour
                 return;
             }
         
-            nextAttackTime = Time.time + attackCooldown;
+            nextAttackTime = Time.time + unitToControl.GetAttackCooldown();
             ProcessAttack();
         }
 

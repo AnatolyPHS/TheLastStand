@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 namespace GameSceneObjects.Units
 {
+    public enum UnitBuffType
+    {
+        None = 0,
+        Slow = 10,
+    }
+    
     public abstract class Unit : MonoBehaviour, IHittable, IPoolable
     {
         [SerializeField] protected NavMeshAgent navMeshAgent;
@@ -77,7 +83,7 @@ namespace GameSceneObjects.Units
             return navMeshAgent;
         }
 
-        public float GetAttackCooldown()
+        public virtual float GetAttackCooldown()
         {
             return 1f / info.AttackSpeed;
         }
