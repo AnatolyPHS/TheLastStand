@@ -21,7 +21,8 @@ namespace GameSceneObjects.HeroManagement
         protected float lastTimeUsed = float.MinValue;
         
         protected bool abilityInUse = false;
-        
+
+        private float cooldown = float.MinValue;
         private AbilityType abilityType;
         
         public AbilityType GetAbilityType => abilityType;
@@ -30,6 +31,7 @@ namespace GameSceneObjects.HeroManagement
         {
             abilityType = abilityBaseInfo.AbilityType;
             abilityController = controller;
+            cooldown = abilityBaseInfo.CooldownTime;
         }
 
         public virtual void AbilityButtonClick(float f)
@@ -43,6 +45,11 @@ namespace GameSceneObjects.HeroManagement
         public void UpgradeAbility()
         {
             abiliyLevel++;
+        }
+        
+        protected bool InCooldown()
+        {
+            return Time.time - lastTimeUsed < cooldown;
         }
     }
 }

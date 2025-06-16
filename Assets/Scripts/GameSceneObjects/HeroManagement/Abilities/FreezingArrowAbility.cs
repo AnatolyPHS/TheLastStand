@@ -17,6 +17,11 @@ namespace GameSceneObjects.HeroManagement
         
         public override void AbilityButtonClick(float f)
         {
+            if (InCooldown())
+            {
+                return;
+            }
+            
             base.AbilityButtonClick(f);
             effectHolder.ChangeCursor(CursorType.Magic);
         }
@@ -33,6 +38,7 @@ namespace GameSceneObjects.HeroManagement
             DamageEnemy(mouseGroundPosition);
             
             effectHolder.ChangeCursor(CursorType.Default);
+            lastTimeUsed = Time.time;
         }
 
         private void DamageEnemy(Vector3 mouseGroundPosition)

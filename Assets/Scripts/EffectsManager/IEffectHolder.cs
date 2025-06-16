@@ -19,12 +19,14 @@ namespace EffectsManager
         None = 0,
         MeteorShower = 10,
         FreezeArrow = 20,
+        EnemyPointer = 30,
     }
     
     public interface IEffectHolder
     {
         void RemoveFromScene(BaseEffect baseEffect);
         void PlayEffect(EffectType meteorShower, Vector3 mouseGroundPosition, Quaternion identity);
+        void PlayEffect(EffectType meteorShower, Vector3 mouseGroundPosition, Quaternion identity, Transform parent = null);
         void ShootEffect(EffectType freezeArrow, Vector3 from, Vector3 to);
         HighlightArea GetHighlightAreaEffect();
         void RemoveHighlightAreaEffect(HighlightArea selectionArea);

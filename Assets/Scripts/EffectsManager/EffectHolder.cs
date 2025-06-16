@@ -24,15 +24,33 @@ namespace EffectsManager
 
         public void PlayEffect(EffectType meteorShower, Vector3 mouseGroundPosition, Quaternion identity)
         {
-            if (!effectPrefabs.TryGetValue(meteorShower, out BaseEffect effectPrefab))
+            TryToPlayEffect(meteorShower, mouseGroundPosition, identity, out _);
+        }
+
+        public void PlayEffect(EffectType meteorShower, Vector3 mouseGroundPosition, Quaternion identity, Transform parent = null)
+        {
+            if (TryToPlayEffect(meteorShower, mouseGroundPosition, identity, out BaseEffect effectInstance) == false)
             {
-                Debug.LogError($"Effect of type {meteorShower} not found.");
                 return;
             }
 
-            BaseEffect effectInstance = poolManager.GetObject(effectPrefab, mouseGroundPosition, identity);
+            effectInstance.transform.SetParent(parent);
+        }
+
+        private bool TryToPlayEffect(EffectType meteorShower, Vector3 mouseGroundPosition, Quaternion identity,
+            out BaseEffect effectInstance)
+        {
+            if (!effectPrefabs.TryGetValue(meteorShower, out BaseEffect effectPrefab))
+            {
+                Debug.LogError($"Effect of type {meteorShower} not found.");
+                effectInstance = null;
+                return false;
+            }
+
+            effectInstance = poolManager.GetObject(effectPrefab, mouseGroundPosition, identity);
             
             effectInstance.PlayOnScene(this);
+            return true;
         }
 
         public void ShootEffect(EffectType freezeArrow, Vector3 from, Vector3 to)

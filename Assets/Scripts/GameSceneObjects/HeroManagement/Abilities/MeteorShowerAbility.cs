@@ -15,6 +15,11 @@ namespace GameSceneObjects.HeroManagement
         
         public override void AbilityButtonClick(float f)
         {
+            if (InCooldown())
+            {
+                return;
+            }
+            
             base.AbilityButtonClick(f);
 
             selectionArea = effectHolder.GetHighlightAreaEffect();
@@ -41,6 +46,7 @@ namespace GameSceneObjects.HeroManagement
             DamageEnemiesInArea(mouseGroundPosition);
             
             effectHolder.ChangeCursor(CursorType.Default);
+            lastTimeUsed = Time.time;
         }
 
         private void DamageEnemiesInArea(Vector3 mouseGroundPosition)

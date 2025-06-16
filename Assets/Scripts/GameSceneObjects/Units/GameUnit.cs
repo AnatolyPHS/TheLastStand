@@ -1,3 +1,4 @@
+using EffectsManager;
 using PoolingSystem;
 using Services;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace GameSceneObjects.Units
         [SerializeField] protected NavMeshAgent navMeshAgent;
         [SerializeField] protected UnitInfo info;
         
+        private IEffectHolder effectHolder;
         private IPoolManager poolManager;
         
         protected int currentLevel = 1;
@@ -70,7 +72,7 @@ namespace GameSceneObjects.Units
 
         public void ShowTargetPointer()
         {
-            Debug.Log("TODO: add poionter effec after embeded EffectManager");
+            effectHolder.PlayEffect(EffectType.EnemyPointer, transform.position, Quaternion.identity, transform);
         }
 
         public float GetAttackRange()
@@ -132,6 +134,7 @@ namespace GameSceneObjects.Units
         protected virtual void Start()
         {
             poolManager = ServiceLocator.Instance.Get<IPoolManager>();
+            effectHolder = ServiceLocator.Instance.Get<IEffectHolder>();
         }
 
         public int GetCost()

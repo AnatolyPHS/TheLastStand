@@ -14,7 +14,7 @@ namespace UI.HeroPanel
         [SerializeField] private Image hpProgressBar;
         [SerializeField] private TextMeshProUGUI levelText;
         [SerializeField] private TextMeshProUGUI skillPointsText;
-        [SerializeField] private List<Button> upgradeButtons = new List<Button>();
+        [SerializeField] private List<Button> upgradeButtons = new List<Button>(); //TODO: add ability cooldown UIs
         
         private IHeroViewController heroViewController;
         
