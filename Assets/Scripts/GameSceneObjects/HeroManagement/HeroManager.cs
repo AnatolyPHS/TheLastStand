@@ -62,6 +62,7 @@ namespace GameSceneObjects.HeroManagement
         public void OnHeroRespawn(GameUnit gameUnit)
         {
             hero = gameUnit as Hero;
+            hero.SetLevel(heroLvl);
             heroIsRespawning = false;
         }
 
@@ -74,6 +75,7 @@ namespace GameSceneObjects.HeroManagement
             {
                 heroLvl++;
                 heroSkillPoints++;
+                hero.SetLevel(heroLvl);
             }
             
             SendHeroChangeStateEvent();

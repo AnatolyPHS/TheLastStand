@@ -16,6 +16,8 @@ public class UnitInfo : ScriptableObject
     [SerializeField] private UnitFaction faction = UnitFaction.None;
     [SerializeField] private int unitCost = 100;
     [SerializeField] private Sprite icon;
+
+    [SerializeField] private AnimationCurve lvlFactor;
     
     public float Health => health;
     public float Armor => armor;
@@ -28,4 +30,14 @@ public class UnitInfo : ScriptableObject
     public UnitFaction Faction => faction;
     public int UnitCost => unitCost;
     public Sprite UnitIcon => icon;
+    
+    public float GetLVLFactor(int level)
+    {
+        return lvlFactor.Evaluate(level);
+    }
+
+    public float GetMaxLvlFactor()
+    {
+        return lvlFactor.Evaluate(lvlFactor.keys[lvlFactor.keys.Length - 1].time);
+    }
 }

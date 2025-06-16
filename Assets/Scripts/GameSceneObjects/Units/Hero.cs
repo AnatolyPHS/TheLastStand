@@ -1,6 +1,5 @@
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.StateBehaviour;
-using GameSceneObjects.StateBehaviour.HeroStates;
 using Services;
 using UnityEngine;
 
@@ -14,6 +13,15 @@ namespace GameSceneObjects.Units
         
         private IHittable currentTarget;
         private bool isSanctumActive = false;
+        
+        public override void SetLevel(int level)
+        {
+            base.SetLevel(level);
+            
+            ResetUnitStats();
+            
+            currentHealth *= levelFactor;
+        }
         
         public bool IsSanctumActive()
         {
@@ -108,7 +116,7 @@ namespace GameSceneObjects.Units
 
         public void InflictDamage()
         {
-            float damage = info.AttackPower * currentLevel; //TODO: add an animation curve to calculate damage
+            float damage = UnitDamage();
             currentTarget.GetDamage(damage);
         }
         

@@ -52,7 +52,7 @@ namespace GameSceneObjects.Units
                 return;
             }
             
-            float damage = CalculateDamage();
+            float damage = UnitDamage();
             currentTarget.GetDamage(damage);
             Debug.Log("Ally is attacking ");
         }
@@ -123,11 +123,6 @@ namespace GameSceneObjects.Units
             stationBehaviour.OnUpdate(Time.deltaTime);
         }
         
-        private float CalculateDamage()
-        {
-            return info.AttackPower * currentLevel; //TODO: add an animation curves to calculate damage
-        }
-
         public override void Heal(float healEffect)
         {
             if (IsAlive() == false)

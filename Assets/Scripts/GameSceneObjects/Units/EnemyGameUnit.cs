@@ -44,13 +44,13 @@ namespace GameSceneObjects.Units
 
         public void InflictDamage()
         {
-            float damage = CalculateDamage();
+            float damage = UnitDamage();
             currentTarget.GetDamage(damage);
         }
 
         public override float GetAttackCooldown()
         {
-            return  (1f / info.AttackSpeed) / attackSpeedFactor;
+            return  base.GetAttackCooldown() / attackSpeedFactor;
         }
         
         public override void OnDie()
@@ -118,11 +118,6 @@ namespace GameSceneObjects.Units
                     buffs.RemoveAt(i);
                 }
             }
-        }
-
-        private float CalculateDamage()
-        {
-            return info.AttackPower * currentLevel; //TODO: add an animation curve to calculate damage
         }
     }
 }

@@ -23,3 +23,27 @@ MonoBehaviour:
   faction: 20
   unitCost: 0
   icon: {fileID: 21300000, guid: 5dab7f58e5fcfee4b9ff8ec49e14cc30, type: 3}
+  lvlFactor:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.05263158
+      outSlope: 0.05263158
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 20
+      value: 2
+      inSlope: 0.05263158
+      outSlope: 0.05263158
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

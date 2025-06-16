@@ -21,17 +21,31 @@ namespace GameSceneObjects.Units
         private IPoolManager poolManager;
         
         protected int currentLevel = 1;
+        protected float levelFactor = 1f;
+        
         protected float currentHealth;
+        protected float attackRange;
+        protected float attackCooldown;
+        protected float attackDamage;
+        protected int unitCost;
+        private float maxHealth;
+        private float armor;
+
+        public virtual void SetLevel(int level)
+        {
+            currentLevel = level;
+            levelFactor = info.GetLVLFactor(currentLevel);
+        }
         
         public virtual void Init()
         {
-            currentHealth = info.Health;
-            navMeshAgent.speed = info.MovementSpeed;
+            ResetUnitStats();
+            currentHealth = GetMaxHealth();
         }
-
+        
         public virtual void GetDamage(float dmg)
         {
-            dmg *= (1f - info.Armor);
+            dmg *= (1f - CalculateArmor());
             currentHealth -= dmg;
             
             if (currentHealth <= 0)
@@ -39,6 +53,11 @@ namespace GameSceneObjects.Units
                 currentHealth = 0;
                 OnDie();
             }
+        }
+
+        private float CalculateArmor() 
+        {
+            return armor;
         }
 
         public bool IsAlive()
@@ -58,10 +77,11 @@ namespace GameSceneObjects.Units
                 return;
             }
             
-            currentHealth += healEffect * info.Health;
-            if (currentHealth > info.Health)
+            float maxHealth = GetMaxHealth();
+            currentHealth += healEffect * maxHealth;
+            if (currentHealth > maxHealth)
             {
-                currentHealth = info.Health;
+                currentHealth = maxHealth;
             }
         }
 
@@ -77,7 +97,7 @@ namespace GameSceneObjects.Units
 
         public float GetAttackRange()
         {
-            return info.AttackRange;
+            return attackRange;
         }
 
         public NavMeshAgent GetNavMeshAgent()
@@ -87,7 +107,7 @@ namespace GameSceneObjects.Units
 
         public virtual float GetAttackCooldown()
         {
-            return 1f / info.AttackSpeed;
+            return attackCooldown;
         }
 
         public float GetCurrentHealth()
@@ -97,7 +117,7 @@ namespace GameSceneObjects.Units
 
         public float GetMaxHealth()
         {
-            return info.Health;
+            return maxHealth;
         }
 
         public double GetSearchRadius()
@@ -139,12 +159,28 @@ namespace GameSceneObjects.Units
 
         public int GetCost()
         {
-            return info.UnitCost * currentLevel;
+            return unitCost;
         }
 
         public Sprite GetIcon()
         {
             return info.UnitIcon;
+        }
+        
+        protected float UnitDamage()
+        {
+            return attackDamage;
+        }
+        
+        protected void ResetUnitStats()
+        {
+            maxHealth = info.Health * levelFactor;
+            attackRange = info.AttackRange * levelFactor;
+            attackDamage = info.AttackPower * levelFactor;
+            unitCost = (int) (info.UnitCost * levelFactor);
+            attackCooldown = 1f / (info.AttackSpeed * levelFactor);
+            armor = Mathf.Clamp(info.Armor * (1 + levelFactor / info.GetMaxLvlFactor()), 0, 0.99f); //TODO: think about asymptotic  growth formula
+            navMeshAgent.speed = info.MovementSpeed * levelFactor;
         }
     }
 }
