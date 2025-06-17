@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitsToSpawn:
   - SpawnerLevel: 1
-    UnitToSpawn: {fileID: 3558871456768165088, guid: 534940dd0a7cd1241970bfb6e9183350, type: 3}
+    gameUnitToSpawn: {fileID: 893273265135673963, guid: 7942980f44474a247800d7013915a380, type: 3}
     SpawnDuration: 15

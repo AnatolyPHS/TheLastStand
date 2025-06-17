@@ -24,12 +24,14 @@ public class MoveToTargetUnitState : BaseUnitState
     {
         ProcessTargetApproach();
         nextTickTime = Time.time + TickPeriod;
+        unitToControl.ChangeAnimatorState(GameUnit.WalkAnimParameter, true);
     }
 
     public override void OnStateExit()
     {
         nextTickTime = float.MaxValue;
         controllableAgent.ResetPath();
+        unitToControl.ChangeAnimatorState(GameUnit.WalkAnimParameter, false);
     }
 
     public override void OnStateUpdate(float deltaTime)

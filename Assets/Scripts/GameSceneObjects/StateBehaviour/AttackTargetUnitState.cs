@@ -19,11 +19,13 @@ namespace GameSceneObjects.StateBehaviour
         {
             ProcessAttack();
             nextAttackTime = Time.time + unitToControl.GetAttackCooldown();
+            unitToControl.ChangeAnimatorState(GameUnit.Attack01AnimParameter, true);
         }
 
         public override void OnStateExit()
         {
             nextAttackTime = float.MaxValue;
+            unitToControl.ChangeAnimatorState(GameUnit.Attack01AnimParameter, false);
         }
 
         public override void OnStateUpdate(float deltaTime)

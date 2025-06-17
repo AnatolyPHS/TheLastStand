@@ -56,10 +56,8 @@
      <Folder Include="Assets\Materials\Textures" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <Folder Include="Assets\Prefabs" />
-     <Folder Include="Assets\UI Toolkit\UnityThemes" />
      <Folder Include="Assets\TextMesh Pro" />
      <Folder Include="Assets\Materials\Textures\MagicCursor" />
-     <Folder Include="Assets\UI\Menu" />
      <Folder Include="Assets\UI\Sprites" />
      <Folder Include="Assets\UI\Sprites\UnitIcons" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
@@ -82,7 +80,6 @@
      <Folder Include="Assets\Input" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <Folder Include="Assets\Prefabs\Units" />
-     <Folder Include="Assets\UI Toolkit" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
      <Folder Include="Assets\Materials" />

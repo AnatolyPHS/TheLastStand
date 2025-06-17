@@ -107,6 +107,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\StationBehaviour.cs" />
      <Compile Include="Assets\Scripts\Camera\ICameraController.cs" />
      <Compile Include="Assets\Scripts\EffectsManager\EffectHolder.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\GameLoader.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Data\AbilityData\AbilityBaseInfo.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyStationBehaviour.cs" />
      <Compile Include="Assets\Scripts\EffectsManager\BaseEffect.cs" />
@@ -142,6 +143,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\ISanctumable.cs" />
      <Folder Include="Assets\Scripts\Selector" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Data\BuildingData" />
+     <Folder Include="Assets\Scripts\MenuScripts" />
      <Folder Include="Assets\Scripts\GameSceneObjects" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Units" />

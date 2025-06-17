@@ -29,11 +29,13 @@ namespace GameSceneObjects.StateBehaviour
         public override void OnStateEnter()
         {
             nextTickTime = float.MinValue;
+            unitToControl.ChangeAnimatorState(GameUnit.Idle01AnimParameter, true);
         }
 
         public override void OnStateExit()
         {
             nextTickTime = float.MaxValue;
+            unitToControl.ChangeAnimatorState(GameUnit.Idle01AnimParameter, true);
         }
 
         public override void OnStateUpdate(float deltaTime)

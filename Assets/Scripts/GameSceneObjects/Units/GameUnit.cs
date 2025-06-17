@@ -14,8 +14,13 @@ namespace GameSceneObjects.Units
     
     public abstract class GameUnit : MonoBehaviour, IHittable, IPoolable
     {
+        public const string WalkAnimParameter = "walk";
+        public const string Idle01AnimParameter = "idle01";
+        public const string Attack01AnimParameter = "attack01";
+        
         [SerializeField] protected NavMeshAgent navMeshAgent;
         [SerializeField] protected UnitInfo info;
+        [SerializeField] protected Animator animator;
         
         private IEffectHolder effectHolder;
         private IPoolManager poolManager;
@@ -67,6 +72,11 @@ namespace GameSceneObjects.Units
             return currentHealth > 0;
         }
 
+        public void ChangeAnimatorState(string stateName, bool value)
+        {
+            animator.SetBool(stateName, value);
+        }
+        
         public Vector3 GetPosition()
         {
             return transform.position;
