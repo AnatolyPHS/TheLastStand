@@ -8,6 +8,8 @@ namespace GameSceneObjects.Units
 {
     public class Hero : GameUnit, IClickInteractable, ISanctumable, IWithTarget
     {
+        [SerializeField] private GameObject selectionMark;
+        
         private IHeroManager heroManager;
         
         private HeroStationBehaviour stationBehaviour;
@@ -55,12 +57,12 @@ namespace GameSceneObjects.Units
 
         public void OnSelect()
         {
-            Debug.Log("Hero selected! " + gameObject.name);
+            selectionMark.SetActive(true);
         }
 
         public void OnDeselect()
         {
-            Debug.Log("Hero deselected! " + gameObject.name);
+            selectionMark.SetActive(false);
         }
 
         public void InteractWithUnit(GameUnit unt)

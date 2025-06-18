@@ -40,7 +40,7 @@ namespace GameSceneObjects.StateBehaviour
                 return hero;
             }
             
-            if (unitHolder.TryGetGlosestUnit(UnitFaction.Ally, controlledEnemy.transform.position, out GameUnit closestEnemy))
+            if (unitHolder.TryGetGlosestUnit(UnitFaction.Ally, controlledEnemy.transform.position, out GameUnit closestEnemy) && closestEnemy.CanBeAttacked())
             {
                 return closestEnemy;
             }
