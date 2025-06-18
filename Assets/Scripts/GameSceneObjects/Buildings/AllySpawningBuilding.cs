@@ -61,7 +61,7 @@ namespace GameSceneObjects.Buildings
 
         public virtual void BuildUnit()
         {
-            int price = nextUnit.gameUnitToSpawn.GetCost();
+            int price = nextUnit.UnitSpawnCost;
             if (currencyTracker.CurrencyValue < price)
             {
                 return;
@@ -94,7 +94,7 @@ namespace GameSceneObjects.Buildings
 
         public int GetUnitCost()
         {
-            return nextUnit.gameUnitToSpawn.GetCost();
+            return nextUnit.UnitSpawnCost;
         }
 
         public int GetUpgradeCost()

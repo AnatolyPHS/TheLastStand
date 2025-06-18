@@ -35,7 +35,7 @@ namespace GameSceneObjects.StateBehaviour
         public override void OnStateExit()
         {
             nextTickTime = float.MaxValue;
-            unitToControl.ChangeAnimatorState(GameUnit.Idle01AnimParameter, true);
+            unitToControl.ChangeAnimatorState(GameUnit.Idle01AnimParameter, false);
         }
 
         public override void OnStateUpdate(float deltaTime)

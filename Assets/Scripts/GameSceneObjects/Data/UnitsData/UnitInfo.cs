@@ -1,5 +1,7 @@
+using EffectsManager;
 using GameSceneObjects.Units;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "NewUnitInfo", menuName = "GameData/Unit Info")]
 public class UnitInfo : ScriptableObject
@@ -14,8 +16,9 @@ public class UnitInfo : ScriptableObject
     [SerializeField] private float searchRange = 5f;
     [SerializeField] private float unitStopDistance = 1f;
     [SerializeField] private UnitFaction faction = UnitFaction.None;
-    [SerializeField] private int unitCost = 100;
+    [SerializeField] private int unitKillReward = 100;
     [SerializeField] private Sprite icon;
+    [SerializeField] private EffectType attackEffectType = EffectType.None;
 
     [SerializeField] private AnimationCurve lvlFactor;
     
@@ -28,8 +31,9 @@ public class UnitInfo : ScriptableObject
     public float SearchRange => searchRange;
     public float UnitStopDistance => unitStopDistance;
     public UnitFaction Faction => faction;
-    public int UnitCost => unitCost;
+    public int UnitKillReward => unitKillReward;
     public Sprite UnitIcon => icon;
+    public EffectType AttackEffectType => attackEffectType;
     
     public float GetLVLFactor(int level)
     {

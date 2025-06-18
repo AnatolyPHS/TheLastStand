@@ -132,7 +132,7 @@ namespace GameSceneObjects.Units
         protected override void Start()
         {
             base.Start();
-            stationBehaviour = new HeroStationBehaviour(this, heroManager);
+            stationBehaviour = new HeroStationBehaviour(this, heroManager, effectHolder);
         }
         
         private void Update()

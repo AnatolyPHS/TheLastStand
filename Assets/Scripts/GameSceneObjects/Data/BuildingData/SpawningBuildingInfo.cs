@@ -39,5 +39,6 @@ namespace GameSceneObjects.Data
         public int SpawnerLevel = 1;
         [FormerlySerializedAs("UnitToSpawn")] public GameUnit gameUnitToSpawn;
         public float SpawnDuration = 5f;
+        public int UnitSpawnCost = 0;
     }
 }

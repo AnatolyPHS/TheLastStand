@@ -1,11 +1,11 @@
-using GameSceneObjects.Buildings;
+using EffectsManager;
 using GameSceneObjects.Units;
 
 namespace GameSceneObjects.StateBehaviour
 {
     public class EnemyAttackTargetUnitState : AttackTargetUnitState
     {
-        public EnemyAttackTargetUnitState(GameUnit unit, StationBehaviour stationBehaviour) : base(unit, stationBehaviour)
+        public EnemyAttackTargetUnitState(GameUnit unit, IEffectHolder effectManager, StationBehaviour stationBehaviour) : base(unit, effectManager, stationBehaviour)
         {
         }
         

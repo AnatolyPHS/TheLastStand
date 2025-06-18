@@ -1,3 +1,4 @@
+using EffectsManager;
 using GameSceneObjects.Units;
 using UnityEngine;
 
@@ -5,14 +6,17 @@ namespace GameSceneObjects.StateBehaviour
 {
     public class AttackTargetUnitState : BaseUnitState
     {
+        private IEffectHolder effectManager;
+        
         private IWithTarget attacker;
     
         private float nextAttackTime = float.MinValue;
     
-        public AttackTargetUnitState(GameUnit unit, StationBehaviour stationBehaviour) 
+        public AttackTargetUnitState(GameUnit unit, IEffectHolder effectManager, StationBehaviour stationBehaviour) 
             : base(unit, stationBehaviour)
         {
             attacker = unit as IWithTarget;
+            this.effectManager = effectManager;
         }
 
         public override void OnStateEnter()
@@ -52,12 +56,26 @@ namespace GameSceneObjects.StateBehaviour
             if (CanAttack(target))
             {
                 RotateToTarget();
+                PlayAttackEffect(target);
                 attacker.InflictDamage();
             }
             else
             {
                 SwitchToMoveToTargetState();
             }
+        }
+
+        private void PlayAttackEffect(IHittable target)
+        {
+            EffectType attackEffectType = unitToControl.GetAttackEffectType();
+
+            if (attackEffectType == EffectType.None)
+            {
+                return;
+            }
+            
+            Vector3 effectPosition = unitToControl.transform.position + Vector3.up * 0.5f;
+            effectManager.ShootEffect(attackEffectType, effectPosition, target.GetPosition());
         }
 
         protected virtual void SwitchToMoveToTargetState()

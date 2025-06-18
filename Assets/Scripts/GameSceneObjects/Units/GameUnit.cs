@@ -22,7 +22,7 @@ namespace GameSceneObjects.Units
         [SerializeField] protected UnitInfo info;
         [SerializeField] protected Animator animator;
         
-        private IEffectHolder effectHolder;
+        protected IEffectHolder effectHolder;
         private IPoolManager poolManager;
         
         protected int currentLevel = 1;
@@ -32,7 +32,7 @@ namespace GameSceneObjects.Units
         private float attackRange;
         private float attackCooldown;
         private float attackDamage;
-        private int unitCost;
+        private int unitKillReward;
         private float maxHealth;
         private float armor;
         
@@ -74,6 +74,7 @@ namespace GameSceneObjects.Units
 
         public void ChangeAnimatorState(string stateName, bool value)
         {
+            Debug.Log(gameObject.name + " change animator state: " + stateName + " to " + value);
             animator.SetBool(stateName, value);
         }
         
@@ -177,9 +178,14 @@ namespace GameSceneObjects.Units
 
         public int GetCost()
         {
-            return unitCost;
+            return unitKillReward;
         }
 
+        public EffectType GetAttackEffectType()
+        {
+            return info.AttackEffectType;
+        }
+        
         public Sprite GetIcon()
         {
             return info.UnitIcon;
@@ -195,7 +201,7 @@ namespace GameSceneObjects.Units
             maxHealth = info.Health * levelFactor;
             attackRange = info.AttackRange * levelFactor;
             attackDamage = info.AttackPower * levelFactor;
-            unitCost = (int) (info.UnitCost * levelFactor);
+            unitKillReward = (int) (info.UnitKillReward * levelFactor);
             attackCooldown = 1f / (info.AttackSpeed * levelFactor);
             armor = Mathf.Clamp(info.Armor * (1 + levelFactor / info.GetMaxLvlFactor()), 0, 0.99f); //TODO: think about asymptotic  growth formula
             navMeshAgent.speed = info.MovementSpeed * levelFactor;

@@ -1,10 +1,12 @@
+using EffectsManager;
 using GameSceneObjects.Units;
 
 namespace GameSceneObjects.StateBehaviour.HeroStates
 {
     public class HeroAttackTargetUnitState : AttackTargetUnitState
     {
-        public HeroAttackTargetUnitState(GameUnit unit, StationBehaviour stationBehaviour) : base(unit, stationBehaviour)
+        public HeroAttackTargetUnitState(GameUnit unit, IEffectHolder effectManager, StationBehaviour stationBehaviour)
+            : base(unit, effectManager, stationBehaviour)
         {
         }
 
@@ -17,7 +19,6 @@ namespace GameSceneObjects.StateBehaviour.HeroStates
         {
             stateSwitcher.SwitchState<HeroCalmUnitState>();
         }
-        
     }
 }
 

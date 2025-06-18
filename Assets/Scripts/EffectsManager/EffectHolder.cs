@@ -24,14 +24,14 @@ namespace EffectsManager
             poolManager.ReturnObject(baseEffect);
         }
 
-        public void PlayEffect(EffectType meteorShower, Vector3 mouseGroundPosition, Quaternion identity)
+        public void PlayEffect(EffectType effect, Vector3 mouseGroundPosition, Quaternion identity)
         {
-            TryToPlayEffect(meteorShower, mouseGroundPosition, identity, out _);
+            TryToPlayEffect(effect, mouseGroundPosition, identity, out _);
         }
 
-        public void PlayEffect(EffectType meteorShower, Vector3 mouseGroundPosition, Quaternion identity, Transform parent = null)
+        public void PlayEffect(EffectType effect, Vector3 mouseGroundPosition, Quaternion identity, Transform parent = null)
         {
-            if (TryToPlayEffect(meteorShower, mouseGroundPosition, identity, out BaseEffect effectInstance) == false)
+            if (TryToPlayEffect(effect, mouseGroundPosition, identity, out BaseEffect effectInstance) == false)
             {
                 return;
             }
@@ -55,11 +55,11 @@ namespace EffectsManager
             return true;
         }
 
-        public void ShootEffect(EffectType freezeArrow, Vector3 from, Vector3 to)
+        public void ShootEffect(EffectType effect, Vector3 from, Vector3 to)
         {
-            if (!effectPrefabs.TryGetValue(freezeArrow, out BaseEffect effectPrefab))
+            if (!effectPrefabs.TryGetValue(effect, out BaseEffect effectPrefab))
             {
-                Debug.LogError($"Effect of type {freezeArrow} not found.");
+                Debug.LogError($"Effect of type {effect} not found.");
                 return;
             }
 

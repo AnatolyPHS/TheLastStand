@@ -70,10 +70,18 @@ namespace GameSceneObjects.Units
 
         public void InteractWithUnit(GameUnit unt)
         {
-            if (unt is EnemyGameUnit)
+            if (unt is EnemyGameUnit enemy)
             {
                 SetTarget(unt);
-                stationBehaviour.SwitchState<AllyMoveToTargetUnitState>();
+                float distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distanceToTarget <= GetAttackRange())
+                {
+                    stationBehaviour.SwitchState<AllyAttackTargetUnitState>();
+                }
+                else
+                {
+                    stationBehaviour.SwitchState<AllyMoveToTargetUnitState>();
+                }
                 return;
             }
             
@@ -114,7 +122,7 @@ namespace GameSceneObjects.Units
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
             
-            stationBehaviour = new AllyStationBehaviour(this, unitHolder, buildingManager);
+            stationBehaviour = new AllyStationBehaviour(this, unitHolder, buildingManager, effectHolder);
             stationBehaviour.SwitchState<AllyIdleState>();
         }
         

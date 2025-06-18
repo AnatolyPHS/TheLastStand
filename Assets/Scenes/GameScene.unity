@@ -957,6 +957,10 @@ MonoBehaviour:
     effectPrefab: {fileID: 219451168673961647, guid: 356f249fd0317b24a980841534c58e58, type: 3}
   - effectType: 30
     effectPrefab: {fileID: 7478633689924543403, guid: 301895af9fad6ad4f9639056bd366140, type: 3}
+  - effectType: 40
+    effectPrefab: {fileID: 219451168673961647, guid: 79b199cf82f358e4abf83ea8f4b29089, type: 3}
+  - effectType: 50
+    effectPrefab: {fileID: 219451168673961647, guid: d213795ddd6608746a5ae4efc8531172, type: 3}
   highlightAreas:
   - highlightAreaType: 10
     highlightAreaPrefab: {fileID: 3318292655170501709, guid: 3e183879bb50c354186c703c0dc41b22, type: 3}
@@ -2840,7 +2844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ca8ee30b69cf741b9bebeec9c58410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawningBuildingInfo: {fileID: 11400000, guid: eddfeb52fd521a94494a86271890af07, type: 2}
+  spawningBuildingInfo: {fileID: 11400000, guid: efee58f5f4338cd4e8556919633fc3cb, type: 2}
   spawnPoint: {fileID: 631471812}
   SelectionMark: {fileID: 1257862174}
   upgradeCost: 100
@@ -5162,7 +5166,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.54945284, y: 0.33157662}
   m_AnchorMax: {x: 0.901, y: 0.66326934}
-  m_AnchoredPosition: {x: -0.29999924, y: 0.48498917}
+  m_AnchoredPosition: {x: -0.29999542, y: 0.48498917}
   m_SizeDelta: {x: 1.9800034, y: 0.51800156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424275983
@@ -7952,7 +7956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.54945284, y: 0.33157662}
   m_AnchorMax: {x: 0.901, y: 0.66326934}
-  m_AnchoredPosition: {x: -0.29999924, y: 0.48498917}
+  m_AnchoredPosition: {x: -0.29999542, y: 0.48498917}
   m_SizeDelta: {x: 1.9800034, y: 0.51800156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072244035
@@ -8083,7 +8087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.13328552, y: -0.020137787}
+  m_AnchoredPosition: {x: 0.13330078, y: -0.020137787}
   m_SizeDelta: {x: -0.4881134, y: 0.50200844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2079944542

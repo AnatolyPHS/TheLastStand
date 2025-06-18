@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4771681333180192646}
   - component: {fileID: 219451168673961647}
   m_Layer: 0
-  m_Name: FreezeArrow
+  m_Name: AllyArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4778,8 +4778,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f89ed3fb109353d439d486e1f82e0ac3, type: 2}
-  - {fileID: 2100000, guid: f89ed3fb109353d439d486e1f82e0ac3, type: 2}
+  - {fileID: 2100000, guid: 9df7440f293f0274bb5e22f540f86f66, type: 2}
+  - {fileID: 2100000, guid: 9df7440f293f0274bb5e22f540f86f66, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

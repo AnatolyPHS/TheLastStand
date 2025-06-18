@@ -20,26 +20,28 @@ namespace GameSceneObjects.StateBehaviour
         {
             _allyGameUnitToControl = unit as AllyGameUnit;
             approachDistance = unit.GetUnitStopDistance();
-            unitToControl.ChangeAnimatorState(GameUnit.WalkAnimParameter, true);
+            
         }
 
         public override void OnStateEnter()
         {
             pointToMove = _allyGameUnitToControl.GetLastInterestPoint();
+            
             if (NavMesh.SamplePosition(pointToMove, out NavMeshHit hit, NavMeshPointSearchRadius, NavMesh.AllAreas))
             {
                 pointToMove = hit.position;
+                unitToControl.ChangeAnimatorState(GameUnit.WalkAnimParameter, true);
                 _allyGameUnitToControl.SetNavigationPoint(pointToMove);
                 nextTickTime = Time.time + TickDuraction;
                 return;
             }
             
-            unitToControl.ChangeAnimatorState(GameUnit.WalkAnimParameter, false);
             stateSwitcher.SwitchState<AllyIdleState>();
         }
         
         public override void OnStateExit()
         {
+            unitToControl.ChangeAnimatorState(GameUnit.WalkAnimParameter, false);
             nextTickTime = float.MaxValue;
         }
 

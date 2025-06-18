@@ -100,7 +100,7 @@ namespace GameSceneObjects.Units
             currencyTracker = ServiceLocator.Instance.Get<ICurrencyTracker>();
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             
-            stationBehaviour = new EnemyStationBehaviour(this, heroManager, buildingManager, unitHolder);
+            stationBehaviour = new EnemyStationBehaviour(this, heroManager, buildingManager, unitHolder, effectHolder);
             stationBehaviour.SwitchState<EnemySearchForTargetUnitState>();
         }
 
