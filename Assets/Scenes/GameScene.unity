@@ -399,6 +399,39 @@ MonoBehaviour:
   spawnPoint: {fileID: 1738866196}
   SelectionMark: {fileID: 977121917}
   upgradeCost: 1000
+  trainingSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.18831064
+      outSlope: 0.18831064
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.23965819
+    - serializedVersion: 3
+      time: 10
+      value: 2
+      inSlope: 0.040204555
+      outSlope: 0.040204555
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.36508337
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 100
+      value: 3
+      inSlope: 0.0026728641
+      outSlope: 0.0026728641
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06356269
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   healEffect: 0.1
   sanctumTrigger: {fileID: 1937418439}
   spawnDurationPerLvl:
@@ -2420,6 +2453,39 @@ MonoBehaviour:
   spawnPoint: {fileID: 995211886}
   SelectionMark: {fileID: 1436055096}
   upgradeCost: 100
+  trainingSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.18831064
+      outSlope: 0.18831064
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.23965819
+    - serializedVersion: 3
+      time: 10
+      value: 2
+      inSlope: 0.040204555
+      outSlope: 0.040204555
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.36508337
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 100
+      value: 3
+      inSlope: 0.0026728641
+      outSlope: 0.0026728641
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06356269
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &745903722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,6 +2657,39 @@ MonoBehaviour:
   spawnPoint: {fileID: 631471812}
   SelectionMark: {fileID: 1257862174}
   upgradeCost: 100
+  trainingSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.18831064
+      outSlope: 0.18831064
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.23965819
+    - serializedVersion: 3
+      time: 10
+      value: 2
+      inSlope: 0.040204555
+      outSlope: 0.040204555
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.36508337
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 100
+      value: 3
+      inSlope: 0.0026728641
+      outSlope: 0.0026728641
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06356269
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!135 &797558098
 SphereCollider:
   m_ObjectHideFlags: 0

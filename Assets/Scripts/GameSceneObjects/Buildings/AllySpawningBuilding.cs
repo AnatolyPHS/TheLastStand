@@ -11,11 +11,13 @@ namespace GameSceneObjects.Buildings
     {
         [SerializeField] private GameObject SelectionMark;
         [SerializeField] private int upgradeCost = 100;
+        [SerializeField] private AnimationCurve trainingSpeedCurve;
 
         private IBuildingManager buildingManager;
         private ICurrencyTracker currencyTracker;
         
         protected int unitsToSpawnNumber = 0;
+        private float trainingSpeedFactor = 1f;
         
         public void OnSelect()
         {
@@ -57,6 +59,7 @@ namespace GameSceneObjects.Buildings
             
             currencyTracker.ChangeCurrencyValue(-upgradeCost);
             currentBuildingLevel++;
+            trainingSpeedFactor = trainingSpeedCurve.Evaluate(currentBuildingLevel);
         }
 
         public virtual void BuildUnit()
@@ -100,6 +103,11 @@ namespace GameSceneObjects.Buildings
         public int GetUpgradeCost()
         {
             return upgradeCost;
+        }
+
+        protected override void ReduceTimer()
+        {
+            nextSpawnTimer -= Time.deltaTime * trainingSpeedFactor;
         }
     }
 }

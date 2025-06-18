@@ -25,9 +25,9 @@ namespace GameSceneObjects.Buildings
             poolManager = ServiceLocator.Instance.Get<IPoolManager>();
             
             nextUnit = spawningBuildingInfo.GetUnitOfLevel(currentBuildingLevel);
-            nextSpawnTimer = nextUnit.SpawnDuration;
+            SetNextSpawnTimer();
         }
-
+        
         protected virtual bool CanSpawn()
         {
             return true;
@@ -47,7 +47,7 @@ namespace GameSceneObjects.Buildings
         {
             if (nextSpawnTimer > 0)
             {
-                nextSpawnTimer -= Time.deltaTime;
+                ReduceTimer();
                 return;
             }
 
@@ -58,7 +58,12 @@ namespace GameSceneObjects.Buildings
 
             OnSpawn(gameUnit);
 
-            nextSpawnTimer = CalculateSpawnDuration();
+            SetNextSpawnTimer();
+        }
+
+        protected virtual void ReduceTimer()
+        {
+            nextSpawnTimer -= Time.deltaTime;
         }
 
         protected virtual float CalculateSpawnDuration()
@@ -69,6 +74,11 @@ namespace GameSceneObjects.Buildings
         protected virtual void OnSpawn(GameUnit gameUnit)
         {
             unitsHolder.RegisterUnit(gameUnit);
+        }
+        
+        private void SetNextSpawnTimer()
+        {
+            nextSpawnTimer = nextUnit.SpawnDuration;
         }
     }
 }

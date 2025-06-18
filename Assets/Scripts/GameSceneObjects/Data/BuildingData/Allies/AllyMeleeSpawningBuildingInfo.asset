@@ -15,5 +15,5 @@ MonoBehaviour:
   unitsToSpawn:
   - SpawnerLevel: 1
     gameUnitToSpawn: {fileID: 7920302462804021826, guid: 5d0dfd7b1da42124597e7dd9417b7029, type: 3}
-    SpawnDuration: 1
+    SpawnDuration: 10
     UnitSpawnCost: 100
