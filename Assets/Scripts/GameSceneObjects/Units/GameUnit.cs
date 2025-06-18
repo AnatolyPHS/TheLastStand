@@ -74,7 +74,6 @@ namespace GameSceneObjects.Units
 
         public void ChangeAnimatorState(string stateName, bool value)
         {
-            Debug.Log(gameObject.name + " change animator state: " + stateName + " to " + value);
             animator.SetBool(stateName, value);
         }
         

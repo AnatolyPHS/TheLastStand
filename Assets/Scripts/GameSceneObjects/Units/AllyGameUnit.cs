@@ -57,7 +57,6 @@ namespace GameSceneObjects.Units
             
             float damage = UnitDamage();
             currentTarget.GetDamage(damage);
-            Debug.Log("Ally is attacking ");
         }
         
         public void OnSelect()
