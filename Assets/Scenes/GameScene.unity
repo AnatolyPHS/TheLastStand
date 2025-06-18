@@ -961,6 +961,8 @@ MonoBehaviour:
     effectPrefab: {fileID: 219451168673961647, guid: 79b199cf82f358e4abf83ea8f4b29089, type: 3}
   - effectType: 50
     effectPrefab: {fileID: 219451168673961647, guid: d213795ddd6608746a5ae4efc8531172, type: 3}
+  - effectType: 60
+    effectPrefab: {fileID: 7478633689924543403, guid: 2e9e346daaf26f2428f831f717384532, type: 3}
   highlightAreas:
   - highlightAreaType: 10
     highlightAreaPrefab: {fileID: 3318292655170501709, guid: 3e183879bb50c354186c703c0dc41b22, type: 3}

@@ -22,6 +22,7 @@ namespace EffectsManager
         EnemyPointer = 30,
         AllyArrow =40,
         EnemyArrow = 50,
+        UnitDeath = 60,
     }
     
     public interface IEffectHolder

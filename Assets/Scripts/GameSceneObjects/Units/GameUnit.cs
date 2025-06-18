@@ -14,7 +14,7 @@ namespace GameSceneObjects.Units
     
     public abstract class GameUnit : MonoBehaviour, IHittable, IPoolable
     {
-        public const string WalkAnimParameter = "walk";
+        public const string WalkAnimParameter = "walk"; //TODO: use trigger for animations
         public const string Idle01AnimParameter = "idle01";
         public const string Attack01AnimParameter = "attack01";
         
@@ -151,6 +151,7 @@ namespace GameSceneObjects.Units
 
         public virtual void OnDie()
         {
+            effectHolder.PlayEffect(EffectType.UnitDeath, transform.position, Quaternion.identity);
             poolManager.ReturnObject(this);
             gameObject.SetActive(false);
         }
