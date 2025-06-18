@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58bc0a141e0b5fe46a3c7d72d58f6b3b, type: 3}
+  m_Name: EnemyBossSpawningBuildingInfo
+  m_EditorClassIdentifier: 
+  unitsToSpawn:
+  - SpawnerLevel: 1
+    gameUnitToSpawn: {fileID: 893273265135673963, guid: b2691ed456091474f8c51b654f3ea84a, type: 3}
+    SpawnDuration: 25
+    UnitSpawnCost: 0

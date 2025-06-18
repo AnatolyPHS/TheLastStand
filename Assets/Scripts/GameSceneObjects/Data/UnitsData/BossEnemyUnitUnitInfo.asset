@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4aee42f977e0f224f9b4ecc1845fd4b5, type: 3}
-  m_Name: MeleeAllyUnitInfo
+  m_Name: BossEnemyUnitUnitInfo
   m_EditorClassIdentifier: 
-  health: 100
+  health: 300
   armor: 0
-  attackPower: 10
-  attackSpeed: 1
-  attackRange: 2
-  movementSpeed: 5
+  attackPower: 15
+  attackSpeed: 0.6
+  attackRange: 3
+  movementSpeed: 1.5
   searchRange: 5
-  unitStopDistance: 1.5
-  faction: 20
+  unitStopDistance: 2
+  faction: 10
   unitKillReward: 100
-  icon: {fileID: 21300000, guid: 81d21c10e60b3c74b9b4483ea274e611, type: 3}
+  icon: {fileID: 21300000, guid: 105190c693a9886499aae9f1d3223027, type: 3}
   attackEffectType: 0
   lvlFactor:
     serializedVersion: 2
