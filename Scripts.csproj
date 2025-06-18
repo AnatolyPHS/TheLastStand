@@ -93,6 +93,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\Sanctum.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\HeroManagement\HeroManager.cs" />
      <Compile Include="Assets\Scripts\UI\HeroPanel\IHeroViewController.cs" />
+     <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroMoveToPointUnitState.cs" />
      <Compile Include="Assets\Scripts\UI\EndGameView\EndGameView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyStationBehaviour.cs" />
      <Compile Include="Assets\Scripts\PoolingSystem\IPoolable.cs" />

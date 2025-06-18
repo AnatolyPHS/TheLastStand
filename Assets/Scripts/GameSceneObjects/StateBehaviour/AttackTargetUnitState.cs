@@ -19,9 +19,10 @@ namespace GameSceneObjects.StateBehaviour
         {
             ProcessAttack();
             nextAttackTime = Time.time + unitToControl.GetAttackCooldown();
+            RotateToTarget();
             unitToControl.ChangeAnimatorState(GameUnit.Attack01AnimParameter, true);
         }
-
+        
         public override void OnStateExit()
         {
             nextAttackTime = float.MaxValue;
@@ -50,6 +51,7 @@ namespace GameSceneObjects.StateBehaviour
             IHittable target = attacker.GetCurrentTarget();
             if (CanAttack(target))
             {
+                RotateToTarget();
                 attacker.InflictDamage();
             }
             else
@@ -71,6 +73,12 @@ namespace GameSceneObjects.StateBehaviour
         protected virtual bool CanAttack(IHittable target)
         {
             return Vector3.Distance(unitToControl.transform.position, target.GetPosition()) <= unitToControl.GetAttackRange();
+        }
+        
+        private void RotateToTarget()
+        {
+            Vector3 targetPosition = attacker.GetCurrentTarget().GetPosition();
+            unitToControl.transform.LookAt(new Vector3(targetPosition.x, unitToControl.transform.position.y, targetPosition.z));
         }
     }
 }

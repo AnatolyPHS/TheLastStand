@@ -1,5 +1,6 @@
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.StateBehaviour;
+using GameSceneObjects.StateBehaviour.HeroStates;
 using Services;
 using UnityEngine;
 
@@ -67,14 +68,22 @@ namespace GameSceneObjects.Units
             if (unt is EnemyGameUnit enemy)
             {
                 SetTarget(enemy);
-                stationBehaviour.SwitchState<HeroMoveToTargetUnitState>();
+                float distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distanceToTarget <= GetAttackRange())
+                {
+                    stationBehaviour.SwitchState<HeroAttackTargetUnitState>();
+                }
+                else
+                {
+                    stationBehaviour.SwitchState<HeroMoveToTargetUnitState>();
+                }
             }
         }
 
         public void MoveTo(Vector3 targetPosition)
         {
-            stationBehaviour.SwitchState<HeroMoveToTargetUnitState>();
             navMeshAgent.SetDestination(targetPosition);
+            stationBehaviour.SwitchState<HeroMoveToPointUnitState>();
         }
         
         public override bool CanBeAttacked()

@@ -20,6 +20,7 @@ namespace GameSceneObjects.StateBehaviour
         {
             _allyGameUnitToControl = unit as AllyGameUnit;
             approachDistance = unit.GetUnitStopDistance();
+            unitToControl.ChangeAnimatorState(GameUnit.WalkAnimParameter, true);
         }
 
         public override void OnStateEnter()
@@ -33,6 +34,7 @@ namespace GameSceneObjects.StateBehaviour
                 return;
             }
             
+            unitToControl.ChangeAnimatorState(GameUnit.WalkAnimParameter, false);
             stateSwitcher.SwitchState<AllyIdleState>();
         }
         

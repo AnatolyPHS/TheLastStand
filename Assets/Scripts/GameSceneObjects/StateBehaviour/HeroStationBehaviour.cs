@@ -12,6 +12,7 @@ namespace GameSceneObjects.StateBehaviour
             states.Add(currentUnitState);
             states.Add(new HeroAttackTargetUnitState(hero, this));
             states.Add(new HeroMoveToTargetUnitState(hero, this));
+            states.Add(new HeroMoveToPointUnitState(hero, this));
         }
     }
 }
