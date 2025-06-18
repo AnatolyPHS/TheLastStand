@@ -69,6 +69,7 @@
      <Folder Include="Assets\TextMesh Pro" />
      <Folder Include="Assets\Materials\Textures\MagicCursor" />
      <Folder Include="Assets\ExternalPackages\Epic Toon FX\Materials\Glows" />
+     <Folder Include="Assets\UI\UITimeline" />
      <Folder Include="Assets\ExternalPackages\LowPoly Fantasy Monsters Pack Ver1.0_Demo\Materials" />
      <Folder Include="Assets\ExternalPackages\LowPoly Fantasy Monsters Pack Ver1.0_Demo\Environment\EffectMat" />
      <Folder Include="Assets\ExternalPackages\LowPoly Fantasy Monsters Pack Ver1.0_Demo\Animations" />

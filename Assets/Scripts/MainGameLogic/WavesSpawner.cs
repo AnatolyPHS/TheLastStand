@@ -2,6 +2,7 @@ using GameSceneObjects.Buildings;
 using GameSceneObjects.Units;
 using Services;
 using UI.GameView;
+using UI.WavesPanel;
 using UnityEngine;
 
 namespace MainGameLogic
@@ -15,6 +16,7 @@ namespace MainGameLogic
         private IBuildingManager buildingManager;
         private IUnitHolder unitHolder;
         private IEndGameViewController endGameViewController;
+        private IGameProgressViewController gameProgressViewController;
         
         private int currentWave = 0;
 
@@ -30,9 +32,12 @@ namespace MainGameLogic
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             unitHolder = ServiceLocator.Instance.Get<IUnitHolder>();
             endGameViewController = ServiceLocator.Instance.Get<IEndGameViewController>();
+            gameProgressViewController = ServiceLocator.Instance.Get<IGameProgressViewController>();
             
             //TODO: run UI timer if any
             nextWaveTimer = firstWaveDelay;
+            
+            gameProgressViewController.UpdateWaveProgress(numberOfWaves - currentWave);
         }
 
         private void Update() //TODO: add spawning states
@@ -67,6 +72,7 @@ namespace MainGameLogic
 
         private void SpawnNextWave()
         {
+            gameProgressViewController.UpdateWaveProgress(numberOfWaves - currentWave);
             buildingManager.SetEnemySpawnersLevel(currentWave);
         }
     }

@@ -9,6 +9,4 @@ namespace GameEvents
         void AddListener(Action<TParams> listener);
         void RemoveListener(Action<TParams> listener);
     }
-    
-    
 }

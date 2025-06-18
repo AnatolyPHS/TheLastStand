@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\UI\GameView\GameView.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\EndGameViewController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroCalmUnitState.cs" />
+     <Compile Include="Assets\Scripts\UI\WavesPanel\GameProgressView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\Buffs\BuffBase.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\IBuildingManager.cs" />
@@ -75,6 +76,7 @@
      <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\SpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\EnemyUnitStates\EnemySearchForTargetUnitState.cs" />
+     <Compile Include="Assets\Scripts\UI\WavesPanel\GameProgressViewController.cs" />
      <Compile Include="Assets\Scripts\UI\HeroPanel\HeroViewController.cs" />
      <Compile Include="Assets\Scripts\InputsManager\InputManager.cs" />
      <Compile Include="Assets\Scripts\Selector\SelectionController.cs" />
@@ -100,6 +102,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\UnitHolder.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\AllyUnitStates\AllyMoveToTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\SanctumTrigger.cs" />
+     <Compile Include="Assets\Scripts\UI\WavesPanel\IGameProgressView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroAttackTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\AllySpawningBuilding.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\IClickInteractable.cs" />
@@ -142,15 +145,19 @@
      <Compile Include="Assets\Scripts\EffectsManager\HighlightArea.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Data\UnitsData\UnitInfo.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\ISanctumable.cs" />
+     <Compile Include="Assets\Scripts\UI\WavesPanel\IGameProgressViewController.cs" />
      <Folder Include="Assets\Scripts\Selector" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Data\BuildingData" />
      <Folder Include="Assets\Scripts\MenuScripts" />
+     <Folder Include="Assets\Scripts\GameSceneObjects\Data\BuildingData\Enemies" />
      <Folder Include="Assets\Scripts\GameSceneObjects" />
+     <Folder Include="Assets\Scripts\GameSceneObjects\Data\BuildingData\Allies" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Units" />
      <Folder Include="Assets\Scripts\GameSceneObjects\HeroManagement" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Units\Buffs" />
      <Folder Include="Assets\Scripts\UI\SelectorView" />
+     <Folder Include="Assets\Scripts\UI\WavesPanel" />
      <Folder Include="Assets\Scripts\EffectsManager" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Data\UnitsData" />
      <Folder Include="Assets\Scripts\Camera" />
@@ -160,10 +167,12 @@
      <Folder Include="Assets\Scripts\GameEvents" />
      <Folder Include="Assets\Scripts\UI\HeroPanel" />
      <Folder Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates" />
+     <Folder Include="Assets\Scripts\GameSceneObjects\Data\UnitsData\Enemies" />
      <Folder Include="Assets\Scripts\GameSceneObjects\Buildings" />
      <Folder Include="Assets\Scripts\PoolingSystem" />
      <Folder Include="Assets\Scripts\Currencies" />
      <Folder Include="Assets\Scripts\InputsManager" />
+     <Folder Include="Assets\Scripts\GameSceneObjects\Data\UnitsData\Allies" />
      <Folder Include="Assets\Scripts\UI\CurrencyView" />
      <Folder Include="Assets\Scripts\GameSceneObjects\HeroManagement\Abilities" />
      <Folder Include="Assets\Scripts\Services" />
