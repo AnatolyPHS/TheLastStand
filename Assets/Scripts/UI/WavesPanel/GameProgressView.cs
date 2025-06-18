@@ -16,7 +16,7 @@ namespace UI.WavesPanel
 
         public void UpdateWavesLeftText(int wavesLeft)
         {
-            wavesLeftText.text = $"Waves left: {wavesLeft}";
+            wavesLeftText.text = wavesLeft > 0  ? $"Waves left: {wavesLeft}" : "The last stand!";
         }
     }
 }
