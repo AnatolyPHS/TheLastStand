@@ -92,7 +92,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
                 switch (heroAbilities[i].AbilityType)
                 {
                     case AbilityType.MeteorShower:
-                        equippedAbilities[AbilityType.MeteorShower] = new MeteorShowerAbility(heroAbilities[i], effectHolder, this);
+                        equippedAbilities[AbilityType.MeteorShower] = new MeteorShowerAbility(heroAbilities[i], heroManager, effectHolder, this);
                         inputManager.SubscribeToInputEvent(heroAbilities[i].AbilityInputType, equippedAbilities[AbilityType.MeteorShower].AbilityButtonClick);
                         break;
                     case AbilityType.FreezingArrow:

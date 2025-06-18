@@ -17,7 +17,7 @@ namespace GameSceneObjects.HeroManagement
         
         public override void AbilityButtonClick(float f)
         {
-            if (InCooldown())
+            if (InCooldown() || heroManager.HeroIsRespawning())
             {
                 return;
             }

@@ -9,13 +9,15 @@ namespace GameSceneObjects.HeroManagement
     public class MeteorShowerAbility : AbilityBase
     {
         private IEffectHolder effectHolder;
+        private IHeroManager heroManager;
+        
         private HighlightArea selectionArea;
 
         private MeteorShowerAbilityInfo meteorShowerAbilityInfo;
         
         public override void AbilityButtonClick(float f)
         {
-            if (InCooldown())
+            if (InCooldown() || heroManager.HeroIsRespawning())
             {
                 return;
             }
@@ -61,10 +63,11 @@ namespace GameSceneObjects.HeroManagement
             }
         }
 
-        public MeteorShowerAbility(AbilityBaseInfo abilityBaseInfo, IEffectHolder effectHolder,
+        public MeteorShowerAbility(AbilityBaseInfo abilityBaseInfo, IHeroManager heroManager, IEffectHolder effectHolder,
             AbilityController controller) : base(abilityBaseInfo, controller)
         {
-            this.effectHolder = effectHolder; 
+            this.effectHolder = effectHolder;
+            this.heroManager = heroManager;
             meteorShowerAbilityInfo = abilityBaseInfo as MeteorShowerAbilityInfo;
         }
     }
