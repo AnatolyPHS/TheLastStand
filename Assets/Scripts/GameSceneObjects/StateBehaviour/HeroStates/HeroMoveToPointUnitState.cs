@@ -6,16 +6,17 @@ namespace GameSceneObjects.StateBehaviour.HeroStates
 {
     public class HeroMoveToPointUnitState : BaseUnitState
     {
-        private const float  StopDistance = 1f;
         private const float TickPeriod = 1f;
         
         protected NavMeshAgent controllableAgent;
     
         private float nextTickTime = float.MinValue;
+        private float  stopDistance = 1f;
         
         public HeroMoveToPointUnitState(GameUnit unit, IStateSwitcher stateSwitcher) : base(unit, stateSwitcher)
         {
             controllableAgent = unit.GetNavMeshAgent();
+            stopDistance = unit.GetUnitStopDistance();
         }
 
         public override void OnStateEnter()
@@ -37,7 +38,7 @@ namespace GameSceneObjects.StateBehaviour.HeroStates
             
             nextTickTime = Time.time + TickPeriod;
             
-            if (Vector3.Distance(unitToControl.transform.position, controllableAgent.destination) < StopDistance)
+            if (Vector3.Distance(unitToControl.transform.position, controllableAgent.destination) < stopDistance)
             {
                 stateSwitcher.SwitchState<HeroCalmUnitState>();
             }

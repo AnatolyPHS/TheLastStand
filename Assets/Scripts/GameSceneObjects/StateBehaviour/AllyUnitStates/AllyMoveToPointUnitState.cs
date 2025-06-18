@@ -20,7 +20,6 @@ namespace GameSceneObjects.StateBehaviour
         {
             _allyGameUnitToControl = unit as AllyGameUnit;
             approachDistance = unit.GetUnitStopDistance();
-            
         }
 
         public override void OnStateEnter()

@@ -90,7 +90,7 @@ namespace GameSceneObjects.StateBehaviour
 
         protected virtual bool CanAttack(IHittable target)
         {
-            return Vector3.Distance(unitToControl.transform.position, target.GetPosition()) <= unitToControl.GetAttackRange();
+            return target.CanBeAttacked() && Vector3.Distance(unitToControl.transform.position, target.GetPosition()) <= unitToControl.GetAttackRange();
         }
         
         private void RotateToTarget()

@@ -5545,7 +5545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.064, y: 0.25035474}
   m_AnchorMax: {x: 0.34278053, y: 0.82332265}
-  m_AnchoredPosition: {x: 2.045929, y: 1.1619034}
+  m_AnchoredPosition: {x: 2.0458984, y: 1.1619034}
   m_SizeDelta: {x: 8.578903, y: 2.8820953}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598455061
@@ -5757,7 +5757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1018980e6bac59409897c9b6f08a85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawningBuildingInfo: {fileID: 11400000, guid: 09fe96f2eb7932a4780c9d672109b6d7, type: 2}
+  spawningBuildingInfo: {fileID: 11400000, guid: c04fe849efef5754990c93c1690be1a9, type: 2}
   spawnPoint: {fileID: 1192867640}
   enemiesNumberALevel:
     serializedVersion: 2
@@ -7782,7 +7782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7302917, y: 0}
   m_AnchorMax: {x: 1, y: 0.3778523}
-  m_AnchoredPosition: {x: -1.439331, y: -0.65338135}
+  m_AnchoredPosition: {x: -1.439331, y: -0.6534424}
   m_SizeDelta: {x: 2.8781128, y: -1.306488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034642445

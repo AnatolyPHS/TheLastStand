@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58bc0a141e0b5fe46a3c7d72d58f6b3b, type: 3}
-  m_Name: EnemySpawningBuildingInfo
+  m_Name: EnemyMeleeSpawningBuildingInfo
   m_EditorClassIdentifier: 
   unitsToSpawn:
   - SpawnerLevel: 1

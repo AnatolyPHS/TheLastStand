@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58bc0a141e0b5fe46a3c7d72d58f6b3b, type: 3}
-  m_Name: AllyRangeSpawningBuildingInfo
+  m_Name: EnemyRangeSpawningBuildingInfo
   m_EditorClassIdentifier: 
   unitsToSpawn:
   - SpawnerLevel: 1
-    gameUnitToSpawn: {fileID: 7920302462804021826, guid: 9e3c9e8f806728a4bb50724acbe45c35, type: 3}
-    SpawnDuration: 2
-    UnitSpawnCost: 100
+    gameUnitToSpawn: {fileID: 893273265135673963, guid: 579991eea5a86f44394dd8b621d07448, type: 3}
+    SpawnDuration: 15
+    UnitSpawnCost: 0

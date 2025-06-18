@@ -17,6 +17,7 @@ namespace GameSceneObjects.Buildings
 
         public void StartNextWaveSpawn(int currentWave)
         {
+            spawnedEnemiesCount = 0;
             currentBuildingLevel = currentWave;
             needToSpawnCount = Mathf.RoundToInt(enemiesNumberALevel.Evaluate(currentBuildingLevel));
             nextSpawnTimer = float.MinValue;
