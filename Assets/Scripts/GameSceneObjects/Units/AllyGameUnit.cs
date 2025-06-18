@@ -27,7 +27,10 @@ namespace GameSceneObjects.Units
         public void SetTarget(IHittable target)
         {
             currentTarget = target;
-            currentTarget.ShowTargetPointer();
+            if (selectionMark.activeSelf)
+            {
+                currentTarget.ShowTargetPointer();
+            }
         }
 
         public IHittable GetCurrentTarget()
