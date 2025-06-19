@@ -38,8 +38,6 @@ namespace MainGameLogic
             
             //TODO: run UI timer if any
             nextWaveTimer = firstWaveDelay;
-            
-            gameProgressViewController.UpdateWaveProgress(numberOfWaves - currentWave);
         }
 
         private void Update() //TODO: add spawning states

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aee42f977e0f224f9b4ecc1845fd4b5, type: 3}
   m_Name: HeroAllyUnitInfo
   m_EditorClassIdentifier: 
-  health: 100
+  health: 200
   armor: 0.1
-  attackPower: 10
+  attackPower: 15
   attackSpeed: 1
   attackRange: 2
   movementSpeed: 5

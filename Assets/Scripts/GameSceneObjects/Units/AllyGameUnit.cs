@@ -87,6 +87,11 @@ namespace GameSceneObjects.Units
 
         public void MoveTo(Vector3 targetPosition)
         {
+            if (IsAlive() == false)
+            {
+                return;
+            }
+            
             SetPointToMove(targetPosition);
             stationBehaviour.SwitchState<AllyMoveToPointUnitState>();
         }

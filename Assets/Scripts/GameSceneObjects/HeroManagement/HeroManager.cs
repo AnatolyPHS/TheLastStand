@@ -98,7 +98,7 @@ namespace GameSceneObjects.HeroManagement
                 return;
             }
 
-            abilityController.TryUpgradeAbility(abilityType);
+            abilityController.UpgradeAbility(abilityType);
             heroSkillPoints--;
             SendHeroChangeStateEvent();
         }

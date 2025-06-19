@@ -105,7 +105,7 @@ namespace GameSceneObjects.HeroManagement.Abilities
             }
         }
 
-        public void TryUpgradeAbility(AbilityType abilityType)
+        public void UpgradeAbility(AbilityType abilityType)
         {
             equippedAbilities[abilityType].UpgradeAbility();
         }

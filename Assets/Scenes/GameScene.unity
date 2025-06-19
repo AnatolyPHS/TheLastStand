@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Waves left: 11'
+  m_text: Get ready!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 793b042a238241b4a9a06e897f5c9132, type: 2}
   m_sharedMaterial: {fileID: 5279814539386338894, guid: 793b042a238241b4a9a06e897f5c9132, type: 2}
@@ -1113,7 +1113,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64.9
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1250,8 +1250,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 872640709}
+  m_Children: []
   m_Father: {fileID: 1374055426}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &384476431
@@ -2684,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9125420cc21c74eafcd4d101b03158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialCurrencyValue: 2000
+  initialCurrencyValue: 200
 --- !u!1001 &781254194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3030,37 +3029,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &872640708
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 872640709}
-  m_Layer: 0
-  m_Name: HeroSpawnPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &872640709
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872640708}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 354666894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &891469582
 GameObject:
@@ -4484,7 +4452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstWaveDelay: 10
-  nextWaveDelay: 5
+  nextWaveDelay: 15
   numberOfWaves: 6
 --- !u!4 &1200508464
 Transform:
@@ -7772,10 +7740,10 @@ RectTransform:
   - {fileID: 349539815}
   m_Father: {fileID: 1348650702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35256252, y: 0.8516678}
-  m_AnchorMax: {x: 0.5588957, y: 1}
-  m_AnchoredPosition: {x: -0.526001, y: 1.05896}
-  m_SizeDelta: {x: -1.230011, y: -1.96698}
+  m_AnchorMin: {x: 0.42760417, y: 0.8553714}
+  m_AnchorMax: {x: 0.633, y: 1}
+  m_AnchoredPosition: {x: 1, y: -0.94104004}
+  m_SizeDelta: {x: 0.769989, y: 2.03302}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1896178446
 GameObject:

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 60
   armor: 0.05
-  attackPower: 10
+  attackPower: 15
   attackSpeed: 0.3
   attackRange: 8
-  movementSpeed: 5
+  movementSpeed: 3
   searchRange: 9
   unitStopDistance: 1
   faction: 10

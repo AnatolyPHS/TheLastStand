@@ -45,6 +45,7 @@ namespace GameSceneObjects.HeroManagement
         public void UpgradeAbility()
         {
             abiliyLevel++;
+            Debug.Log(abiliyLevel);
         }
         
         protected bool InCooldown()

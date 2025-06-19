@@ -58,7 +58,7 @@ namespace GameSceneObjects.HeroManagement
             {
                 if (hitCollider.TryGetComponent(out EnemyGameUnit enemy))
                 {
-                    enemy.GetDamage(meteorShowerAbilityInfo.CalculateDamage(abiliyLevel));//TODO: Add damage scaling via animation curve
+                    enemy.GetDamage(meteorShowerAbilityInfo.CalculateDamage(abiliyLevel));
                 }
             }
         }

@@ -17,7 +17,7 @@ MonoBehaviour:
   attackPower: 10
   attackSpeed: 0.5
   attackRange: 10
-  movementSpeed: 5
+  movementSpeed: 4
   searchRange: 12
   unitStopDistance: 1
   faction: 20
