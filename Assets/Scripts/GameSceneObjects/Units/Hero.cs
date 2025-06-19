@@ -1,3 +1,4 @@
+using EffectsManager;
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.StateBehaviour;
 using GameSceneObjects.StateBehaviour.HeroStates;
@@ -65,7 +66,9 @@ namespace GameSceneObjects.Units
             if (unt is EnemyGameUnit enemy)
             {
                 SetTarget(enemy);
-                float distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
+                Vector3 enemyPosition = enemy.transform.position;
+                effectHolder.PlayEffect(EffectType.EnemyPointer, enemyPosition, Quaternion.identity);
+                float distanceToTarget = Vector3.Distance(transform.position, enemyPosition);
                 if (distanceToTarget <= GetAttackRange())
                 {
                     stationBehaviour.SwitchState<HeroAttackTargetUnitState>();
@@ -79,6 +82,7 @@ namespace GameSceneObjects.Units
 
         public void MoveTo(Vector3 targetPosition)
         {
+            effectHolder.PlayEffect(EffectType.EnemyPointer, targetPosition, Quaternion.identity);
             navMeshAgent.SetDestination(targetPosition);
             stationBehaviour.SwitchState<HeroMoveToPointUnitState>();
         }

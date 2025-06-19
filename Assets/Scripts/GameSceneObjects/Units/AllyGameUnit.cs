@@ -1,3 +1,4 @@
+using EffectsManager;
 using GameSceneObjects.Buildings;
 using GameSceneObjects.StateBehaviour;
 using Services;
@@ -92,6 +93,7 @@ namespace GameSceneObjects.Units
                 return;
             }
             
+            effectHolder.PlayEffect(EffectType.EnemyPointer, targetPosition, Quaternion.identity);
             SetPointToMove(targetPosition);
             stationBehaviour.SwitchState<AllyMoveToPointUnitState>();
         }
