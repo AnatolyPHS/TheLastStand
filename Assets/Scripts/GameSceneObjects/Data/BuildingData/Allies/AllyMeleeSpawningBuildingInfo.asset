@@ -17,3 +17,23 @@ MonoBehaviour:
     gameUnitToSpawn: {fileID: 7920302462804021826, guid: 5d0dfd7b1da42124597e7dd9417b7029, type: 3}
     SpawnDuration: 10
     UnitSpawnCost: 100
+  - SpawnerLevel: 2
+    gameUnitToSpawn: {fileID: 7920302462804021826, guid: 5d0dfd7b1da42124597e7dd9417b7029, type: 3}
+    SpawnDuration: 10
+    UnitSpawnCost: 100
+  - SpawnerLevel: 3
+    gameUnitToSpawn: {fileID: 7920302462804021826, guid: 5d0dfd7b1da42124597e7dd9417b7029, type: 3}
+    SpawnDuration: 12
+    UnitSpawnCost: 120
+  - SpawnerLevel: 4
+    gameUnitToSpawn: {fileID: 7920302462804021826, guid: 5d0dfd7b1da42124597e7dd9417b7029, type: 3}
+    SpawnDuration: 12
+    UnitSpawnCost: 120
+  - SpawnerLevel: 5
+    gameUnitToSpawn: {fileID: 7920302462804021826, guid: 5d0dfd7b1da42124597e7dd9417b7029, type: 3}
+    SpawnDuration: 14
+    UnitSpawnCost: 150
+  - SpawnerLevel: 6
+    gameUnitToSpawn: {fileID: 7920302462804021826, guid: 5d0dfd7b1da42124597e7dd9417b7029, type: 3}
+    SpawnDuration: 14
+    UnitSpawnCost: 160
