@@ -1,5 +1,6 @@
 using Currencies;
 using GameSceneObjects.Units;
+using MainGameLogic;
 using Selector;
 using Services;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace GameSceneObjects.Buildings
 
         private IBuildingManager buildingManager;
         private ICurrencyTracker currencyTracker;
+        private IWavesSpawner wavesSpawner;
         
         protected int unitsToSpawnNumber = 0;
         private float trainingSpeedFactor = 1f;
@@ -37,6 +39,7 @@ namespace GameSceneObjects.Buildings
             
             buildingManager = ServiceLocator.Instance.Get<IBuildingManager>();
             currencyTracker = ServiceLocator.Instance.Get<ICurrencyTracker>();
+            wavesSpawner = ServiceLocator.Instance.Get<IWavesSpawner>();
         }
         
         protected override void OnSpawn(GameUnit gameUnit)
@@ -47,7 +50,7 @@ namespace GameSceneObjects.Buildings
 
         protected override bool CanSpawn()
         {
-            return unitsToSpawnNumber > 0;
+            return unitsToSpawnNumber > 0 && wavesSpawner.GameStarted;
         }
 
         public void UpgradeBuilding()
@@ -87,7 +90,7 @@ namespace GameSceneObjects.Buildings
 
         public void SetLevel(int currentWave)
         {
-            throw new System.NotImplementedException();
+            currentBuildingLevel = currentWave;
         }
 
         public Sprite GetUnitIcon()

@@ -22,6 +22,8 @@ namespace MainGameLogic
 
         private float nextWaveTimer = float.MaxValue;
         
+        public bool GameStarted => currentWave > 0;
+        
         private void Awake()
         {
             ServiceLocator.Instance.Register<IWavesSpawner>(this);
