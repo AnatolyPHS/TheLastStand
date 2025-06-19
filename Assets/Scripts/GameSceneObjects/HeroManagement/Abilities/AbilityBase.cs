@@ -26,7 +26,8 @@ namespace GameSceneObjects.HeroManagement
         private AbilityType abilityType;
         
         public AbilityType GetAbilityType => abilityType;
-        
+        public bool AbilityInUse => abilityInUse;
+
         public AbilityBase(AbilityBaseInfo abilityBaseInfo, AbilityController controller)
         {
             abilityType = abilityBaseInfo.AbilityType;

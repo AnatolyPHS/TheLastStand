@@ -41,6 +41,35 @@ namespace GameSceneObjects.HeroManagement.Abilities
             mousePositionAction.performed += OnMousePositionUpdate;
         }
 
+        public void UpgradeAbility(AbilityType abilityType)
+        {
+            equippedAbilities[abilityType].UpgradeAbility();
+        }
+
+        public bool IsCastingSpell()
+        {
+            foreach (KeyValuePair<AbilityType, AbilityBase> pair in equippedAbilities)
+            {
+                if (pair.Value.AbilityInUse)
+                {
+                    return true;
+                }
+            }
+        
+            return false;
+        }
+        
+        public void OnDestroy()
+        {
+            for (int i = 0; i < heroAbilities.Count; i++) 
+            {
+                if (equippedAbilities.ContainsKey(heroAbilities[i].AbilityType))
+                {
+                    inputManager.UnsubscribeFromInputEvent(heroAbilities[i].AbilityInputType, equippedAbilities[heroAbilities[i].AbilityType].AbilityButtonClick);
+                }
+            }
+        }
+        
         private void OnMousePositionUpdate(InputAction.CallbackContext obj)
         {
             if (currentAbilityType == AbilityType.None)
@@ -61,26 +90,10 @@ namespace GameSceneObjects.HeroManagement.Abilities
             Vector3 mouseGroundPosition = selectorController.RecalculateWorldPointUnderMouse(mousePositionAction.ReadValue<Vector2>());
             equippedAbilities[currentAbilityType].ActivateAbility(mouseGroundPosition);
         }
-
-        public bool CanUseAbility()
-        {
-            return currentAbilityType == AbilityType.None;
-        }
-
+        
         internal void SetCurrentAbilityType(AbilityType abilityType)
         {
             currentAbilityType = abilityType;
-        }
-        
-        public void OnDestroy()
-        {
-            for (int i = 0; i < heroAbilities.Count; i++) 
-            {
-                if (equippedAbilities.ContainsKey(heroAbilities[i].AbilityType))
-                {
-                    inputManager.UnsubscribeFromInputEvent(heroAbilities[i].AbilityInputType, equippedAbilities[heroAbilities[i].AbilityType].AbilityButtonClick);
-                }
-            }
         }
         
         private void EquipAbilities(List<AbilityBaseInfo> heroAbilities)
@@ -103,11 +116,6 @@ namespace GameSceneObjects.HeroManagement.Abilities
                         throw new System.NotImplementedException($"Ability type {heroAbilities[i].AbilityType} is not implemented.");
                 }
             }
-        }
-
-        public void UpgradeAbility(AbilityType abilityType)
-        {
-            equippedAbilities[abilityType].UpgradeAbility();
         }
     }
 }

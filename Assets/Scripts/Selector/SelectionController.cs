@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Camera;
 using GameSceneObjects;
 using GameSceneObjects.Buildings;
+using GameSceneObjects.HeroManagement;
 using GameSceneObjects.Units;
 using InputsManager;
 using Services;
@@ -25,6 +26,7 @@ namespace Selector
         
         private IInputManager inputManager;
         private ISelectorView selectorView;
+        private IHeroManager heroManager;
         
         private Vector3 startWorldPoint; 
         private Vector3 currentWorldPoint;
@@ -73,6 +75,7 @@ namespace Selector
         {
             inputManager = ServiceLocator.Instance.Get<IInputManager>();
             selectorView = ServiceLocator.Instance.Get<ISelectorView>();
+            heroManager = ServiceLocator.Instance.Get<IHeroManager>();
             ICameraController cameraController = ServiceLocator.Instance.Get<ICameraController>();
             
             mainCamera = cameraController.GetCamera();
@@ -151,7 +154,7 @@ namespace Selector
 
         private void OnLeftClickStarted(InputAction.CallbackContext context)
         {
-            if (inputManager.IsPointerOverGameObject())
+            if (inputManager.IsPointerOverGameObject() || heroManager.IsCastingSpell())
             {
                 return;
             }
@@ -165,7 +168,7 @@ namespace Selector
 
         private void OnLeftClickCanceled(InputAction.CallbackContext context)
         {
-            if (isDragging == false)
+            if (isDragging == false || heroManager.IsCastingSpell())
             {
                 return;
             }

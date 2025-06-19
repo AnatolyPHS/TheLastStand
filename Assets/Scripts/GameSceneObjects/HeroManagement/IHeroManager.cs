@@ -15,6 +15,7 @@ namespace GameSceneObjects.HeroManagement
         void OnHPChange();
         int GetHeroLevel();
         void OnAbilityUpgradeClick(AbilityType abilityType);
+        bool IsCastingSpell();
     }
 
     public struct HeroChangeStateEventData

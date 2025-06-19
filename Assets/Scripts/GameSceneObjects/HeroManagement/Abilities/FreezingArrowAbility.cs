@@ -39,6 +39,7 @@ namespace GameSceneObjects.HeroManagement
             
             effectHolder.ChangeCursor(CursorType.Default);
             lastTimeUsed = Time.time;
+            abilityInUse = false;
         }
 
         private void DamageEnemy(Vector3 mouseGroundPosition)

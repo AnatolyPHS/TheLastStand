@@ -103,6 +103,11 @@ namespace GameSceneObjects.HeroManagement
             SendHeroChangeStateEvent();
         }
 
+        public bool IsCastingSpell()
+        {
+            return abilityController.IsCastingSpell();
+        }
+
         public void AddListener(Action<HeroChangeStateEventData> listener)
         {
             eventTrigger.AddListener<HeroChangeState, HeroChangeStateEventData>(listener);
