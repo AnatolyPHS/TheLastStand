@@ -52,12 +52,12 @@ namespace GameSceneObjects.Buildings
 
         public void UpgradeBuilding()
         {
-            if (currencyTracker.CurrencyValue < upgradeCost)
+            if (currencyTracker.CurrencyValue < GetUpgradeCost())
             {
                 return;
             }
             
-            currencyTracker.ChangeCurrencyValue(-upgradeCost);
+            currencyTracker.ChangeCurrencyValue(-GetUpgradeCost());
             currentBuildingLevel++;
             trainingSpeedFactor = trainingSpeedCurve.Evaluate(currentBuildingLevel);
         }
@@ -81,7 +81,7 @@ namespace GameSceneObjects.Buildings
                 return 0f;
             }
 
-            float progress = 1f - nextSpawnTimer / CalculateSpawnDuration();
+            float progress = 1f - nextSpawnTimer / GetSpawnDuration();
             return Mathf.Clamp01(progress);
         }
 
@@ -102,7 +102,7 @@ namespace GameSceneObjects.Buildings
 
         public int GetUpgradeCost()
         {
-            return upgradeCost;
+            return upgradeCost * currentBuildingLevel;
         }
 
         protected override void ReduceTimer()

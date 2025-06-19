@@ -23,5 +23,10 @@ namespace UI.CurrencyView
         {
             ServiceLocator.Instance.Register<ICurrencyView>(this);
         }
+
+        public override void OnMainGuiDestroy()
+        {
+            ServiceLocator.Instance.Unregister<ICurrencyView>();
+        }
     }
 }

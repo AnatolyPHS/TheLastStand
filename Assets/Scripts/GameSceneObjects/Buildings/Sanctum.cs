@@ -3,7 +3,6 @@ using Camera;
 using GameSceneObjects.HeroManagement;
 using GameSceneObjects.Units;
 using Services;
-using UI.GameView;
 using UnityEngine;
 
 namespace GameSceneObjects.Buildings
@@ -14,7 +13,6 @@ namespace GameSceneObjects.Buildings
         
         [SerializeField] private float healEffect = .1f;
         [SerializeField] private SanctumTrigger sanctumTrigger;
-        [SerializeField] private AnimationCurve spawnDurationPerLvl;
         
         private IHeroManager heroManager;
         private ICameraController cameraController;
@@ -30,7 +28,7 @@ namespace GameSceneObjects.Buildings
             
             if (unitsToSpawnNumber <= 0)
             {
-                nextSpawnTimer = CalculateSpawnDuration();
+                nextSpawnTimer = GetSpawnDuration();
             }
             
             unitsToSpawnNumber = 1;
@@ -58,6 +56,8 @@ namespace GameSceneObjects.Buildings
         protected override void OnSpawn(GameUnit gameUnit)
         {
             heroManager.OnHeroRespawn(gameUnit);
+            gameUnit.Init();
+            
             unitsToSpawnNumber = 0;
             cameraController.FocusOnHero();
         }
@@ -69,11 +69,7 @@ namespace GameSceneObjects.Buildings
             ProcessHeal();
         }
 
-        protected override float CalculateSpawnDuration()
-        {
-            return base.CalculateSpawnDuration() * spawnDurationPerLvl.Evaluate( heroManager.GetHeroLevel());
-        }
-        
+
         private void ProcessHeal()
         {
             if (Time.time < nextTickTime)

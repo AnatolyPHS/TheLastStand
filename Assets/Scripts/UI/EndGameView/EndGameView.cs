@@ -23,6 +23,11 @@ namespace UI.EndGameView
             ServiceLocator.Instance.Register<IEndGameView>(this);
         }
 
+        public override void OnMainGuiDestroy()
+        {
+            ServiceLocator.Instance.Unregister<IEndGameView>();
+        }
+
         public override void OnMainUIStart()
         {
             endGameViewController = ServiceLocator.Instance.Get<IEndGameViewController>();

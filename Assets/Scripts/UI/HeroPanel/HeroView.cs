@@ -23,6 +23,11 @@ namespace UI.HeroPanel
             ServiceLocator.Instance.Register<IHeroView>(this);
         }
 
+        public override void OnMainGuiDestroy()
+        {
+            ServiceLocator.Instance.Unregister<IHeroView>();
+        }
+
         public override void OnMainUIStart()
         {
             heroViewController = ServiceLocator.Instance.Get<IHeroViewController>();

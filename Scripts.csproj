@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\EnemyGameUnit.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\BaseUnitState.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\HeroStates\HeroMoveToTargetUnitState.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView\BuildingView.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Units\IWithTarget.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\StateBehaviour\MoveToTargetUnitState.cs" />
      <Compile Include="Assets\Scripts\PoolingSystem\IPoolManager.cs" />
@@ -123,7 +124,6 @@
      <Compile Include="Assets\Scripts\GameSceneObjects\HeroManagement\Abilities\AbilityController.cs" />
      <Compile Include="Assets\Scripts\GameSceneObjects\Buildings\BuildingBase.cs" />
      <Compile Include="Assets\Scripts\UI\GameView\IGameView.cs" />
-     <Compile Include="Assets\Scripts\UI\GameView\BuiildingView.cs" />
      <Compile Include="Assets\Scripts\MainGameLogic\IWavesSpawner.cs" />
      <Compile Include="Assets\Scripts\Currencies\CurrencyTracker.cs" />
      <Compile Include="Assets\Scripts\InputsManager\IInputManager.cs" />

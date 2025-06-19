@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace UI.GameView
 {
-    public class BuiildingView : View, IBuildingView
+    public class BuildingView : View, IBuildingView
     {
         [SerializeField] private GameObject buildingPanel;
         [SerializeField] private Image buildingProgress;
@@ -31,6 +31,22 @@ namespace UI.GameView
             buildingViewController = ServiceLocator.Instance.Get<IBuildingViewController>();
             
             inputManager.SubscribeToInputEvent(InputType.AllyBuildingSelected, OnAllySpawnerSelected);
+            inputManager.SubscribeToInputEvent(InputType.UpgradeClick, OnUpgradeClick);
+        }
+        
+        public override void OnMainGuiDestroy()
+        {
+            ServiceLocator.Instance.Unregister<IBuildingView>();
+            inputManager.UnsubscribeFromInputEvent(InputType.AllyBuildingSelected, OnAllySpawnerSelected);
+            inputManager.UnsubscribeFromInputEvent(InputType.UpgradeClick, OnUpgradeClick);
+            
+            buildingPanel.SetActive(false);
+            gameObject.SetActive(false);
+        }
+
+        private void OnUpgradeClick(float obj)
+        {
+            RefreshSelectedBuildingUI();
         }
 
         private void OnAllySpawnerSelected(float value)
@@ -44,6 +60,11 @@ namespace UI.GameView
                 return;
             }
             
+            RefreshSelectedBuildingUI();
+        }
+
+        private void RefreshSelectedBuildingUI()
+        {
             AllySpawningBuilding allySpawner = buildingViewController.GetSelectedAllyBuilding();
             bool hasSelectedSpawner = allySpawner != null;
             

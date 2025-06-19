@@ -27,5 +27,13 @@ namespace UI.GameView
                 view.OnMainUIStart();
             }
         }
+
+        private void OnDestroy()
+        {
+            foreach (View view in views)
+            {
+                view.OnMainGuiDestroy();
+            }
+        }
     }
 }

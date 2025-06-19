@@ -398,7 +398,7 @@ MonoBehaviour:
   spawningBuildingInfo: {fileID: 11400000, guid: 6a44df8e60a8678448f9075d993f1cfa, type: 2}
   spawnPoint: {fileID: 1738866196}
   SelectionMark: {fileID: 977121917}
-  upgradeCost: 1000
+  upgradeCost: 200
   trainingSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -434,30 +434,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   healEffect: 0.1
   sanctumTrigger: {fileID: 1937418439}
-  spawnDurationPerLvl:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.65824366
-      outSlope: 0.65824366
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.05785652
-    - serializedVersion: 3
-      time: 10
-      value: 3
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!136 &125743932
 CapsuleCollider:
   m_ObjectHideFlags: 0
