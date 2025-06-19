@@ -13,6 +13,7 @@ namespace GameSceneObjects.Buildings
         
         [SerializeField] private float healEffect = .1f;
         [SerializeField] private SanctumTrigger sanctumTrigger;
+        [SerializeField] private AnimationCurve spawnDurationPerLvl;
         
         private IHeroManager heroManager;
         private ICameraController cameraController;
@@ -28,7 +29,7 @@ namespace GameSceneObjects.Buildings
             
             if (unitsToSpawnNumber <= 0)
             {
-                nextSpawnTimer = GetSpawnDuration();
+                nextSpawnTimer = CalculatetSpawnDuration();
             }
             
             unitsToSpawnNumber = 1;
@@ -69,7 +70,11 @@ namespace GameSceneObjects.Buildings
             ProcessHeal();
         }
 
-
+        protected override float CalculatetSpawnDuration()
+        {
+            return base.CalculatetSpawnDuration() * spawnDurationPerLvl.Evaluate( heroManager.GetHeroLevel());
+        }
+        
         private void ProcessHeal()
         {
             if (Time.time < nextTickTime)

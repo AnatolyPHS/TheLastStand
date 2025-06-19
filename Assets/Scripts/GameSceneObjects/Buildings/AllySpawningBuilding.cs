@@ -60,12 +60,12 @@ namespace GameSceneObjects.Buildings
                 return;
             }
             
-            float oldSpawnDuration = GetSpawnDuration();
+            float oldSpawnDuration = CalculatetSpawnDuration();
             currencyTracker.ChangeCurrencyValue(-GetUpgradeCost());
             currentBuildingLevel++;
             nextUnit = spawningBuildingInfo.GetUnitOfLevel(currentBuildingLevel);
             trainingSpeedFactor = trainingSpeedCurve.Evaluate(currentBuildingLevel);
-            nextSpawnTimer = nextSpawnTimer * GetSpawnDuration() / oldSpawnDuration;
+            nextSpawnTimer = nextSpawnTimer * CalculatetSpawnDuration() / oldSpawnDuration;
         }
 
         public virtual void BuildUnit()
@@ -87,7 +87,7 @@ namespace GameSceneObjects.Buildings
                 return 0f;
             }
 
-            float progress = 1f - nextSpawnTimer / GetSpawnDuration();
+            float progress = 1f - nextSpawnTimer / CalculatetSpawnDuration();
             return Mathf.Clamp01(progress);
         }
 

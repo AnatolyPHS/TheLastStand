@@ -65,7 +65,7 @@ namespace GameSceneObjects.Buildings
             nextSpawnTimer -= Time.deltaTime;
         }
 
-        protected float GetSpawnDuration()
+        protected virtual float CalculatetSpawnDuration()
         {
             return nextUnit.SpawnDuration;
         }

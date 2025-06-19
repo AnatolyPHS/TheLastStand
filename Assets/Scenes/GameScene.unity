@@ -434,6 +434,30 @@ MonoBehaviour:
     m_RotationOrder: 4
   healEffect: 0.1
   sanctumTrigger: {fileID: 1937418439}
+  spawnDurationPerLvl:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.5587328
+      outSlope: 0.5587328
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.032527883
+    - serializedVersion: 3
+      time: 10
+      value: 3
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!136 &125743932
 CapsuleCollider:
   m_ObjectHideFlags: 0
