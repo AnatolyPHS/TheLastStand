@@ -74,7 +74,7 @@ namespace GameSceneObjects.StateBehaviour
             Vector3 mainTowerPosition = buildingManager.GetMainTowerPosition();
             Vector3 currentPosition = unitToControl.GetPosition();
             float distanceToTower = Vector3.Distance(currentPosition, mainTowerPosition);
-            return distanceToTower > unitToControl.GetSearchRadius();
+            return distanceToTower > unitToControl.GetUnitStopDistance();
         }
 
         private bool EnemyIsNear()
