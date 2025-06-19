@@ -51,7 +51,7 @@ namespace GameSceneObjects.StateBehaviour
                 return hero;
             }
             
-            if (unitHolder.TryGetGlosestUnit(UnitFaction.Ally, unitToControl.transform.position, out GameUnit closestTarget)
+            if (unitHolder.TryGetGlosestUnit(UnitFaction.Ally, unitToControl.transform.position, out GameUnit closestTarget) && closestTarget.CanBeAttacked()
                 && Vector3.Distance(closestTarget.transform.position, unitToControl.transform.position) <= unitToControl.GetSearchRadius())
             {
                 return closestTarget;

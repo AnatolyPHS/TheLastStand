@@ -26,7 +26,6 @@ namespace GameSceneObjects.StateBehaviour
         protected override void ProcessLookForTarget()
         {
             IHittable target = GetNearestTarget();
-            
             controlledEnemy.SetTarget(target);
             stateSwitcher.SwitchState<EnemyMoveToTargetUnitState>();
         }
@@ -44,7 +43,7 @@ namespace GameSceneObjects.StateBehaviour
             {
                 return closestEnemy;
             }
-
+            
             return buildingManager.GetCitadel();
         }
     }

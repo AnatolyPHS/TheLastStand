@@ -18,11 +18,5 @@ namespace GameSceneObjects.StateBehaviour
         {
             stateSwitcher.SwitchState<EnemySearchForTargetUnitState>();
         }
-
-        protected override bool CanAttack(IHittable target)
-        {
-            bool inSanctum = target is ISanctumable sanctum && sanctum.IsSanctumActive();
-            return inSanctum == false && base.CanAttack(target);
-        }
     }
 }

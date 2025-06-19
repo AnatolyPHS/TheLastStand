@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aee42f977e0f224f9b4ecc1845fd4b5, type: 3}
   m_Name: RangeAllyUnitInfo
   m_EditorClassIdentifier: 
-  health: 100
-  armor: 0
+  health: 60
+  armor: 0.05
   attackPower: 10
   attackSpeed: 0.5
   attackRange: 10
@@ -21,7 +21,7 @@ MonoBehaviour:
   searchRange: 12
   unitStopDistance: 1
   faction: 20
-  unitCost: 100
+  unitKillReward: 100
   icon: {fileID: 21300000, guid: c88ba47d93d311146b32d1498df77de3, type: 3}
   attackEffectType: 40
   lvlFactor:

@@ -88,7 +88,7 @@ namespace GameSceneObjects.StateBehaviour
             stateSwitcher.SwitchState<SearchForTargetUnitState>();
         }
 
-        protected virtual bool CanAttack(IHittable target)
+        private bool CanAttack(IHittable target)
         {
             return target.CanBeAttacked() && Vector3.Distance(unitToControl.transform.position, target.GetPosition()) <= unitToControl.GetAttackRange();
         }

@@ -44,7 +44,7 @@ namespace GameSceneObjects.Buildings
 
         public bool CanBeAttacked()
         {
-            return IsAlive();
+            return true;
         }
 
         public void ShowTargetPointer()

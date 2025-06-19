@@ -26,11 +26,6 @@ namespace GameSceneObjects.Units
             currentHealth *= levelFactor;
         }
         
-        public bool IsSanctumActive()
-        {
-            return isSanctumActive;
-        }
-        
         public override void Init()
         {
             base.Init();

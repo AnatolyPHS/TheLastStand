@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeroAllyUnitInfo
   m_EditorClassIdentifier: 
   health: 100
-  armor: 0
+  armor: 0.1
   attackPower: 10
   attackSpeed: 1
   attackRange: 2
@@ -21,8 +21,9 @@ MonoBehaviour:
   searchRange: 5
   unitStopDistance: 1
   faction: 20
-  unitCost: 0
+  unitKillReward: 100
   icon: {fileID: 21300000, guid: 5dab7f58e5fcfee4b9ff8ec49e14cc30, type: 3}
+  attackEffectType: 0
   lvlFactor:
     serializedVersion: 2
     m_Curve:

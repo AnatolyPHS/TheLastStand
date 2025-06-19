@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BossEnemyUnitUnitInfo
   m_EditorClassIdentifier: 
   health: 300
-  armor: 0
+  armor: 0.1
   attackPower: 15
   attackSpeed: 0.6
   attackRange: 3

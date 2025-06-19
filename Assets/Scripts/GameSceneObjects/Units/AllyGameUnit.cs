@@ -19,11 +19,6 @@ namespace GameSceneObjects.Units
         
         private bool isSanctumActive = false;
         
-        public bool IsSanctumActive()
-        {
-            return isSanctumActive;
-        }
-        
         public void SetTarget(IHittable target)
         {
             currentTarget = target;
