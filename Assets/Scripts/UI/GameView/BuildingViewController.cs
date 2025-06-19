@@ -21,7 +21,6 @@ namespace UI.GameView
             inputManager = ServiceLocator.Instance.Get<IInputManager>();
             
             inputManager.SubscribeToInputEvent(InputType.BuildClick, OnBuildClick);
-            inputManager.SubscribeToInputEvent(InputType.UpgradeClick, OnUpgradeClick);
         }
         
         public void SetSelectedAllyBuilding(AllySpawningBuilding building)
@@ -35,7 +34,7 @@ namespace UI.GameView
             return allySpawner;
         }
         
-        private void OnUpgradeClick(float value)
+        public void OnUpgradeClick(float value)
         {
             if (value > 0f && allySpawner != null)
             {
@@ -54,7 +53,6 @@ namespace UI.GameView
         private void OnDestroy()
         {
             inputManager.UnsubscribeFromInputEvent(InputType.BuildClick, OnBuildClick);
-            inputManager.UnsubscribeFromInputEvent(InputType.UpgradeClick, OnUpgradeClick);
             
             ServiceLocator.Instance.Unregister<IBuildingViewController>();
         }

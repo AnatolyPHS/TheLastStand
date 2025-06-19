@@ -38,7 +38,6 @@ namespace UI.GameView
         {
             ServiceLocator.Instance.Unregister<IBuildingView>();
             inputManager.UnsubscribeFromInputEvent(InputType.AllyBuildingSelected, OnAllySpawnerSelected);
-            inputManager.UnsubscribeFromInputEvent(InputType.UpgradeClick, OnUpgradeClick);
             
             buildingPanel.SetActive(false);
             gameObject.SetActive(false);
@@ -46,6 +45,7 @@ namespace UI.GameView
 
         private void OnUpgradeClick(float obj)
         {
+            buildingViewController.OnUpgradeClick(obj);
             RefreshSelectedBuildingUI();
         }
 

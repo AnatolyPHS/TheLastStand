@@ -60,9 +60,12 @@ namespace GameSceneObjects.Buildings
                 return;
             }
             
+            float oldSpawnDuration = GetSpawnDuration();
             currencyTracker.ChangeCurrencyValue(-GetUpgradeCost());
             currentBuildingLevel++;
+            nextUnit = spawningBuildingInfo.GetUnitOfLevel(currentBuildingLevel);
             trainingSpeedFactor = trainingSpeedCurve.Evaluate(currentBuildingLevel);
+            nextSpawnTimer = nextSpawnTimer * GetSpawnDuration() / oldSpawnDuration;
         }
 
         public virtual void BuildUnit()
