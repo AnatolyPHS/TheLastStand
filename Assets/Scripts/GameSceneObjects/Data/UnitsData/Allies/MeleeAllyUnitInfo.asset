@@ -19,7 +19,7 @@ MonoBehaviour:
   attackRange: 2
   movementSpeed: 3
   searchRange: 5
-  unitStopDistance: 1.5
+  unitStopDistance: 2
   faction: 20
   unitKillReward: 100
   icon: {fileID: 21300000, guid: 81d21c10e60b3c74b9b4483ea274e611, type: 3}
